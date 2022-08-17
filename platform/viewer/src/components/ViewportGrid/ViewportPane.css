@@ -1,0 +1,12 @@
+.viewport-drop-target {
+  opacity: 1;
+  position: relative;
+  /* Locks in Scrollbar */
+  transition: 0.3s all ease;
+  /* height: calc(100vh - 75px); */
+}
+
+.viewport-drop-target.hovered {
+  opacity: 0.5;
+  cursor: copy;
+}

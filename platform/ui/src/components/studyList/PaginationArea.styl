@@ -1,0 +1,94 @@
+.pagination-area
+  display: flex;
+  color: var(--text-secondary-color);
+  font-size: 13px
+  font-weight: normal !important
+  background-color: #e7e3e3
+  justify-content: space-between
+  align-items: center
+  padding: 0.5rem 1rem
+  border-radius: 0.5rem
+
+  label
+    font-weight: normal
+
+  select
+    margin: 0 0.5rem
+    // background-color: var(--primary-background-color)
+    background-color: #fff
+    border-radius: 0.5rem
+    color: #7d7d7d
+    outline: none
+    height: 38px
+    width: 90px
+    border: none
+    padding: 0 0.25rem
+
+
+  .rows-dropdown
+    // width: 25%;
+    // padding-right: 15px;
+    // padding-left: 15px;
+
+  .pagination-buttons
+    // width: 75%;
+    // padding-right: 15px;
+    // padding-left: 15px;
+
+  .form-group
+    // margin-bottom: 15px;
+
+    .pagination-text, .pagination-text-row
+      color: #202020;
+      font-size: 0.9rem
+      font-weight: 500
+      text-transform: capitalize
+
+    .pagination-text-row
+      color: #7d7d7d
+
+.rows-per-page label.wrapperLabel
+  display: inline-table !important
+  margin: 0 4px
+
+  select
+    margin: 0px 0.5rem
+    width: 52px
+    border-radius: 0.5rem
+    border: none
+
+.page-buttons
+  margin: 0
+  text-align: right
+  font-weight: normal
+  ul.pagination-control
+    margin: 0
+
+    li
+      display: table-cell
+      padding: 5px 2px
+
+      button
+        padding: 4px 8px
+        background: linear-gradient(to right, #1285fa 0%, #33ccff 100%);
+        border-color: var(--ui-gray)
+        color: var(--ui-gray-darkest)
+        color: white
+        text-decoration: none
+        border: none;
+        min-width: 84px;
+        padding: 0.5rem;
+        font-weight: 600
+
+        &:hover:enabled
+          // color: var(--active-color)
+
+      .active
+        button
+          background-color: var(--ui-gray)
+          border-color: #ddd
+          color: white
+
+      .prev-btn
+        background: #d2cfcf !important
+        color: #202020

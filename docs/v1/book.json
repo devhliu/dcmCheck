@@ -1,0 +1,50 @@
+{
+  "title": "DCMCloud",
+  "description": "Documentation for the DCMCloud framework",
+  "gitbook": ">3.0.0",
+  "plugins": [
+    "edit-link",
+    "theme-cornerstone",
+    "-fontsettings",
+    "github",
+    "ga",
+    "anchors",
+    "versions"
+  ],
+  "pluginsConfig": {
+    "edit-link": {
+      "base": "https://github.com/DCMCloud/Viewers/edit/master/docs",
+      "label": "Edit This Page"
+    },
+    "github": {
+      "url": "https://github.com/DCMCloud/Viewers"
+    },
+    "ga": {
+      "token": "UA-110573590-2"
+    },
+    "sitemap": {
+      "hostname": "https://docs.dcmcloud.org",
+      "todo": "sitemap plugin removed; causing build errors"
+    },
+    "versions": {
+      "gitbookConfigURL": "https://raw.githubusercontent.com/DCMCloud/Viewers/master/docs/book.json",
+      "options": [
+        {
+          "value": "https://docs.dcmcloud.org/history/v1/",
+          "text": "Version 1.0.0 (Meteor)",
+          "selected": true
+        },
+        {
+          "value": "https://docs.dcmcloud.org/",
+          "text": "Version 2.0.0"
+        }
+      ]
+    }
+  },
+  "links": {
+    "sharing": {
+      "facebook": false,
+      "twitter": false
+    }
+  }
+}

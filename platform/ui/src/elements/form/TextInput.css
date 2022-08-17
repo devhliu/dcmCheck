@@ -1,0 +1,35 @@
+.input-dcmcloud-container {
+  font-size: 1em;
+  color: var(--text-primary-color);
+  font-weight: 400;
+}
+
+.input-dcmcloud-container .input-dcmcloud {
+  display: inline-block;
+  height: 40px;
+  margin: 0 10px 20px;
+  padding: 0 20px;
+  cursor: pointer;
+  border: none;
+  background-color: var(--input-background-color);
+  color: var(--input-placeholder-color);
+  font-size: 10pt;
+  font-weight: normal;
+  width: auto;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+}
+
+.input-dcmcloud-container .input-dcmcloud-label {
+  padding: 5px;
+  color: #202020;
+}
+
+.input-dcmcloud-container .input-dcmcloud:active,
+.input-dcmcloud-container .input-dcmcloud:focus {
+  background-color: var(--input-background-color);
+}
+
+.input-dcmcloud-container .input-dcmcloud.invisible {
+  visibility: hidden;
+}

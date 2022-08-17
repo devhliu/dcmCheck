@@ -1,0 +1,218 @@
+@import '../../../design/styles/common/global.styl'
+@import '../../../design/styles/common/form.styl'
+@import '../../../design/styles/common/button.styl'
+
+.ViewportDownloadForm
+  display: flex;
+  flex-direction: column;
+  z-index: 1080 !important;
+
+  input, select
+    max-height: 30px;
+
+  #keep-aspect svg
+    margin-top: 3px;
+
+  .title
+    margin: 0;
+    font-weight: bold;
+    display: none;
+
+  .file-info-container
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    // margin: 20px 0;
+    border-radius: 5px;
+    // padding: 20px 10px;
+    // background-color: var(--ui-gray-dark);
+    background-color: #ffffff
+
+    @media screen and (max-width: 1023px)
+      flex-direction: column;
+      align-items: flex-start;
+
+    .width,
+    .height,
+    .file-name,
+    .file-type
+      height: 56px;
+
+    .input-dcmcloud
+      margin: 0 5px;
+      margin: 0 5px 20px 5px;
+      cursor: pointer;
+      border: none;
+      background-color: #f3f3f3;
+      color: #202020;
+      font-size: 1rem;
+      font-weight: normal;
+      border-radius: 4px;
+
+
+    .file-name,
+    .file-type
+      .select-dcmcloud, .input-dcmcloud
+        width: 170px;
+        margin: 0 5px 20px 5px;
+        cursor: pointer;
+        border: none;
+        background-color: #f3f3f3;
+        color: #202020;
+        font-size: 1rem;
+        font-weight: normal;
+        border-radius: 4px;
+
+      .input-dcmcloud-label, .select-dcmcloud-label
+        width: 90px;
+        display: inline-block;
+        @media screen and (max-width: 1023px)
+          width: 120px;
+
+    .dimension-wrapper
+      display: flex;
+      flex-direction: row;
+
+      .dimensions
+        display: flex;
+        flex-direction: column;
+
+        .input-dcmcloud-label
+          width: 120px;
+          display: inline-block;
+          color: #202020
+
+        .input-dcmcloud
+          @media screen and (max-width: 1023px)
+            width: 170px;
+
+      .keep-aspect-wrapper
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 10px;
+        height: 86px;
+
+        button
+          background: linear-gradient(to bottom, #0f8afb 0%, #3c40ef 100%) !important;
+          color: #fff;
+          border-radius: 12px;
+          border: none;
+          padding: 0.5rem 0.85rem;
+
+
+    .show-annotations
+      font-weight: bold;
+      line-height: 30px;
+      input
+        margin-right: 7px;
+        vertical-align: middle;
+      label
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        color: #202020
+
+  .loading-image
+    height: 580px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--active-color);
+    font-size: 20px;
+
+    .icon-spin
+      margin-right: 15px;
+
+  .preview
+    display: flex;
+    flex-direction: column;
+    // background-color: var(--ui-gray-dark);
+    background-color: #fff
+    border-radius: 5px;
+    justify-content: flex-start;
+    align-items: center;
+    height: 387px;
+
+    .viewport-preview
+      max-height: 380px;
+      max-width: 380px;
+      position: absolute;
+      right: 100px;
+
+    .key-images
+      left: 105px;
+      position: absolute;
+      height: 430px;
+      overflow: auto;
+      border: 2px solid #cecece;
+      border-radius: 6px;
+
+      .view-key-preview
+        max-height: 180px;
+        max-width: 180px;
+        cursor: pointer;
+        text-align: center;
+
+        .view-key-image
+          padding: 21px;
+          max-height: 180px;
+          max-width: 180px;
+
+        .image-header
+          color: #202020;
+          font-weight: 600;
+          margin: -21px 0px 0px 0px;
+
+    .preview-header
+      /* width: 100%; */
+      /* text-align: center; */
+      font-size: 2em;
+      font-weight: 600;
+      /* margin: -35px 5px 0px 150px; */
+      color: #202020;
+      position: absolute;
+      right: 250px;
+      top: 165px;
+
+  .actions
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    align-items: center;
+    // margin-top: 20px;
+
+    .action-cancel
+      .btn-danger
+        background: #d2cfcf;
+        color: #202020;
+        border: none
+    .action-save
+      .btn-primary
+        background: linear-gradient(to bottom, #0f8afb 0%, #3c40ef 100%) !important;
+        color: #fff;
+        border: none
+
+    .action-save
+      .btn-danger
+        background: linear-gradient(to bottom, #e74c3c 0%, #c0392b 100%) !important;
+        color: #fff;
+        border: none
+
+    .btn
+      margin: 0 10px;
+
+  .input-error
+    font-size: 12px;
+    color: red;
+    text-align: center;
+    margin: 3px 0;
+
+
+.modal-dialog
+  height: 100%;
+
+  .modal-body
+    display: flex;
+    flex-direction: column;

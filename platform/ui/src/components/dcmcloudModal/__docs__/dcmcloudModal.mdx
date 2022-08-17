@@ -1,0 +1,39 @@
+---
+name: DCMCloudModal
+menu: Components
+route: /components/dcmcloud-modal
+---
+
+import { Playground, Props } from 'docz'
+import { State } from 'react-powerplug'
+import { DCMCloudModal } from './../index'
+import NameSpace from '../../../__docs__/NameSpace'
+
+# DCMCloud Modal
+
+## Basic usage
+
+<Playground>
+  <State
+    initial={{}}
+  >
+    {({ state, setState }) => (
+      <React.Fragment>
+        <div>
+          <pre>{JSON.stringify(state, null, 2)}</pre>
+        </div>
+        <div style={{ maxWidth: '400px', margin: '0 auto' }}>
+          <DCMCloudModal />
+        </div>
+      </React.Fragment>
+    )}
+  </State>
+</Playground>
+
+## API
+
+<Props of={DCMCloudModal} />
+
+## Translation Namespace
+
+<NameSpace name="DCMCloudModal" />
