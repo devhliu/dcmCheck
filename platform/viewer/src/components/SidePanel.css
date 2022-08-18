@@ -11,7 +11,7 @@
 
 .sidepanel {
   /* flex: 1; */
-  /* height: 100%; */
+  height: 100%;
   width: 100%;
   transition: var(--sidepanel-transition);
   overflow-x: auto;
@@ -39,9 +39,9 @@
 
 .main-content {
   /* flex: 1; */
-  height: 100%;
+  /* height: 100%; */
   /* overflow: hidden; */
-  /* transition: var(--sidepanel-transition); */
+  transition: var(--sidepanel-transition);
   width: 100%;
 }
 

@@ -1,0 +1,45 @@
+.ReactAngularHTMLCard {
+  background: black !important;
+  color: white !important;
+  border: 1px solid rgb(135, 139, 197) !important;
+  width: 100% !important;
+}
+
+.CardContent {
+  width: 100% !important;
+}
+
+.study-list-header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 0 1%;
+  line-height: 75px;
+  color: #0a2142
+}
+
+.copyIcon {
+  color: whitesmoke !important;
+}
+
+@media only screen and (max-width: 425px) {
+
+  /* Avatar in Mobile View */
+  .MuiToolbar-gutters {
+    padding-left: 16px !important;
+    padding-right: 50px !important;
+  }
+
+  .ReactAngularHTML_Div {
+    width: 100% !important;
+  }
+
+  .ReactAngularHTMLCard {
+    width: 100% !important;
+  }
+
+  .CardContent {
+    width: 80% !important;
+  }
+
+}

@@ -1,11 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { withRouter, useHistory } from 'react-router-dom';
 import ConnectedViewerRetrieveStudyData from '../connectedComponents/ConnectedViewerRetrieveStudyData.js';
 import DCMCloud from '@dcmcloud/core';
 const { urlUtil: UrlUtil } = DCMCloud.utils;
 
+
 function IHEInvokeImageDisplay({ location }) {
+
+  const history = useHistory();
+  const userData = JSON.parse(localStorage.getItem('userData'))
+  const token = localStorage.getItem('token')
+  if (token === null) {
+    history.push('/')
+  }
+
   const {
     // patientID,
     requestType,

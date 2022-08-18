@@ -357,102 +357,97 @@ class Viewer extends Component {
         {/*<ConnectedStudyLoadingMonitor studies={this.props.studies} />*/}
         {/*<StudyPrefetcher studies={this.props.studies} />*/}
         {/* VIEWPORTS + SIDEPANELS */}
-        {this.props.isStudyLoaded ? (
-          <div className="view-inline">
-            <ErrorBoundaryDialog context="ToolbarRow">
-              <ToolbarRow
-                className="toolbar-section"
-                activeViewport={
-                  this.props.viewports[this.props.activeViewportIndex]
+        <div className="view-inline">
+          <ErrorBoundaryDialog context="ToolbarRow">
+            <ToolbarRow
+              className="toolbar-section"
+              activeViewport={
+                this.props.viewports[this.props.activeViewportIndex]
+              }
+              isDerivedDisplaySetsLoaded={this.props.isDerivedDisplaySetsLoaded}
+              isLeftSidePanelOpen={this.state.isLeftSidePanelOpen}
+              isRightSidePanelOpen={this.state.isRightSidePanelOpen}
+              selectedLeftSidePanel={
+                this.state.isLeftSidePanelOpen
+                  ? this.state.selectedLeftSidePanel
+                  : ''
+              }
+              selectedRightSidePanel={
+                this.state.isRightSidePanelOpen
+                  ? this.state.selectedRightSidePanel
+                  : ''
+              }
+              handleSidePanelToggle={() => {
+                const activeState = this.state.isToggleSidePanel;
+                this.setState({ isToggleSidePanel: !activeState });
+                return activeState;
+              }}
+              handleSidePanelChange={(side, selectedPanel) => {
+                const sideClicked =
+                  side && side[0].toUpperCase() + side.slice(1);
+                const openKey = `is${sideClicked}SidePanelOpen`;
+                const selectedKey = `selected${sideClicked}SidePanel`;
+                const updatedState = Object.assign({}, this.state);
+
+                const isOpen = updatedState[openKey];
+                const prevSelectedPanel = updatedState[selectedKey];
+                // RoundedButtonGroup returns `null` if selected button is clicked
+                const isSameSelectedPanel =
+                  prevSelectedPanel === selectedPanel || selectedPanel === null;
+
+                updatedState[selectedKey] = selectedPanel || prevSelectedPanel;
+
+                const isClosedOrShouldClose = !isOpen || isSameSelectedPanel;
+                if (isClosedOrShouldClose) {
+                  updatedState[openKey] = !updatedState[openKey];
                 }
-                isDerivedDisplaySetsLoaded={
-                  this.props.isDerivedDisplaySetsLoaded
-                }
-                isLeftSidePanelOpen={this.state.isLeftSidePanelOpen}
-                isRightSidePanelOpen={this.state.isRightSidePanelOpen}
-                selectedLeftSidePanel={
-                  this.state.isLeftSidePanelOpen
-                    ? this.state.selectedLeftSidePanel
-                    : ''
-                }
-                selectedRightSidePanel={
-                  this.state.isRightSidePanelOpen
-                    ? this.state.selectedRightSidePanel
-                    : ''
-                }
-                handleSidePanelToggle={() => {
-                  const activeState = this.state.isToggleSidePanel;
-                  this.setState({ isToggleSidePanel: !activeState });
-                  return activeState;
-                }}
-                handleSidePanelChange={(side, selectedPanel) => {
-                  const sideClicked =
-                    side && side[0].toUpperCase() + side.slice(1);
-                  const openKey = `is${sideClicked}SidePanelOpen`;
-                  const selectedKey = `selected${sideClicked}SidePanel`;
-                  const updatedState = Object.assign({}, this.state);
 
-                  const isOpen = updatedState[openKey];
-                  const prevSelectedPanel = updatedState[selectedKey];
-                  // RoundedButtonGroup returns `null` if selected button is clicked
-                  const isSameSelectedPanel =
-                    prevSelectedPanel === selectedPanel ||
-                    selectedPanel === null;
+                this.setState(updatedState);
+              }}
+              studies={this.props.studies}
+            />
+          </ErrorBoundaryDialog>
 
-                  updatedState[selectedKey] =
-                    selectedPanel || prevSelectedPanel;
-
-                  const isClosedOrShouldClose = !isOpen || isSameSelectedPanel;
-                  if (isClosedOrShouldClose) {
-                    updatedState[openKey] = !updatedState[openKey];
-                  }
-
-                  this.setState(updatedState);
-                }}
-                studies={this.props.studies}
-              />
-            </ErrorBoundaryDialog>
-
-            <div className="FlexboxLayout" style={{ height: '100%' }}>
-              {/* LEFT */}
-              <ErrorBoundaryDialog context="LeftSidePanel">
-                <SidePanel
-                  from="left"
-                  // isToggle={true}
-                  isToggle={this.state.isToggleSidePanel}
-                  isOpen={this.state.isLeftSidePanelOpen}
-                  // isOpen={false}
-                >
-                  {VisiblePanelLeft ? (
-                    <VisiblePanelLeft
-                      viewports={this.props.viewports}
-                      studies={this.props.studies}
-                      activeIndex={this.props.activeViewportIndex}
-                    />
-                  ) : (
-                    <ConnectedStudyBrowser
-                      studies={this.state.thumbnails}
-                      studyMetadata={this.props.studies}
-                    />
-                  )}
-                </SidePanel>
-              </ErrorBoundaryDialog>
-              {/* MAIN */}
-              <div
-                style={{
-                  height: `${this.state.isToggleSidePanel ? '75vh' : '100vh'}`,
-                }}
-                className={classNames('main-content')}
+          <div className="FlexboxLayout">
+            {/* LEFT */}
+            <ErrorBoundaryDialog context="LeftSidePanel">
+              <SidePanel
+                from="left"
+                // isToggle={true}
+                isToggle={this.state.isToggleSidePanel}
+                isOpen={this.state.isLeftSidePanelOpen}
+              // isOpen={false}
               >
-                <ErrorBoundaryDialog context="ViewerMain">
-                  <ConnectedViewerMain
+                {VisiblePanelLeft ? (
+                  <VisiblePanelLeft
+                    viewports={this.props.viewports}
                     studies={this.props.studies}
-                    isStudyLoaded={this.props.isStudyLoaded}
+                    activeIndex={this.props.activeViewportIndex}
                   />
-                </ErrorBoundaryDialog>
-              </div>
-              {/* RIGHT */}
-              {/* <ErrorBoundaryDialog context="RightSidePanel">
+                ) : (
+                  <ConnectedStudyBrowser
+                    studies={this.state.thumbnails}
+                    studyMetadata={this.props.studies}
+                  />
+                )}
+              </SidePanel>
+            </ErrorBoundaryDialog>
+            {/* MAIN */}
+            <div
+              style={{
+                height: `${this.state.isToggleSidePanel ? '75vh' : '100vh'}`,
+              }}
+              className={classNames('main-content')}
+            >
+              <ErrorBoundaryDialog context="ViewerMain">
+                <ConnectedViewerMain
+                  studies={this.props.studies}
+                  isStudyLoaded={this.props.isStudyLoaded}
+                />
+              </ErrorBoundaryDialog>
+            </div>
+            {/* RIGHT */}
+            {/* <ErrorBoundaryDialog context="RightSidePanel">
               <SidePanel from="right" isOpen={this.state.isRightSidePanelOpen}>
                 {VisiblePanelRight && (
                   <VisiblePanelRight
@@ -468,22 +463,8 @@ class Viewer extends Component {
                 )}
               </SidePanel>
             </ErrorBoundaryDialog> */}
-            </div>
           </div>
-        ) : (
-          <div
-            style={{
-              height: '100vh',
-              width: '100vw',
-              textAlign: 'center',
-              alignItems: 'center',
-              justifyContent: 'center',
-              display: 'flex',
-            }}
-          >
-            <h1 style={{ color: 'lightgray' }}>Loading...</h1>
-          </div>
-        )}
+        </div>{' '}
         {/* </div> */}
       </>
     );
@@ -511,7 +492,7 @@ export default withDialog(Viewer);
  * @param {*object} displaySet
  * @returns {[string]} an array of strings containing the warnings
  */
-const _checkForSeriesInconsistencesWarnings = async function(
+const _checkForSeriesInconsistencesWarnings = async function (
   displaySet,
   studies
 ) {
@@ -601,7 +582,7 @@ const _checkForSeriesInconsistencesWarnings = async function(
 
     for (
       let i = 0,
-        groupsLen = segMetadata.PerFrameFunctionalGroupsSequence.length;
+      groupsLen = segMetadata.PerFrameFunctionalGroupsSequence.length;
       i < groupsLen;
       ++i
     ) {
@@ -690,7 +671,7 @@ const _checkForSeriesInconsistencesWarnings = async function(
  * @param {string} activeDisplaySetInstanceUID
  * @returns {boolean} is active.
  */
-const _isDisplaySetActive = function(
+const _isDisplaySetActive = function (
   displaySet,
   studies,
   activeDisplaySetInstanceUID
@@ -715,7 +696,7 @@ const _isDisplaySetActive = function(
       );
       active = referencedDisplaySet
         ? activeDisplaySetInstanceUID ===
-          referencedDisplaySet.displaySetInstanceUID
+        referencedDisplaySet.displaySetInstanceUID
         : false;
     } else {
       const referencedDisplaySet = displaySet.getSourceDisplaySet(
@@ -724,7 +705,7 @@ const _isDisplaySetActive = function(
       );
       active = referencedDisplaySet
         ? activeDisplaySetInstanceUID ===
-          referencedDisplaySet.displaySetInstanceUID
+        referencedDisplaySet.displaySetInstanceUID
         : false;
     }
   }
@@ -742,7 +723,7 @@ const _isDisplaySetActive = function(
  * @param {Study[]} studies
  * @param {string} activeDisplaySetInstanceUID
  */
-const _mapStudiesToThumbnails = function(studies, activeDisplaySetInstanceUID) {
+const _mapStudiesToThumbnails = function (studies, activeDisplaySetInstanceUID) {
   return studies.map(study => {
     const { StudyInstanceUID } = study;
     debugger;

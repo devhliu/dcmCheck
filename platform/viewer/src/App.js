@@ -187,6 +187,7 @@ class App extends Component {
                                 modal={DCMCloudModal}
                                 service={UIModalService}
                               >
+
                                 <DCMCloudStandaloneViewer
                                   userManager={this._userManager}
                                 />

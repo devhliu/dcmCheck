@@ -63,7 +63,8 @@ const AWSFormField = () => {
   });
 
   return (
-    <div className="access-field-container">
+
+    <div className="access-field-container" >
       <>
         <label className="field-label" htmlFor="fname">
           AccessKey ID
@@ -72,7 +73,7 @@ const AWSFormField = () => {
           type="text"
           id="AwsAccessKeyId"
           className="form-control access-field"
-          onChange={() => {}}
+          onChange={() => { }}
           placeholder="AccessKey Id"
         />
       </>
@@ -84,7 +85,7 @@ const AWSFormField = () => {
           type="text"
           id="AwsSecretAccessKey"
           className="form-control access-field"
-          onChange={() => {}}
+          onChange={() => { }}
           placeholder="Secret Access Key"
         />
       </>
@@ -96,7 +97,7 @@ const AWSFormField = () => {
           type="text"
           id="AwsBucketName"
           className="form-control access-field"
-          onChange={() => {}}
+          onChange={() => { }}
           placeholder="Bucket Name"
         />
       </>
@@ -108,7 +109,7 @@ const AWSFormField = () => {
           type="text"
           id="DCMCAccessKey"
           className="form-control access-field"
-          onChange={() => {}}
+          onChange={() => { }}
           placeholder="DCMC Access Key"
         />
       </>
@@ -121,7 +122,7 @@ const AWSFormField = () => {
           id="bucket_type"
           value="aws"
           className="form-control access-field"
-          onChange={() => {}}
+          onChange={() => { }}
         />
       </>
       <div className="connect-btn-container">
@@ -148,7 +149,7 @@ const GoogleFormField = () => {
           id="GoogleAccessKeyID"
           type="text"
           className="form-control access-field"
-          onChange={() => {}}
+          onChange={() => { }}
           placeholder="AccessKey Id"
         />
       </>
@@ -160,7 +161,7 @@ const GoogleFormField = () => {
           id="GoogleSecretAccessKey"
           type="text"
           className="form-control access-field"
-          onChange={() => {}}
+          onChange={() => { }}
           placeholder="Secret Access Key"
         />
       </>
@@ -172,7 +173,7 @@ const GoogleFormField = () => {
           id="GoogleBucketName"
           type="text"
           className="form-control access-field"
-          onChange={() => {}}
+          onChange={() => { }}
           placeholder="Bucket Name"
         />
       </>
@@ -184,7 +185,7 @@ const GoogleFormField = () => {
           id="GoogleDCMCAccesskey"
           type="text"
           className="form-control access-field"
-          onChange={() => {}}
+          onChange={() => { }}
           placeholder="DCMC AccessKey"
         />
       </>
@@ -194,7 +195,7 @@ const GoogleFormField = () => {
           type="hidden"
           value="google"
           className="form-control access-field"
-          onChange={() => {}}
+          onChange={() => { }}
         />
       </>
       <div className="connect-btn-container">
@@ -237,7 +238,10 @@ function CheckConnectivityMain() {
     body: JSON.stringify(data),
   };
   // fetch('https://app.dcmcloud.com/api/files/CheckConnectivity?BucketName=' + BucketName + '&Accesskey=' + AccessKeyId + '&SecretAccessKey=' + SecretAccessKey + '&bucketType=google&dcmcAccessKey=eWF2b3ktMjFhNmQuYXBwc3BvdC5jb21fZGNtY2xvdWQ=', requestOptions)
-  fetch('https://app.dcmcloud.com/api/files/CheckConnectivity', requestOptions)
+  fetch(
+    'https://app.dcmcloud.com/api/files/CheckConnectivity',
+    requestOptions
+  )
     .then(response => response.json())
     .then(data => {
       if (data == true) {
@@ -280,7 +284,10 @@ function CheckConnectivityMainGoogle() {
     body: JSON.stringify(data),
   };
   // fetch('https://app.dcmcloud.com/api/files/CheckConnectivity?BucketName=' + BucketName + '&Accesskey=' + AccessKeyId + '&SecretAccessKey=' + SecretAccessKey + '&bucketType=google&dcmcAccessKey=eWF2b3ktMjFhNmQuYXBwc3BvdC5jb21fZGNtY2xvdWQ=', requestOptions)
-  fetch('https://app.dcmcloud.com/api/files/CheckConnectivity', requestOptions)
+  fetch(
+    'https://app.dcmcloud.com/api/files/CheckConnectivity',
+    requestOptions
+  )
     .then(response => response.json())
     .then(data => {
       if (data == true) {

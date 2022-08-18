@@ -6,7 +6,8 @@ import { servicesManager } from './../../App';
 
 import './ErrorBoundaryDialog.css';
 
-const { UIModalService } = servicesManager.services;
+// ? hot update failed for module "./App.js". Last file processed: "./components/ErrorBoundaryDialog/ErrorBoundaryDialog.js"
+// const { UIModalService } = servicesManager.services;
 
 const ErrorBoundaryDialog = ({ context, children }) => {
   const handleOnError = (error, componentStack) => {
@@ -38,10 +39,11 @@ const ErrorBoundaryDialog = ({ context, children }) => {
       );
     };
 
-    UIModalService.show({
-      content: ErrorDialog,
-      title: `Something went wrong in ${context}`,
-    });
+    // ? hot update failed for module "./App.js". Last file processed: "./components/ErrorBoundaryDialog/ErrorBoundaryDialog.js"
+    // UIModalService.show({
+    //   content: ErrorDialog,
+    //   title: `Something went wrong in ${context}`,
+    // });
   };
 
   const fallbackComponent = () => (

@@ -78,7 +78,7 @@ const ViewportGrid = function(props) {
 
       const ViewportComponent = _getViewportComponent(
         data, // Why do we pass this as `ViewportData`, when that's not really what it is?
-        activeViewportIndex,
+        viewportIndex,
         children,
         availablePlugins,
         pluginName,

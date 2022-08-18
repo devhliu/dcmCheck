@@ -1,0 +1,54 @@
+.TemplateContainer {
+  padding: 10px 40px !important;
+  background-color: #fdfdfd;
+}
+
+/* .Selected-TemplateContainer {
+
+} */
+
+.TemplateCard {
+  padding: 20px 10px !important;
+}
+
+.MuiCardActions-root {
+  /* justify-content: end !important; */
+  padding: 5px 0 18px 18px !important;
+}
+
+.makeStyles-root-1:hover {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.MuiTypography-colorTextPrimary {
+  font-size: 20px !important;
+}
+
+.title-and-price {
+  justify-content: space-between;
+  display: flex;
+  font-size: 20px;
+  text-transform: capitalize;
+}
+
+.SelectedTemplateCard {
+  padding: 10px 10px !important;
+  /* padding: 10px 40px !important; */
+  background-color: gainsboro;
+}
+
+.delete-cardActionButtons {
+  padding: 5px 15px 15px 18px !important;
+  justify-content: end;
+}
+
+.DeleteButton {
+  color: #ff3b3b !important;
+  border: 1px solid !important;
+}
+
+.heading-Div {
+  padding: 30px 50px 0px 40px;
+  display: flex;
+  justify-content: space-between
+}
