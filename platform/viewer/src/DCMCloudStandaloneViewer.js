@@ -16,7 +16,7 @@ import * as RoutesUtil from './routes/routesUtil';
 
 import NotFound from './routes/NotFound.js';
 import { Bar, Container } from './components/LoadingBar/';
-import './OHIFStandaloneViewer.css';
+import './DCMCloudStandaloneViewer.css';
 import './variables.css';
 import './theme-tide.css';
 // Contexts

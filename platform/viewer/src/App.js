@@ -47,7 +47,7 @@ import {
 import { GenericViewerCommands, MeasurementsPanel } from './appExtensions';
 
 /** Viewer */
-import OHIFStandaloneViewer from './OHIFStandaloneViewer';
+import OHIFStandaloneViewer from './DCMCloudStandaloneViewer';
 
 /** Store */
 import { getActiveContexts } from './store/layout/selectors.js';
