@@ -20,6 +20,7 @@ import ui from './ui';
 import user from './user.js';
 import errorHandler from './errorHandler.js';
 import utils, { hotkeys } from './utils/';
+import str2ab from './utils/str2ab';
 
 import {
   UINotificationService,
@@ -29,7 +30,7 @@ import {
   LoggerService,
 } from './services';
 
-const DCMCloud = {
+const OHIF = {
   MODULE_TYPES,
   //
   CommandsManager,
@@ -96,8 +97,10 @@ export {
   UIDialogService,
   MeasurementService,
   LoggerService,
+
+  str2ab,
 };
 
-export { DCMCloud };
+export { OHIF };
 
-export default DCMCloud;
+export default OHIF;

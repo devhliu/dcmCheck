@@ -6,16 +6,16 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
 
-import DCMCloudCornerstoneExtension from '@dcmcloud/extension-cornerstone';
+import OHIFCornerstoneExtension from '@ohif/extension-cornerstone';
 
 import {
   SnackbarProvider,
   ModalProvider,
   DialogProvider,
-  DCMCloudModal,
+  OHIFModal,
   LoggerProvider,
   ErrorBoundary,
-} from '@dcmcloud/ui';
+} from '@ohif/ui';
 
 import {
   CommandsManager,
@@ -28,10 +28,10 @@ import {
   LoggerService,
   MeasurementService,
   utils,
-  redux as reduxDCMCloud,
-} from '@dcmcloud/core';
+  redux as reduxOHIF,
+} from '@ohif/core';
 
-import i18n from '@dcmcloud/i18n';
+import i18n from '@ohif/i18n';
 
 // TODO: This should not be here
 //import './config';
@@ -47,7 +47,7 @@ import {
 import { GenericViewerCommands, MeasurementsPanel } from './appExtensions';
 
 /** Viewer */
-import DCMCloudStandaloneViewer from './DCMCloudStandaloneViewer';
+import OHIFStandaloneViewer from './OHIFStandaloneViewer';
 
 /** Store */
 import { getActiveContexts } from './store/layout/selectors.js';
@@ -74,8 +74,8 @@ let extensionManager;
 // TODO[react] Use a provider when the whole tree is React
 window.store = store;
 
-window.dcmcloud = window.dcmcloud || {};
-window.dcmcloud.app = {
+window.OHIF = window.OHIF || {};
+window.OHIF.app = {
   commandsManager,
   hotkeysManager,
   servicesManager,
@@ -184,11 +184,10 @@ class App extends Component {
                           <SnackbarProvider service={UINotificationService}>
                             <DialogProvider service={UIDialogService}>
                               <ModalProvider
-                                modal={DCMCloudModal}
+                                modal={OHIFModal}
                                 service={UIModalService}
                               >
-
-                                <DCMCloudStandaloneViewer
+                                <OHIFStandaloneViewer
                                   userManager={this._userManager}
                                 />
                               </ModalProvider>
@@ -217,10 +216,10 @@ class App extends Component {
                     <SnackbarProvider service={UINotificationService}>
                       <DialogProvider service={UIDialogService}>
                         <ModalProvider
-                          modal={DCMCloudModal}
+                          modal={OHIFModal}
                           service={UIModalService}
                         >
-                          <DCMCloudStandaloneViewer />
+                          <OHIFStandaloneViewer />
                         </ModalProvider>
                       </DialogProvider>
                     </SnackbarProvider>
@@ -290,11 +289,11 @@ function _initExtensions(extensions, cornerstoneExtensionConfig, appConfig) {
 
   const requiredExtensions = [
     GenericViewerCommands,
-    [DCMCloudCornerstoneExtension, cornerstoneExtensionConfig],
+    [OHIFCornerstoneExtension, cornerstoneExtensionConfig],
   ];
 
   if (appConfig.disableMeasurementPanel !== true) {
-    /* WARNING: MUST BE REGISTERED _AFTER_ DCMCloudCornerstoneExtension */
+    /* WARNING: MUST BE REGISTERED _AFTER_ OHIFCornerstoneExtension */
     requiredExtensions.push(MeasurementsPanel);
   }
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from "react-router-dom";
-import { utils, user } from '@dcmcloud/core';
+import { utils, user } from '@ohif/core';
 //
 import ConnectedViewerRetrieveStudyData from '../connectedComponents/ConnectedViewerRetrieveStudyData';
 import useServer from '../customHooks/useServer';
@@ -22,14 +21,6 @@ const getSeriesInstanceUIDs = (seriesInstanceUIDs, routeLocation) => {
 };
 
 function ViewerRouting({ match: routeMatch, location: routeLocation }) {
-
-  const history = useHistory();
-  const userData = JSON.parse(localStorage.getItem('userData'))
-  const token = localStorage.getItem('token')
-  if (token === null) {
-    history.push('/')
-  }
-
   const {
     project,
     location,

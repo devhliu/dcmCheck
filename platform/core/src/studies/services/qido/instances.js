@@ -16,7 +16,7 @@ function resultDataToStudyMetadata(server, StudyInstanceUID, resultData) {
   const seriesMap = {};
   const series = [];
 
-  resultData.forEach(function (instance) {
+  resultData.forEach(function(instance) {
     // Use seriesMap to cache series data
     // If the series instance UID has already been used to
     // process series data, continue using that series
@@ -55,17 +55,7 @@ function resultDataToStudyMetadata(server, StudyInstanceUID, resultData) {
       SeriesInstanceUID +
       '&objectUID=' +
       SOPInstanceUID +
-      '&contentType=application%2Fdicom' +
-      '&bucketName=' +
-      localStorage.getItem('AwsBucketName') +
-      '&accessKeyId=' +
-      localStorage.getItem('AwsAccessKeyId') +
-      '&secretAccessKey=' +
-      localStorage.getItem('AwsSecretAccessKey') +
-      '&DCMCAccessKey=' +
-      localStorage.getItem('DCMCAccessKey') +
-      '&BucketType=' +
-      localStorage.getItem('BucketType');
+      '&contentType=application%2Fdicom';
 
     // Add this instance to the current series
     series.instances.push({

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './googleCloud.css';
 import { withTranslation } from 'react-i18next';
-import { Icon } from '@dcmcloud/ui';
+import { Icon } from '@ohif/ui';
 
 class DatasetsList extends Component {
   state = {
@@ -62,7 +62,15 @@ class DatasetsList extends Component {
 
     const body = (
       <tbody id="DatasetList">
-        {datasets.filter(dataset => (dataset.name.split('/')[5].toLowerCase().includes(filter.toLowerCase()) || filter=="")).map(this.renderTableRow)}
+        {datasets
+          .filter(
+            dataset =>
+              dataset.name
+                .split('/')[5]
+                .toLowerCase()
+                .includes(filter.toLowerCase()) || filter == ''
+          )
+          .map(this.renderTableRow)}
       </tbody>
     );
 

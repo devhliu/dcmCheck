@@ -10,9 +10,9 @@ assignees: ''
 > community. How does it add value? Why _this feature_?
 >
 > Is your request very specific to your needs? Consider
-> [contributing it](https://docs.dcmcloud.org/contributing.html) yourself! Or
-> reach out to a community member that offers
-> [consulting services](https://docs.dcmcloud.org/help.html#paid--commercial).
+> [contributing it](https://docs.ohif.org/contributing.html) yourself! Or reach
+> out to a community member that offers
+> [consulting services](https://docs.ohif.org/help.html#paid--commercial).
 
 ## Request
 

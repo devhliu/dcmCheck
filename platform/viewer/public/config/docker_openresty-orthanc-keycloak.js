@@ -10,10 +10,10 @@ window.config = {
         qidoRoot: 'http://127.0.0.1/pacs/dicom-web',
         wadoRoot: 'http://127.0.0.1/pacs/dicom-web',
         qidoSupportsIncludeField: false,
-        imageRendering: 'wadouri',
-        thumbnailRendering: 'wadouri',
+        imageRendering: 'wadors',
+        thumbnailRendering: 'wadors',
         // REQUIRED TAG:
-        // TODO: Remove tag after https://github.com/DCMCloud/dcmcloud-core/pull/19 is merged and we bump version
+        // TODO: Remove tag after https://github.com/OHIF/ohif-core/pull/19 is merged and we bump version
         // requestOptions: {
         // undefined to use JWT + Bearer auth
         // auth: 'orthanc:orthanc',
@@ -26,9 +26,9 @@ window.config = {
     {
       // ~ REQUIRED
       // Authorization Server URL
-      authority: 'http://127.0.0.1/auth/realms/dcmcloud',
-      client_id: 'dcmcloud-viewer',
-      redirect_uri: 'http://127.0.0.1/callback', // `DCMCloudStandaloneViewer.js`
+      authority: 'http://127.0.0.1/auth/realms/ohif',
+      client_id: 'ohif-viewer',
+      redirect_uri: 'http://127.0.0.1/callback', // `OHIFStandaloneViewer.js`
       // "Authorization Code Flow"
       // Resource: https://medium.com/@darutk/diagrams-of-all-the-openid-connect-flows-6968e3990660
       response_type: 'code',

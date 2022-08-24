@@ -6,7 +6,7 @@ version: 2.1
 #
 # Note:
 # Netlify works independently from this configuration to
-# create pull request previews and to update `https://docs.dcmcloud.org`
+# create pull request previews and to update `https://docs.ohif.org`
 ###
 
 ## https://github.com/cypress-io/circleci-orb
@@ -20,16 +20,14 @@ executors:
     docker:
       - image: 'cypress/browsers:node14.15.0-chrome86-ff82'
         environment:
-          CYPRESS_BASE_URL: https://dcmcloud-staging.netlify.com/
+          CYPRESS_BASE_URL: https://ohif-staging.netlify.com/
   chrome-and-pacs:
     docker:
       # Primary container image where all steps run.
       - image: 'cypress/browsers:node14.15.0-chrome86-ff82'
-      - image: 'dcmcloud/viewer-testdata:0.1-test'
-
 defaults: &defaults
   docker:
-    - image: circleci/node:14.15.0
+    - image: cimg/node:14.19
       environment:
         TERM: xterm # Enable colors in term
         QUICK_BUILD: true
@@ -119,6 +117,7 @@ jobs:
           command: yarn install --frozen-lockfile
 
       - setup_remote_docker:
+          version: 19.03.13
           docker_layer_caching: false
 
       - run:
@@ -129,9 +128,9 @@ jobs:
             # Set our version number using vars
             echo $CIRCLE_BUILD_NUM
             # Build our image, auth, and push
-            docker build --tag dcmcloud/viewer:PR_BUILD-$CIRCLE_BUILD_NUM .
+            docker build --tag ohif/viewer:PR_BUILD-$CIRCLE_BUILD_NUM .
             echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
-            docker push dcmcloud/viewer:PR_BUILD-$CIRCLE_BUILD_NUM
+            docker push ohif/viewer:PR_BUILD-$CIRCLE_BUILD_NUM
 
   ###
   # Workflow: DEPLOY
@@ -159,7 +158,7 @@ jobs:
           key: yarn-packages-{{ checksum "yarn.lock" }}
       # Build & Test
       - run:
-          name: 'Build the DCMCloud Viewer'
+          name: 'Build the OHIF Viewer'
           command: yarn run build
           no_output_timeout: 45m
       # - run:
@@ -256,8 +255,8 @@ jobs:
             rm -rf ~/.ssh
             mkdir ~/.ssh/
             echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
-            git config --global user.email "danny.ri.brown+dcmcloud-bot@gmail.com"
-            git config --global user.name "dcmcloud-bot"
+            git config --global user.email "danny.ri.brown+ohif-bot@gmail.com"
+            git config --global user.name "ohif-bot"
       - run:
           name: Authenticate with NPM registry
           command:
@@ -283,8 +282,8 @@ jobs:
             rm -rf ~/.ssh
             mkdir ~/.ssh/
             echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
-            git config --global user.email "danny.ri.brown+dcmcloud-bot@gmail.com"
-            git config --global user.name "dcmcloud-bot"
+            git config --global user.email "danny.ri.brown+ohif-bot@gmail.com"
+            git config --global user.name "ohif-bot"
       - run: yarn global add gitbook-cli gh-pages
       - run: chmod +x ~/repo/.circleci/build-and-publish-docs.sh
       - run: ~/repo/.circleci/build-and-publish-docs.sh
@@ -295,6 +294,7 @@ jobs:
       - attach_workspace:
           at: ~/repo
       - setup_remote_docker:
+          version: 19.03.13
           docker_layer_caching: false
       - run:
           name: Build and push Docker image
@@ -313,10 +313,10 @@ jobs:
               echo $IMAGE_VERSION
               echo $IMAGE_VERSION_FULL
               # Build our image, auth, and push
-              docker build --tag dcmcloud/$IMAGE_NAME:$IMAGE_VERSION_FULL --tag dcmcloud/$IMAGE_NAME:latest .
+              docker build --tag ohif/$IMAGE_NAME:$IMAGE_VERSION_FULL --tag ohif/$IMAGE_NAME:latest .
               echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
-              docker push dcmcloud/$IMAGE_NAME:$IMAGE_VERSION_FULL
-              docker push dcmcloud/$IMAGE_NAME:latest
+              docker push ohif/$IMAGE_NAME:$IMAGE_VERSION_FULL
+              docker push ohif/$IMAGE_NAME:latest
             fi
 
 workflows:
@@ -347,8 +347,8 @@ workflows:
           store_artifacts: true
           working_directory: platform/viewer
           build:
-            npx cross-env QUICK_BUILD=true APP_CONFIG=config/dicomweb-server.js
-            yarn run build
+            git submodule update --init && npx cross-env QUICK_BUILD=true
+            APP_CONFIG=config/e2e.js yarn run build
           start: yarn run test:e2e:serve
           spec: 'cypress/integration/common/**/*,cypress/integration/pwa/**/*'
           wait-on: 'http://localhost:3000'
@@ -375,8 +375,8 @@ workflows:
           store_artifacts: true
           working_directory: platform/viewer
           build:
-            npx cross-env QUICK_BUILD=true APP_CONFIG=config/dicomweb-server.js
-            yarn run build:package
+            git submodule update --init && npx cross-env QUICK_BUILD=true
+            APP_CONFIG=config/e2e.js yarn run build:package
           start: yarn run test:e2e:serve
           spec: 'cypress/integration/common/**/*,cypress/integration/script-tag/**/*'
           wait-on: 'http://localhost:3000'
@@ -408,8 +408,8 @@ workflows:
           store_artifacts: false
           working_directory: platform/viewer
           build:
-            npx cross-env QUICK_BUILD=true APP_CONFIG=config/dicomweb-server.js
-            yarn run build
+            git submodule update --init && npx cross-env QUICK_BUILD=true
+            APP_CONFIG=config/e2e.js yarn run build
           # start server --> verify running --> percy + chrome + cypress
           command: yarn run test:e2e:dist
           cache-key: 'yarn-packages-{{ checksum "yarn.lock" }}'
@@ -487,8 +487,8 @@ workflows:
           store_artifacts: false
           working_directory: platform/viewer
           build:
-            npx cross-env QUICK_BUILD=true APP_CONFIG=config/dicomweb-server.js
-            yarn run build
+            git submodule update --init && npx cross-env QUICK_BUILD=true
+            APP_CONFIG=config/e2e.js yarn run build
           # start server --> verify running --> percy + chrome + cypress
           command: yarn run test:e2e:dist
           cache-key: 'yarn-packages-{{ checksum "yarn.lock" }}'

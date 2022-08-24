@@ -1,4 +1,4 @@
-import { redux } from '@dcmcloud/core';
+import { redux } from '@ohif/core';
 
 const { setViewportLayoutAndData } = redux.actions;
 

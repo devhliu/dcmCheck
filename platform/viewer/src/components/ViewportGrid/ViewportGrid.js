@@ -3,8 +3,8 @@ import './ViewportGrid.css';
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { utils } from '@dcmcloud/core';
-import { useSnackbarContext, useLogger } from '@dcmcloud/ui';
+import { utils } from '@ohif/core';
+import { useSnackbarContext, useLogger } from '@ohif/ui';
 //
 import ViewportPane from './ViewportPane.js';
 import DefaultViewport from './DefaultViewport.js';
@@ -78,7 +78,7 @@ const ViewportGrid = function(props) {
 
       const ViewportComponent = _getViewportComponent(
         data, // Why do we pass this as `ViewportData`, when that's not really what it is?
-        viewportIndex,
+        activeViewportIndex,
         children,
         availablePlugins,
         pluginName,

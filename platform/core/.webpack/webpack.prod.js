@@ -29,7 +29,7 @@ module.exports = (env, argv) => {
     },
     output: {
       path: ROOT_DIR,
-      library: 'dcmcloudCore',
+      library: 'ohifCore',
       libraryTarget: 'umd',
       filename: pkg.main,
     },

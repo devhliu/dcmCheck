@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Icon } from '@dcmcloud/ui';
+import { Icon } from '@ohif/ui';
 
 import './ErrorPage.css';
 

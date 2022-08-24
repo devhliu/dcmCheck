@@ -15,7 +15,7 @@ class CallbackPage extends Component {
         userManager={this.props.userManager}
         successCallback={() => {
           const { pathname, search = '' } = JSON.parse(
-            sessionStorage.getItem('dcmcloud-redirect-to')
+            sessionStorage.getItem('OHIF-redirect-to')
           );
 
           this.props.history.push({ pathname, search });

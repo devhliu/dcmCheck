@@ -1,10 +1,10 @@
 {
-  "name": "@dcmcloud/extension-dicom-tag-browser",
-  "version": "0.2.11",
-  "description": "DCMCloud extension for checking DICOM headers.",
-  "author": "DCMCloud",
+  "name": "@ohif/extension-dicom-tag-browser",
+  "version": "0.2.23",
+  "description": "OHIF extension for checking DICOM headers.",
+  "author": "OHIF",
   "license": "MIT",
-  "repository": "DCMCloud/Viewers",
+  "repository": "OHIF/Viewers",
   "main": "dist/index.umd.js",
   "module": "src/index.js",
   "publishConfig": {
@@ -27,13 +27,13 @@
     "start": "yarn run dev"
   },
   "peerDependencies": {
-    "@dcmcloud/core": "^2.6.0",
-    "dcmjs": "0.18.8",
+    "@ohif/core": "^2.6.0",
+    "dcmjs": "0.19.9",
     "react": "^16.8.6"
   },
   "dependencies": {
     "@babel/runtime": "^7.5.5",
-    "dicomweb-client": "^0.8.1",
+    "dicomweb-client": "^0.8.3",
     "moment": "2.24.0",
     "react-select": "^3.0.8"
   }

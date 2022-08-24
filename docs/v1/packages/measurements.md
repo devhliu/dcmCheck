@@ -1,4 +1,4 @@
-# Measurements Package (dcmcloud-measurements)
+# Measurements Package (ohif-measurements)
 
 ## Package design
 

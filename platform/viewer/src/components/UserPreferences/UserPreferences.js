@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { TabComponents } from '@dcmcloud/ui';
+import { TabComponents } from '@ohif/ui';
 
 // Tabs
 import { HotkeysPreferences } from './HotkeysPreferences';

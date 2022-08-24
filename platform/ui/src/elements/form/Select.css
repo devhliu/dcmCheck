@@ -1,4 +1,4 @@
-.select-dcmcloud-container .select-dcmcloud {
+.select-ohif-container .select-ohif {
   display: inline-block;
   font-size: 10pt;
   box-sizing: border-box;
@@ -18,26 +18,25 @@
   background-image: none;
 }
 
-.select-dcmcloud-container .select-dcmcloud::-ms-expand {
+.select-ohif-container .select-ohif::-ms-expand {
   display: none;
 }
 
-.select-dcmcloud-container .select-dcmcloud-label {
+.select-ohif-container .select-ohif-label {
   padding: 5px;
-  color: #202020;
 }
 
-.select-dcmcloud:focus {
+.select-ohif:focus {
   outline: none;
 }
 
-.select-dcmcloud-container .select-dcmcloud option {
+.select-ohif-container .select-ohif option {
   font-weight: normal;
 }
 
 /** Compatibility styles for MIP */
 
-.select-dcmcloud {
+.select-ohif {
   display: block;
   font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
     sans-serif;

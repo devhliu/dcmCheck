@@ -12,7 +12,7 @@ class Label extends React.Component {
 
   render() {
     return (
-      <label className="label-dcmcloud" htmlFor={this.props.for}>
+      <label className="label-ohif" htmlFor={this.props.for}>
         {this.props.text}
       </label>
     );

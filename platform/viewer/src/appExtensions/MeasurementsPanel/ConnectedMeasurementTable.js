@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
-import { MeasurementTable } from '@dcmcloud/ui';
-import DCMCloud, { DICOMSR } from '@dcmcloud/core';
+import { MeasurementTable } from '@ohif/ui';
+import OHIF, { DICOMSR } from '@ohif/core';
 import moment from 'moment';
 import cornerstone from 'cornerstone-core';
 
 import jumpToRowItem from './jumpToRowItem.js';
 
-const { setViewportSpecificData } = DCMCloud.redux.actions;
-const { MeasurementApi } = DCMCloud.measurements;
+const { setViewportSpecificData } = OHIF.redux.actions;
+const { MeasurementApi } = OHIF.measurements;
 
 /**
  * Takes a list of objects and a property and return the list grouped by the property
@@ -108,7 +108,7 @@ function getWarningsForMeasurement(toolName) {
  * @returns
  */
 function convertMeasurementsToTableData(toolCollections, timepoints) {
-  const config = DCMCloud.measurements.MeasurementApi.getConfiguration();
+  const config = OHIF.measurements.MeasurementApi.getConfiguration();
   const toolGroups = config.measurementTools;
   const tools = getAllTools(toolGroups);
 
@@ -213,7 +213,7 @@ function convertTimepointsToTableData(timepoints) {
 function getSaveFunction(serverType) {
   if (serverType === 'dicomWeb') {
     return () => {
-      const measurementApi = DCMCloud.measurements.MeasurementApi.Instance;
+      const measurementApi = OHIF.measurements.MeasurementApi.Instance;
       const promise = measurementApi.storeMeasurements();
       return promise;
     };
@@ -248,7 +248,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
       const enabledElements = cornerstone.getEnabledElements();
       if (!enabledElements || enabledElements.length <= activeViewportIndex) {
-        DCMCloud.log.error('Failed to find the enabled element');
+        OHIF.log.error('Failed to find the enabled element');
         return;
       }
 
@@ -272,7 +272,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
       const enabledElements = cornerstone.getEnabledElements();
       if (!enabledElements || enabledElements.length <= activeViewportIndex) {
-        DCMCloud.log.error('Failed to find the enabled element');
+        OHIF.log.error('Failed to find the enabled element');
         return;
       }
 
@@ -397,7 +397,7 @@ const mergeProps = (propsFromState, propsFromDispatch, ownProps) => {
       );
     },
     onDeleteClick: (event, measurementData) => {
-      const { MeasurementHandlers } = DCMCloud.measurements;
+      const { MeasurementHandlers } = OHIF.measurements;
 
       MeasurementHandlers.onRemoved({
         detail: {

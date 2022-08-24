@@ -3,7 +3,7 @@ import { ReconstructionIssues } from './../enums.js';
 /**
  * Checks if a series is reconstructable to a 3D volume.
  *
- * @param {Object[]} An array of `DCMCloudInstanceMetadata` objects.
+ * @param {Object[]} An array of `OHIFInstanceMetadata` objects.
  *
  * @returns {Object} value, reconstructionIssues.
  */
@@ -47,7 +47,7 @@ function processMultiframe() {
 /**
  * Process reconstructable single frame checks
  *
- * @param {Object[]} An array of `DCMCloudInstanceMetadata` objects.
+ * @param {Object[]} An array of `OHIFInstanceMetadata` objects.
  *
  * @returns {Object} value and reconstructionIssues.
  */
@@ -103,7 +103,7 @@ function processSingleframe(instances) {
  *  Check is the spacing is uniform.
  *  The input metadata array has to be ordered by image position.
  *
- * @param {Object[]} An array of `DCMCloudInstanceMetadata` objects.
+ * @param {Object[]} An array of `OHIFInstanceMetadata` objects.
  * @param {boolean} is the dataset 4D.
  *
  * @returns {Object} isUniform, reconstructionIssues and missingFrames
@@ -180,9 +180,9 @@ function isSpacingUniform(instances, datasetIs4D) {
  *  there are multiple slices for the same ImagePositionPatient and disable MPR.
  *
  *  A better heuristic would be checking 4D tags, e.g. the presence of multiple TemporalPositionIdentifier values.
- *  However, some studies (e.g. https://github.com/DCMCloud/Viewers/issues/2113) do not have such tags.
+ *  However, some studies (e.g. https://github.com/OHIF/Viewers/issues/2113) do not have such tags.
  *
- * @param {Object[]} instances An array of `DCMCloudInstanceMetadata` objects.
+ * @param {Object[]} instances An array of `OHIFInstanceMetadata` objects.
  *
  * @returns {boolean} dataset4D value.
  */

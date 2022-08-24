@@ -1,1 +1,1 @@
-# @dcmcloud/extension-dicom-pdf
+# @ohif/extension-dicom-pdf

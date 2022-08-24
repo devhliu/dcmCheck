@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './googleCloud.css';
 import { withTranslation } from 'react-i18next';
-import { Icon } from '@dcmcloud/ui';
+import { Icon } from '@ohif/ui';
 
 class DicomStoreList extends Component {
   state = {
@@ -61,8 +61,16 @@ class DicomStoreList extends Component {
     }
 
     const body = (
-      <tbody id="StoreList">{
-        stores.filter(store => (store.name.split('/')[7].toLowerCase().includes(filter.toLowerCase()) || filter=="")).map(this.renderTableRow)}
+      <tbody id="StoreList">
+        {stores
+          .filter(
+            store =>
+              store.name
+                .split('/')[7]
+                .toLowerCase()
+                .includes(filter.toLowerCase()) || filter == ''
+          )
+          .map(this.renderTableRow)}
       </tbody>
     );
 

@@ -34,15 +34,15 @@ export class Checkbox extends Component {
   render() {
     let checkbox;
     if (this.state.checked) {
-      checkbox = <span className="dcmcloud-checkbox dcmcloud-checked" />;
+      checkbox = <span className="ohif-checkbox ohif-checked" />;
     } else {
-      checkbox = <span className="dcmcloud-checkbox" />;
+      checkbox = <span className="ohif-checkbox" />;
     }
 
     return (
-      <div className="dcmcloud-check-container">
+      <div className="ohif-check-container">
         <form>
-          <label className="dcmcloud-check-label">
+          <label className="ohif-check-label">
             <input
               type="checkbox"
               checked={this.state.checked}

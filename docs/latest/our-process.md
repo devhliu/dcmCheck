@@ -20,9 +20,9 @@ _Include issue lifecycle diagram_
 ## Issue Triage
 
 [GitHub issues][gh-issues] are the best way to provide feedback, ask questions,
-and suggest changes to the DCMCloud Viewer's core team. Community issues
-generally fall into one of three categories, and are marked with a `triage`
-label when created.
+and suggest changes to the OHIF Viewer's core team. Community issues generally
+fall into one of three categories, and are marked with a `triage` label when
+created.
 
 | Issue Template Name    | Description                                                                              |
 | ---------------------- | ---------------------------------------------------------------------------------------- |
@@ -44,8 +44,8 @@ accomplish this by:
 
 > :pencil: Less obviously, patterns in the issues being reported can highlight
 > areas that need improvement. For example, users often have difficulty
-> navigating CORS issues when deploying the DCMCloud Viewer -- how do we best
-> reduce our ticket volume for this issue?
+> navigating CORS issues when deploying the OHIF Viewer -- how do we best reduce
+> our ticket volume for this issue?
 
 ### Backlogged Issues
 
@@ -115,10 +115,10 @@ notes are automatically generated. Users can subscribe to GitHub and NPM
 releases.
 
 We host development, staging, and production environments for the Progressive
-Web Application version of the DCMCloud Viewer. [Development][dcmcloud-dev]
-always reflects the latest changes on our master branch.
-[Staging][dcmcloud-stage] is used to regression test a release before a
-bi-weekly deploy to our [Production environment][dcmcloud-prod].
+Web Application version of the OHIF Viewer. [Development][ohif-dev] always
+reflects the latest changes on our master branch. [Staging][ohif-stage] is used
+to regression test a release before a bi-weekly deploy to our [Production
+environment][ohif-prod].
 
 Important announcements are made on GitHub, tagged as Announcement, and pinned
 so that they remain at the top of the Issue page.
@@ -134,27 +134,27 @@ addressed and a Stable version is released.
 <!-- prettier-ignore-start -->
 [groom-backlog]: https://www.agilealliance.org/glossary/backlog-grooming
 [retrospective]: https://www.atlassian.com/team-playbook/plays/retrospective
-[gh-issues]: https://github.com/DCMCloud/Viewers/issues/new/choose
-[gh-labels]: https://github.com/DCMCloud/Viewers/labels
+[gh-issues]: https://github.com/OHIF/Viewers/issues/new/choose
+[gh-labels]: https://github.com/OHIF/Viewers/labels
 <!-- Issue Labels -->
-[label-story]: https://github.com/DCMCloud/Viewers/labels/Story%20%3Araised_hands%3A
-[label-tooling]: https://github.com/DCMCloud/Viewers/labels/Task%3A%20CI%2FTooling%20%3Arobot%3A
-[label-docs]: https://github.com/DCMCloud/Viewers/labels/Task%3A%20Docs%20%3Abook%3A
-[label-refactor]: https://github.com/DCMCloud/Viewers/labels/Task%3A%20Refactor%20%3Ahammer_and_wrench%3A
-[label-tests]: https://github.com/DCMCloud/Viewers/labels/Task%3A%20Tests%20%3Amicroscope%3A
-[label-bug]: https://github.com/DCMCloud/Viewers/labels/Bug%3A%20Verified%20%3Abug%3A
+[label-story]: https://github.com/OHIF/Viewers/labels/Story%20%3Araised_hands%3A
+[label-tooling]: https://github.com/OHIF/Viewers/labels/Task%3A%20CI%2FTooling%20%3Arobot%3A
+[label-docs]: https://github.com/OHIF/Viewers/labels/Task%3A%20Docs%20%3Abook%3A
+[label-refactor]: https://github.com/OHIF/Viewers/labels/Task%3A%20Refactor%20%3Ahammer_and_wrench%3A
+[label-tests]: https://github.com/OHIF/Viewers/labels/Task%3A%20Tests%20%3Amicroscope%3A
+[label-bug]: https://github.com/OHIF/Viewers/labels/Bug%3A%20Verified%20%3Abug%3A
 <!-- PR Labels -->
-[draft]: https://github.com/DCMCloud/Viewers/labels/PR%3A%20Draft
-[awaiting-response]: https://github.com/DCMCloud/Viewers/labels/PR%3A%20Awaiting%20Response%20%3Aspeech_balloon%3A
-[awaiting-review]: https://github.com/DCMCloud/Viewers/labels/PR%3A%20Awaiting%20Review%20%3Aeyes%3A
-[awaiting-stories]: https://github.com/DCMCloud/Viewers/labels/PR%3A%20Awaiting%20UX%20Stories%20%3Adancer%3A
-[awaiting-revisions]: https://github.com/DCMCloud/Viewers/labels/PR%3A%20Awaiting%20Revisions%20%3Apen%3A
-[no-ux-impact]: https://github.com/DCMCloud/Viewers/labels/PR%3A%20No%20UX%20Impact%20%3Aupside_down_face%3A
+[draft]: https://github.com/OHIF/Viewers/labels/PR%3A%20Draft
+[awaiting-response]: https://github.com/OHIF/Viewers/labels/PR%3A%20Awaiting%20Response%20%3Aspeech_balloon%3A
+[awaiting-review]: https://github.com/OHIF/Viewers/labels/PR%3A%20Awaiting%20Review%20%3Aeyes%3A
+[awaiting-stories]: https://github.com/OHIF/Viewers/labels/PR%3A%20Awaiting%20UX%20Stories%20%3Adancer%3A
+[awaiting-revisions]: https://github.com/OHIF/Viewers/labels/PR%3A%20Awaiting%20Revisions%20%3Apen%3A
+[no-ux-impact]: https://github.com/OHIF/Viewers/labels/PR%3A%20No%20UX%20Impact%20%3Aupside_down_face%3A
 <!-- -->
-[dcmcloud-dev]: https://viewer-dev.dcmcloud.org
-[dcmcloud-stage]: https://viewer-stage.dcmcloud.org
-[dcmcloud-prod]: https://viewer.dcmcloud.org
-[gh-board]: https://github.com/DCMCloud/Viewers/projects/4
-[label-grabs]: https://github.com/DCMCloud/Viewers/issues?q=is%3Aissue+is%3Aopen+label%3A%22Up+For+Grabs+%3Araising_hand_woman%3A%22
+[ohif-dev]: https://viewer-dev.ohif.org
+[ohif-stage]: https://viewer-stage.ohif.org
+[ohif-prod]: https://viewer.ohif.org
+[gh-board]: https://github.com/OHIF/Viewers/projects/4
+[label-grabs]: https://github.com/OHIF/Viewers/issues?q=is%3Aissue+is%3Aopen+label%3A%22Up+For+Grabs+%3Araising_hand_woman%3A%22
 [contributing-docs]: ./development/contributing.md
 <!-- prettier-ignore-end -->

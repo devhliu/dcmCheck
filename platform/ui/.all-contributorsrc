@@ -1,6 +1,6 @@
 {
-  "projectName": "@dcmcloud/ui",
-  "projectOwner": "DCMCloud",
+  "projectName": "@ohif/ui",
+  "projectOwner": "OHIF",
   "repoType": "github",
   "repoHost": "https://github.com",
   "files": [

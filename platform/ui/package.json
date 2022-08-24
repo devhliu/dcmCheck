@@ -1,10 +1,10 @@
 {
-  "name": "@dcmcloud/ui",
-  "version": "1.9.2",
+  "name": "@ohif/ui",
+  "version": "1.10.9",
   "description": "A set of React components for Medical Imaging Viewers",
-  "author": "DCMCloud Contributors",
+  "author": "OHIF Contributors",
   "license": "MIT",
-  "repository": "DCMCloud/Viewers",
+  "repository": "OHIF/Viewers",
   "main": "dist/index.umd.js",
   "module": "src/index.js",
   "publishConfig": {
@@ -20,9 +20,8 @@
     "README.md"
   ],
   "scripts": {
-    "dev": "docz dev",
+    "dev": "echo \"No dev script yet\" && exit 0",
     "dev:ui": "yarn run dev",
-    "docs": "docz build",
     "build": "cross-env NODE_ENV=production webpack --config .webpack/webpack.prod.js",
     "build:package": "yarn run build",
     "prepublishOnly": "yarn run build",
@@ -30,7 +29,7 @@
     "test:unit:ci": "jest --ci --runInBand --collectCoverage --passWithNoTests"
   },
   "peerDependencies": {
-    "@dcmcloud/i18n": "^0.2.3",
+    "@ohif/i18n": "^0.2.3",
     "i18next": "^17.0.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -38,7 +37,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.5.5",
-    "@dcmcloud/i18n": "^0.2.3",
+    "@ohif/i18n": "^0.2.3",
+    "@ohif/ui": "1.10.9",
     "browser-detect": "^0.2.28",
     "classnames": "2.2.6",
     "dom-helpers": "^3.3.1",
@@ -64,10 +64,6 @@
   "devDependencies": {
     "@mdx-js/tag": "^0.20.3",
     "autoprefixer": "^9.6.0",
-    "docz": "1.2.0",
-    "docz-core": "1.2.0",
-    "docz-plugin-css": "0.11.0",
-    "docz-theme-default": "1.2.0",
     "lodash.clonedeep": "^4.5.0",
     "react-powerplug": "1.0.0"
   }

@@ -1,10 +1,10 @@
 {
-  "name": "@dcmcloud/extension-dicom-html",
-  "version": "1.3.10",
-  "description": "DCMCloud extension for rendering structured reports to HTML",
-  "author": "DCMCloud",
+  "name": "@ohif/extension-dicom-html",
+  "version": "1.3.22",
+  "description": "OHIF extension for rendering structured reports to HTML",
+  "author": "OHIF",
   "license": "MIT",
-  "repository": "DCMCloud/Viewers",
+  "repository": "OHIF/Viewers",
   "main": "dist/index.umd.js",
   "module": "src/index.js",
   "engines": {
@@ -28,8 +28,8 @@
     "start": "yarn run dev"
   },
   "peerDependencies": {
-    "@dcmcloud/core": "^0.50.0",
-    "dcmjs": "0.18.8",
+    "@ohif/core": "^0.50.0",
+    "dcmjs": "0.19.9",
     "prop-types": "^15.6.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"

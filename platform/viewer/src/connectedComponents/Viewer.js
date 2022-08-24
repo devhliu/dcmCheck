@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useLogger } from '@dcmcloud/ui';
+import { useLogger } from '@ohif/ui';
 
-import DCMCloud, { MODULE_TYPES, DICOMSR } from '@dcmcloud/core';
-import { withDialog } from '@dcmcloud/ui';
+import OHIF, { MODULE_TYPES, DICOMSR } from '@ohif/core';
+import { withDialog } from '@ohif/ui';
 import moment from 'moment';
 import ConnectedHeader from './ConnectedHeader.js';
 import ToolbarRow from './ToolbarRow.js';
@@ -70,7 +70,7 @@ class Viewer extends Component {
     const { activeServer } = this.props;
     const server = Object.assign({}, activeServer);
 
-    DCMCloud.measurements.MeasurementApi.setConfiguration({
+    OHIF.measurements.MeasurementApi.setConfiguration({
       dataExchange: {
         retrieve: DICOMSR.retrieveMeasurements,
         store: DICOMSR.storeMeasurements,
@@ -78,7 +78,7 @@ class Viewer extends Component {
       server,
     });
 
-    DCMCloud.measurements.TimepointApi.setConfiguration({
+    OHIF.measurements.TimepointApi.setConfiguration({
       dataExchange: {
         retrieve: this.retrieveTimepoints,
         store: this.storeTimepoints,
@@ -108,7 +108,7 @@ class Viewer extends Component {
   }
 
   retrieveTimepoints = filter => {
-    DCMCloud.log.info('retrieveTimepoints');
+    OHIF.log.info('retrieveTimepoints');
 
     // Get the earliest and latest study date
     let earliestDate = new Date().toISOString();
@@ -141,22 +141,22 @@ class Viewer extends Component {
   };
 
   storeTimepoints = timepointData => {
-    DCMCloud.log.info('storeTimepoints');
+    OHIF.log.info('storeTimepoints');
     return Promise.resolve();
   };
 
   updateTimepoint = (timepointData, query) => {
-    DCMCloud.log.info('updateTimepoint');
+    OHIF.log.info('updateTimepoint');
     return Promise.resolve();
   };
 
   removeTimepoint = timepointId => {
-    DCMCloud.log.info('removeTimepoint');
+    OHIF.log.info('removeTimepoint');
     return Promise.resolve();
   };
 
   disassociateStudy = (timepointIds, StudyInstanceUID) => {
-    DCMCloud.log.info('disassociateStudy');
+    OHIF.log.info('disassociateStudy');
     return Promise.resolve();
   };
 
@@ -174,7 +174,7 @@ class Viewer extends Component {
 
   componentDidMount() {
     const { studies, isStudyLoaded } = this.props;
-    const { TimepointApi, MeasurementApi } = DCMCloud.measurements;
+    const { TimepointApi, MeasurementApi } = OHIF.measurements;
     const currentTimepointId = 'TimepointId';
 
     const timepointApi = new TimepointApi(currentTimepointId, {
@@ -357,97 +357,102 @@ class Viewer extends Component {
         {/*<ConnectedStudyLoadingMonitor studies={this.props.studies} />*/}
         {/*<StudyPrefetcher studies={this.props.studies} />*/}
         {/* VIEWPORTS + SIDEPANELS */}
-        <div className="view-inline">
-          <ErrorBoundaryDialog context="ToolbarRow">
-            <ToolbarRow
-              className="toolbar-section"
-              activeViewport={
-                this.props.viewports[this.props.activeViewportIndex]
-              }
-              isDerivedDisplaySetsLoaded={this.props.isDerivedDisplaySetsLoaded}
-              isLeftSidePanelOpen={this.state.isLeftSidePanelOpen}
-              isRightSidePanelOpen={this.state.isRightSidePanelOpen}
-              selectedLeftSidePanel={
-                this.state.isLeftSidePanelOpen
-                  ? this.state.selectedLeftSidePanel
-                  : ''
-              }
-              selectedRightSidePanel={
-                this.state.isRightSidePanelOpen
-                  ? this.state.selectedRightSidePanel
-                  : ''
-              }
-              handleSidePanelToggle={() => {
-                const activeState = this.state.isToggleSidePanel;
-                this.setState({ isToggleSidePanel: !activeState });
-                return activeState;
-              }}
-              handleSidePanelChange={(side, selectedPanel) => {
-                const sideClicked =
-                  side && side[0].toUpperCase() + side.slice(1);
-                const openKey = `is${sideClicked}SidePanelOpen`;
-                const selectedKey = `selected${sideClicked}SidePanel`;
-                const updatedState = Object.assign({}, this.state);
-
-                const isOpen = updatedState[openKey];
-                const prevSelectedPanel = updatedState[selectedKey];
-                // RoundedButtonGroup returns `null` if selected button is clicked
-                const isSameSelectedPanel =
-                  prevSelectedPanel === selectedPanel || selectedPanel === null;
-
-                updatedState[selectedKey] = selectedPanel || prevSelectedPanel;
-
-                const isClosedOrShouldClose = !isOpen || isSameSelectedPanel;
-                if (isClosedOrShouldClose) {
-                  updatedState[openKey] = !updatedState[openKey];
+        {this.props.isStudyLoaded ? (
+          <div className="view-inline">
+            <ErrorBoundaryDialog context="ToolbarRow">
+              <ToolbarRow
+                className="toolbar-section"
+                activeViewport={
+                  this.props.viewports[this.props.activeViewportIndex]
                 }
+                isDerivedDisplaySetsLoaded={
+                  this.props.isDerivedDisplaySetsLoaded
+                }
+                isLeftSidePanelOpen={this.state.isLeftSidePanelOpen}
+                isRightSidePanelOpen={this.state.isRightSidePanelOpen}
+                selectedLeftSidePanel={
+                  this.state.isLeftSidePanelOpen
+                    ? this.state.selectedLeftSidePanel
+                    : ''
+                }
+                selectedRightSidePanel={
+                  this.state.isRightSidePanelOpen
+                    ? this.state.selectedRightSidePanel
+                    : ''
+                }
+                handleSidePanelToggle={() => {
+                  const activeState = this.state.isToggleSidePanel;
+                  this.setState({ isToggleSidePanel: !activeState });
+                  return activeState;
+                }}
+                handleSidePanelChange={(side, selectedPanel) => {
+                  const sideClicked =
+                    side && side[0].toUpperCase() + side.slice(1);
+                  const openKey = `is${sideClicked}SidePanelOpen`;
+                  const selectedKey = `selected${sideClicked}SidePanel`;
+                  const updatedState = Object.assign({}, this.state);
 
-                this.setState(updatedState);
-              }}
-              studies={this.props.studies}
-            />
-          </ErrorBoundaryDialog>
+                  const isOpen = updatedState[openKey];
+                  const prevSelectedPanel = updatedState[selectedKey];
+                  // RoundedButtonGroup returns `null` if selected button is clicked
+                  const isSameSelectedPanel =
+                    prevSelectedPanel === selectedPanel ||
+                    selectedPanel === null;
 
-          <div className="FlexboxLayout">
-            {/* LEFT */}
-            <ErrorBoundaryDialog context="LeftSidePanel">
-              <SidePanel
-                from="left"
-                // isToggle={true}
-                isToggle={this.state.isToggleSidePanel}
-                isOpen={this.state.isLeftSidePanelOpen}
-              // isOpen={false}
-              >
-                {VisiblePanelLeft ? (
-                  <VisiblePanelLeft
-                    viewports={this.props.viewports}
-                    studies={this.props.studies}
-                    activeIndex={this.props.activeViewportIndex}
-                  />
-                ) : (
-                  <ConnectedStudyBrowser
-                    studies={this.state.thumbnails}
-                    studyMetadata={this.props.studies}
-                  />
-                )}
-              </SidePanel>
+                  updatedState[selectedKey] =
+                    selectedPanel || prevSelectedPanel;
+
+                  const isClosedOrShouldClose = !isOpen || isSameSelectedPanel;
+                  if (isClosedOrShouldClose) {
+                    updatedState[openKey] = !updatedState[openKey];
+                  }
+
+                  this.setState(updatedState);
+                }}
+                studies={this.props.studies}
+              />
             </ErrorBoundaryDialog>
-            {/* MAIN */}
-            <div
-              style={{
-                height: `${this.state.isToggleSidePanel ? '75vh' : '100vh'}`,
-              }}
-              className={classNames('main-content')}
-            >
-              <ErrorBoundaryDialog context="ViewerMain">
-                <ConnectedViewerMain
-                  studies={this.props.studies}
-                  isStudyLoaded={this.props.isStudyLoaded}
-                />
+
+            <div className="FlexboxLayout" style={{ height: '100%' }}>
+              {/* LEFT */}
+              <ErrorBoundaryDialog context="LeftSidePanel">
+                <SidePanel
+                  from="left"
+                  // isToggle={true}
+                  isToggle={this.state.isToggleSidePanel}
+                  isOpen={this.state.isLeftSidePanelOpen}
+                  // isOpen={false}
+                >
+                  {VisiblePanelLeft ? (
+                    <VisiblePanelLeft
+                      viewports={this.props.viewports}
+                      studies={this.props.studies}
+                      activeIndex={this.props.activeViewportIndex}
+                    />
+                  ) : (
+                    <ConnectedStudyBrowser
+                      studies={this.state.thumbnails}
+                      studyMetadata={this.props.studies}
+                    />
+                  )}
+                </SidePanel>
               </ErrorBoundaryDialog>
-            </div>
-            {/* RIGHT */}
-            {/* <ErrorBoundaryDialog context="RightSidePanel">
+              {/* MAIN */}
+              <div
+                style={{
+                  height: `${this.state.isToggleSidePanel ? '75vh' : '100vh'}`,
+                }}
+                className={classNames('main-content')}
+              >
+                <ErrorBoundaryDialog context="ViewerMain">
+                  <ConnectedViewerMain
+                    studies={this.props.studies}
+                    isStudyLoaded={this.props.isStudyLoaded}
+                  />
+                </ErrorBoundaryDialog>
+              </div>
+              {/* RIGHT */}
+              {/* <ErrorBoundaryDialog context="RightSidePanel">
               <SidePanel from="right" isOpen={this.state.isRightSidePanelOpen}>
                 {VisiblePanelRight && (
                   <VisiblePanelRight
@@ -463,8 +468,22 @@ class Viewer extends Component {
                 )}
               </SidePanel>
             </ErrorBoundaryDialog> */}
+            </div>
           </div>
-        </div>{' '}
+        ) : (
+          <div
+            style={{
+              height: '100vh',
+              width: '100vw',
+              textAlign: 'center',
+              alignItems: 'center',
+              justifyContent: 'center',
+              display: 'flex',
+            }}
+          >
+            <h1 style={{ color: 'lightgray' }}>Loading...</h1>
+          </div>
+        )}
         {/* </div> */}
       </>
     );
@@ -492,7 +511,7 @@ export default withDialog(Viewer);
  * @param {*object} displaySet
  * @returns {[string]} an array of strings containing the warnings
  */
-const _checkForSeriesInconsistencesWarnings = async function (
+const _checkForSeriesInconsistencesWarnings = async function(
   displaySet,
   studies
 ) {
@@ -582,7 +601,7 @@ const _checkForSeriesInconsistencesWarnings = async function (
 
     for (
       let i = 0,
-      groupsLen = segMetadata.PerFrameFunctionalGroupsSequence.length;
+        groupsLen = segMetadata.PerFrameFunctionalGroupsSequence.length;
       i < groupsLen;
       ++i
     ) {
@@ -671,7 +690,7 @@ const _checkForSeriesInconsistencesWarnings = async function (
  * @param {string} activeDisplaySetInstanceUID
  * @returns {boolean} is active.
  */
-const _isDisplaySetActive = function (
+const _isDisplaySetActive = function(
   displaySet,
   studies,
   activeDisplaySetInstanceUID
@@ -696,7 +715,7 @@ const _isDisplaySetActive = function (
       );
       active = referencedDisplaySet
         ? activeDisplaySetInstanceUID ===
-        referencedDisplaySet.displaySetInstanceUID
+          referencedDisplaySet.displaySetInstanceUID
         : false;
     } else {
       const referencedDisplaySet = displaySet.getSourceDisplaySet(
@@ -705,7 +724,7 @@ const _isDisplaySetActive = function (
       );
       active = referencedDisplaySet
         ? activeDisplaySetInstanceUID ===
-        referencedDisplaySet.displaySetInstanceUID
+          referencedDisplaySet.displaySetInstanceUID
         : false;
     }
   }
@@ -723,7 +742,7 @@ const _isDisplaySetActive = function (
  * @param {Study[]} studies
  * @param {string} activeDisplaySetInstanceUID
  */
-const _mapStudiesToThumbnails = function (studies, activeDisplaySetInstanceUID) {
+const _mapStudiesToThumbnails = function(studies, activeDisplaySetInstanceUID) {
   return studies.map(study => {
     const { StudyInstanceUID } = study;
     debugger;

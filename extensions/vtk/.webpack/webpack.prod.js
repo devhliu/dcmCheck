@@ -30,7 +30,7 @@ module.exports = (env, argv) => {
     },
     output: {
       path: ROOT_DIR,
-      library: 'DCMCloudExtVtk',
+      library: 'OHIFExtVtk',
       libraryTarget: 'umd',
       libraryExport: 'default',
       filename: pkg.main,

@@ -1,16 +1,15 @@
-# @dcmcloud/dicom-segmentation
+# @ohif/dicom-segmentation
 
-![npm (scoped)](https://img.shields.io/npm/v/@dcmcloud/dicom-segmentation.svg?style=flat-square)
+![npm (scoped)](https://img.shields.io/npm/v/@ohif/dicom-segmentation.svg?style=flat-square)
 
-This extension adds support to view and navigate the segments available in the
-DICOM SEG, allowing control over visibility of a given segment and providing
-metadata about the segment(s).
+This extension adds support to view and navigate the segments available in the DICOM SEG,
+allowing control over visibility of a given segment and providing metadata about the segment(s).
 
 <!-- TODO: Simple image or GIF? -->
 
 #### Index
 
-Extension Id: `com.dcmcloud.dicom-segmentation`
+Extension Id: `com.ohif.dicom-segmentation`
 
 ## Tool Configuration
 
@@ -32,12 +31,10 @@ Tools can be configured through extension configuration using the tools key:
 
 ## Annotate Tools Configuration
 
-_We currently support one property for annotation tools._
+*We currently support one property for annotation tools.*
 
 ### Hide handles
-
-This extension configuration allows you to toggle on/off handle rendering for
-all annotate tools:
+This extension configuration allows you to toggle on/off handle rendering for all annotate tools:
 
 ```js
   ...
@@ -66,4 +63,3 @@ all annotate tools:
 [cornerstone-tools]: https://github.com/cornerstonejs/cornerstoneTools
 [cornerstone]: https://github.com/cornerstonejs/cornerstone
 <!-- prettier-ignore-end -->
-```

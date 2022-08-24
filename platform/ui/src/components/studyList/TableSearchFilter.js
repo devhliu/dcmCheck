@@ -95,10 +95,8 @@ function TableSearchFilter(props) {
                 type="text"
                 id={`filter-${fieldName}`}
                 className="form-control studylist-search"
-                style={{ display: 'none' }}
                 value={values[fieldName]}
                 onChange={e => onValueChange(fieldName, e.target.value)}
-                placeholder={`Enter your ${fieldName}`}
               />
             )}
             {inputType === 'date-range' && (

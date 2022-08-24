@@ -6,4 +6,4 @@ cd _book
 git init
 git add -A
 git commit -m 'Update compiled GitBook (this commit is automatic)'
-git push -f git@github.com:DCMCloud/Viewers.git master:gh-pages
+git push -f git@github.com:OHIF/Viewers.git master:gh-pages

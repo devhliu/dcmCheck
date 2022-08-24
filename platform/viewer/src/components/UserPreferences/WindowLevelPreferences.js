@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import { redux } from '@dcmcloud/core';
+import { redux } from '@ohif/core';
 
-import { TabFooter, useSnackbarContext } from '@dcmcloud/ui';
+import { TabFooter, useSnackbarContext } from '@ohif/ui';
 import { useTranslation } from 'react-i18next';
 
 const { actions } = redux;

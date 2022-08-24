@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Range } from '@dcmcloud/ui';
+import { Range } from '@ohif/ui';
 
 import './BrushRadius.css';
 

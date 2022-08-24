@@ -1,8 +1,8 @@
-.dcmcloud-radio-button-container {
+.ohif-radio-button-container {
   --radio-button-dim: 20px;
 }
 
-.dcmcloud-radio-button-container input {
+.ohif-radio-button-container input {
   position: absolute;
   opacity: 0;
   z-index: 10000;
@@ -11,7 +11,7 @@
   width: inherit;
 }
 
-.dcmcloud-radio-button-container {
+.ohif-radio-button-container {
   display: block;
   position: relative;
   padding-left: 35px;
@@ -24,7 +24,7 @@
   user-select: none;
 }
 
-.dcmcloud-radio-button {
+.ohif-radio-button {
   width: var(--radio-button-dim);
   height: var(--radio-button-dim);
   position: absolute;
@@ -35,12 +35,12 @@
   z-index: 1;
 }
 
-.dcmcloud-radio-button:hover {
+.ohif-radio-button:hover {
   background-color: var(--default-color);
   border-radius: 100%;
 }
 
-.dcmcloud-radio-button:after {
+.ohif-radio-button:after {
   content: '';
   position: absolute;
   display: none;
@@ -48,8 +48,7 @@
   height: 70%;
 }
 
-.dcmcloud-radio-button-container
-  .dcmcloud-radio-button.dcmcloud-selected:after {
+.ohif-radio-button-container .ohif-radio-button.ohif-selected:after {
   display: block;
   top: 14%;
   left: 14%;
@@ -57,7 +56,7 @@
   background: white;
 }
 
-.dcmcloud-radio-button-label {
+.ohif-radio-button-label {
   font-size: 12px;
   font-weight: 500;
 }

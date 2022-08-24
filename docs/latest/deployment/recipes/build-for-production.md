@@ -18,7 +18,7 @@ _With Git:_
 
 ```bash
 # Clone the remote repository to your local machine
-git clone https://github.com/DCMCloud/Viewers.git
+git clone https://github.com/OHIF/Viewers.git
 ```
 
 More on: _[`git clone`](https://git-scm.com/docs/git-clone),
@@ -26,7 +26,7 @@ More on: _[`git clone`](https://git-scm.com/docs/git-clone),
 
 _From .zip:_
 
-[DCMCloud/Viewers: react.zip](https://github.com/DCMCloud/Viewers/archive/master.zip)
+[OHIF/Viewers: react.zip](https://github.com/OHIF/Viewers/archive/master.zip)
 
 ### Restore Dependencies & Build
 
@@ -58,11 +58,10 @@ project's folder. It should roughly resemble the following:
 └── ...
 ```
 
-By default, the build output will connect to DCMCloud's publicly accessible
-PACS. If this is your first time setting up the DCMCloud Viewer, it is
-recommended that you test with these default settings. After testing, you can
-find instructions on how to configure the project for your own imaging archive
-below.
+By default, the build output will connect to OHIF's publicly accessible PACS. If
+this is your first time setting up the OHIF Viewer, it is recommended that you
+test with these default settings. After testing, you can find instructions on
+how to configure the project for your own imaging archive below.
 
 ### Configuration
 
@@ -128,9 +127,9 @@ web application. For a starting point, check out this repository's own use of:
 ...
 
 <!-- prettier-ignore-start -->
-[circleci]: https://circleci.com/gh/DCMCloud/Viewers
-[circleci-config]: https://github.com/DCMCloud/Viewers/blob/master/.circleci/config.yml
-[netlify]: https://app.netlify.com/sites/dcmcloud/deploys
-[netlify.toml]: https://github.com/DCMCloud/Viewers/blob/master/netlify.toml
-[build-deploy-preview.sh]: https://github.com/DCMCloud/Viewers/blob/master/.netlify/build-deploy-preview.sh
+[circleci]: https://circleci.com/gh/OHIF/Viewers
+[circleci-config]: https://github.com/OHIF/Viewers/blob/master/.circleci/config.yml
+[netlify]: https://app.netlify.com/sites/ohif/deploys
+[netlify.toml]: https://github.com/OHIF/Viewers/blob/master/netlify.toml
+[build-deploy-preview.sh]: https://github.com/OHIF/Viewers/blob/master/.netlify/build-deploy-preview.sh
 <!-- prettier-ignore-end -->

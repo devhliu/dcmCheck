@@ -1,1 +1,1 @@
-# @dcmcloud/extension-dicom-html
+# @ohif/extension-dicom-html

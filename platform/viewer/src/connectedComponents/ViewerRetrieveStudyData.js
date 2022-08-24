@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useContext, useCallback } from 'react';
-import { metadata, studies, utils, log } from '@dcmcloud/core';
+import { metadata, studies, utils, log } from '@ohif/core';
 import usePrevious from '../customHooks/usePrevious';
 
 import ConnectedViewer from './ConnectedViewer.js';
 import PropTypes from 'prop-types';
 import { extensionManager } from './../App.js';
-import { useSnackbarContext, ErrorPage } from '@dcmcloud/ui';
+import { useSnackbarContext, ErrorPage } from '@ohif/ui';
 
 // Contexts
 import AppContext from '../context/AppContext';
 import NotFound from '../routes/NotFound';
 
-const { DCMCloudStudyMetadata, DCMCloudSeriesMetadata } = metadata;
+const { OHIFStudyMetadata, OHIFSeriesMetadata } = metadata;
 const { retrieveStudiesMetadata, deleteStudyMetadataPromise } = studies;
 const { studyMetadataManager, makeCancelable } = utils;
 
@@ -154,7 +154,7 @@ const _addSeriesToStudy = (studyMetadata, series) => {
   const sopClassHandlerModules =
     extensionManager.modules['sopClassHandlerModule'];
   const study = studyMetadata.getData();
-  const seriesMetadata = new DCMCloudSeriesMetadata(series, study);
+  const seriesMetadata = new OHIFSeriesMetadata(series, study);
   const existingSeries = studyMetadata.getSeriesByUID(series.SeriesInstanceUID);
   if (existingSeries) {
     studyMetadata.updateSeries(series.SeriesInstanceUID, seriesMetadata);
@@ -272,7 +272,7 @@ function ViewerRetrieveStudyData({
       // Map studies to new format, update metadata manager?
       const studies = studiesData.map(study => {
         setStudyData(study.StudyInstanceUID, _thinStudyData(study));
-        const studyMetadata = new DCMCloudStudyMetadata(
+        const studyMetadata = new OHIFStudyMetadata(
           study,
           study.StudyInstanceUID
         );

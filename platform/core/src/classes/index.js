@@ -4,9 +4,11 @@ import CommandsManager from './CommandsManager.js';
 import { DICOMFileLoadingListener } from './StudyLoadingListener';
 import HotkeysManager from './HotkeysManager.js';
 import ImageSet from './ImageSet';
+import LogManager from './LogManager';
+import PubSub from './PubSub';
 import MetadataProvider from './MetadataProvider';
-import DCMCloudError from './DCMCloudError.js';
-import { DCMCloudStudyMetadataSource } from './DCMCloudStudyMetadataSource';
+import OHIFError from './OHIFError.js';
+import { OHIFStudyMetadataSource } from './OHIFStudyMetadataSource';
 import { StackLoadingListener } from './StudyLoadingListener';
 import { StudyLoadingListener } from './StudyLoadingListener';
 import { StudyMetadataSource } from './StudyMetadataSource';
@@ -14,7 +16,7 @@ import { StudyPrefetcher } from './StudyPrefetcher';
 import { TypeSafeCollection } from './TypeSafeCollection';
 
 export {
-  DCMCloudStudyMetadataSource,
+  OHIFStudyMetadataSource,
   MetadataProvider,
   CommandsManager,
   HotkeysManager,
@@ -27,16 +29,18 @@ export {
   SeriesMetadata,
   InstanceMetadata,
   TypeSafeCollection,
-  DCMCloudError,
+  OHIFError,
   StudyMetadataSource,
 };
 
 const classes = {
-  DCMCloudStudyMetadataSource,
+  OHIFStudyMetadataSource,
   MetadataProvider,
   CommandsManager,
   HotkeysManager,
+  LogManager,
   ImageSet,
+  PubSub,
   StudyPrefetcher,
   StudyLoadingListener,
   StackLoadingListener,
@@ -45,7 +49,7 @@ const classes = {
   SeriesMetadata,
   InstanceMetadata,
   TypeSafeCollection,
-  DCMCloudError,
+  OHIFError,
   StudyMetadataSource,
 };
 

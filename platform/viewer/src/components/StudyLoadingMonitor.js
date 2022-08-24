@@ -1,12 +1,12 @@
-import { Component } from "react";
-import PropTypes from "prop-types";
-import DCMCloud from "@dcmcloud/core";
+import { Component } from 'react';
+import PropTypes from 'prop-types';
+import OHIF from '@ohif/core';
 
 class StudyLoadingMonitor extends Component {
   static propTypes = {
     studies: PropTypes.array.isRequired,
     setStudyLoadingProgress: PropTypes.func.isRequired,
-    clearStudyLoadingProgress: PropTypes.func.isRequired
+    clearStudyLoadingProgress: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
@@ -20,10 +20,10 @@ class StudyLoadingMonitor extends Component {
       },
       _clearProgressById: progressId => {
         this.props.clearStudyLoadingProgress(progressId);
-      }
+      },
     };
 
-    const { StudyLoadingListener } = DCMCloud.classes;
+    const { StudyLoadingListener } = OHIF.classes;
     this.studyLoadingListener = StudyLoadingListener.getInstance(options);
     this.studyLoadingListener.clear();
     this.studyLoadingListener.addStudies(this.props.studies);

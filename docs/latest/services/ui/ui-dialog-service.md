@@ -20,8 +20,7 @@ article: ["Best Practices for Modals / Overlays / Dialog Windows"][ux-article]
 ## Interface
 
 For a more detailed look on the options and return values each of these methods
-is expected to support, [check out it's interface in
-`@dcmcloud/core`][interface]
+is expected to support, [check out it's interface in `@ohif/core`][interface]
 
 | API Member     | Description                                            |
 | -------------- | ------------------------------------------------------ |
@@ -35,7 +34,7 @@ is expected to support, [check out it's interface in
 | ------------------------------------ | -------------------------- |
 | [Dialog Provider][dialog-provider]\* | Baked into Dialog Provider |
 
-`*` - Denotes maintained by DCMCloud
+`*` - Denotes maintained by OHIF
 
 > 3rd Party implementers may be added to this table via pull requests.
 
@@ -44,7 +43,7 @@ is expected to support, [check out it's interface in
 -->
 
 <!-- prettier-ignore-start -->
-[interface]: https://github.com/DCMCloud/Viewers/blob/master/platform/core/src/services/UIDialogService/index.js
-[dialog-provider]: https://github.com/DCMCloud/Viewers/blob/master/platform/ui/src/contextProviders/DialogProvider.js
+[interface]: https://github.com/OHIF/Viewers/blob/master/platform/core/src/services/UIDialogService/index.js
+[dialog-provider]: https://github.com/OHIF/Viewers/blob/master/platform/ui/src/contextProviders/DialogProvider.js
 [ux-article]: https://uxplanet.org/best-practices-for-modals-overlays-dialog-windows-c00c66cddd8c
 <!-- prettier-ignore-end -->

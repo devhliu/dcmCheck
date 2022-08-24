@@ -83,8 +83,7 @@ function repositionTextBox(eventData, measurementData, config) {
   const enabledElement = cornerstone.getEnabledElement(element);
   const image = enabledElement.image;
 
-  const allowedBorders =
-    DCMCloud.uiSettings.autoPositionMeasurementsTextCallOuts;
+  const allowedBorders = OHIF.uiSettings.autoPositionMeasurementsTextCallOuts;
   const allow = {
     T: !allowedBorders || allowedBorders.includes('T'),
     R: !allowedBorders || allowedBorders.includes('R'),

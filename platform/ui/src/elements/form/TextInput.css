@@ -1,10 +1,10 @@
-.input-dcmcloud-container {
+.input-ohif-container {
   font-size: 1em;
   color: var(--text-primary-color);
   font-weight: 400;
 }
 
-.input-dcmcloud-container .input-dcmcloud {
+.input-ohif-container .input-ohif {
   display: inline-block;
   height: 40px;
   margin: 0 10px 20px;
@@ -20,16 +20,15 @@
   transition: all 0.15s ease;
 }
 
-.input-dcmcloud-container .input-dcmcloud-label {
+.input-ohif-container .input-ohif-label {
   padding: 5px;
-  color: #202020;
 }
 
-.input-dcmcloud-container .input-dcmcloud:active,
-.input-dcmcloud-container .input-dcmcloud:focus {
+.input-ohif-container .input-ohif:active,
+.input-ohif-container .input-ohif:focus {
   background-color: var(--input-background-color);
 }
 
-.input-dcmcloud-container .input-dcmcloud.invisible {
+.input-ohif-container .input-ohif.invisible {
   visibility: hidden;
 }

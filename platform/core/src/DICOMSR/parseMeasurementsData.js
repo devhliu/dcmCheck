@@ -6,9 +6,9 @@ import measurements from '../measurements';
 import isToolSupported from './utils/isToolSupported';
 
 /**
- * Function to parse DCMCloud viewer measurementData into a dcmjs MeasurementReport
+ * Function to parse OHIF viewer measurementData into a dcmjs MeasurementReport
  *
- * @param {Object} measurementsData - DCMCloud measurementData object
+ * @param {Object} measurementsData - OHIF measurementData object
  * @returns {Object} Dataset: measurement report from dcmjs
  */
 const parseMeasurementsData = measurementsData => {

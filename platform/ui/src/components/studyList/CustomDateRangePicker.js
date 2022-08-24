@@ -8,7 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { DateRangePicker } from 'react-dates';
 import moment from 'moment';
-import i18n from '@dcmcloud/i18n';
+import i18n from '@ohif/i18n';
 import { useTranslation } from 'react-i18next';
 
 function CustomDateRangePicker(props) {

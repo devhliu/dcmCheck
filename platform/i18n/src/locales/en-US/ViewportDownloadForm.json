@@ -8,7 +8,6 @@
   "imageWidth": "Image width (px)",
   "keepAspectRatio": "Keep aspect ratio",
   "loadingPreview": "Loading Image Preview...",
-  "uploadingKeyImage": "Loading Key Image...",
   "minHeightError": "The minimum valid height is 100px.",
   "minWidthError": "The minimum valid width is 100px.",
   "showAnnotations": "Show Annotations"

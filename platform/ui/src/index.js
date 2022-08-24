@@ -28,7 +28,7 @@ import {
   ToolbarSection,
   Tooltip,
   AboutContent,
-  DCMCloudModal,
+  OHIFModal,
   ErrorBoundary,
   ErrorPage,
 } from './components';
@@ -124,7 +124,7 @@ export {
   useModal,
   ModalConsumer,
   withModal,
-  DCMCloudModal,
+  OHIFModal,
   DialogProvider,
   withDialog,
   useDialog,

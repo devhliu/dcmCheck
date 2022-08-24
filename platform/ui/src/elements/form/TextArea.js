@@ -17,7 +17,7 @@ class TextArea extends React.Component {
   render() {
     return (
       <textarea
-        className="textarea-dcmcloud"
+        className="textarea-ohif"
         value={this.state.value}
         Rows={this.props.Rows}
         cols={this.props.cols}

@@ -49,7 +49,7 @@ export default {
  */
 getSopClassHandlerModule({ servicesManager, commandsManager }) {
   return {
-    id: 'DCMCloudDicomHtmlSopClassHandler',
+    id: 'OHIFDicomHtmlSopClassHandler',
     sopClassUIDs: Object.values(SOP_CLASS_UIDS),
 
     /**
@@ -83,7 +83,7 @@ getSopClassHandlerModule({ servicesManager, commandsManager }) {
 - [Dicom-Microscopy SOP][dicom-micro-sop]
 - [Dicom-Segmentation SOP][dicom-seg-sop]
 
-## `@dcmcloud/viewer` usage
+## `@ohif/viewer` usage
 
 We use the `sopClassHandlerModule`s in three different places:
 
@@ -92,14 +92,14 @@ We use the `sopClassHandlerModule`s in three different places:
 - `StandaloneRouting.js`
 
 Each time, it is used to map study and series data to `displaySets`. It does
-this by working alongside the `StudyMetadataManager` in `@dcmcloud/core`. That
+this by working alongside the `StudyMetadataManager` in `@ohif/core`. That
 manager has the method `createDisplaySets` that takes an array of
 `sopClassHandlerModules`.
 
 <!-- prettier-ignore-start -->
 [sop-class-link]: http://dicom.nema.org/dicom/2013/output/chtml/part04/sect_B.5.html
-[dicom-html-sop]: https://github.com/DCMCloud/Viewers/blob/master/extensions/dicom-html/src/DCMCloudDicomHtmlSopClassHandler.js#L4-L12
-[dicom-pdf-sop]: https://github.com/DCMCloud/Viewers/blob/master/extensions/dicom-pdf/src/DCMCloudDicomPDFSopClassHandler.js#L4-L6
-[dicom-micro-sop]: https://github.com/DCMCloud/Viewers/blob/master/extensions/dicom-microscopy/src/DicomMicroscopySopClassHandler.js#L5-L7
-[dicom-seg-sop]: https://github.com/DCMCloud/Viewers/blob/master/extensions/dicom-segmentation/src/DCMCloudDicomSegSopClassHandler.js#L5-L7
+[dicom-html-sop]: https://github.com/OHIF/Viewers/blob/master/extensions/dicom-html/src/OHIFDicomHtmlSopClassHandler.js#L4-L12
+[dicom-pdf-sop]: https://github.com/OHIF/Viewers/blob/master/extensions/dicom-pdf/src/OHIFDicomPDFSopClassHandler.js#L4-L6
+[dicom-micro-sop]: https://github.com/OHIF/Viewers/blob/master/extensions/dicom-microscopy/src/DicomMicroscopySopClassHandler.js#L5-L7
+[dicom-seg-sop]: https://github.com/OHIF/Viewers/blob/master/extensions/dicom-segmentation/src/OHIFDicomSegSopClassHandler.js#L5-L7
 <!-- prettier-ignore-end -->

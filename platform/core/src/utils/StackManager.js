@@ -1,4 +1,4 @@
-import DCMCloudError from '../classes/DCMCloudError.js';
+import OHIFError from '../classes/OHIFError.js';
 import getImageId from './getImageId';
 import metadataProvider from '../classes/MetadataProvider.js';
 
@@ -156,7 +156,7 @@ const StackManager = {
    */
   addStackUpdatedCallback(callback) {
     if (typeof callback !== 'function') {
-      throw new DCMCloudError('callback must be provided as a function');
+      throw new OHIFError('callback must be provided as a function');
     }
     stackUpdatedCallbacks.push(callback);
   },

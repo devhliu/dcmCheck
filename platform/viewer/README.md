@@ -1,18 +1,18 @@
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <div align="center">
-  <h1>@dcmcloud/viewer</h1>
-  <p><strong>@dcmcloud/viewer</strong> is a zero-footprint medical image viewer provided by the <a href="http://dcmcloud.org/">Open Health Imaging Foundation (DCMCloud)</a>. It is a configurable and extensible progressive web application with out-of-the-box support for image archives which support <a href="https://www.dicomstandard.org/dicomweb/">DICOMweb</a>.</p>
+  <h1>@ohif/viewer</h1>
+  <p><strong>@ohif/viewer</strong> is a zero-footprint medical image viewer provided by the <a href="http://ohif.org/">Open Health Imaging Foundation (OHIF)</a>. It is a configurable and extensible progressive web application with out-of-the-box support for image archives which support <a href="https://www.dicomstandard.org/dicomweb/">DICOMweb</a>.</p>
 </div>
 
 
 <div align="center">
-  <a href="https://docs.dcmcloud.org/"><strong>Read The Docs</strong></a> |
-  <a href="https://github.com/DCMCloud/Viewers/tree/master/docs/latest">Edit the docs</a>
+  <a href="https://docs.ohif.org/"><strong>Read The Docs</strong></a> |
+  <a href="https://github.com/OHIF/Viewers/tree/master/docs/latest">Edit the docs</a>
 </div>
 <div align="center">
-  <a href="https://docs.dcmcloud.org/demo">Demo</a> |
-  <a href="https://react.dcmcloud.org/">Component Library</a>
+  <a href="https://docs.ohif.org/demo">Demo</a> |
+  <a href="https://react.ohif.org/">Component Library</a>
 </div>
 
 
@@ -28,34 +28,33 @@
 
 > ATTENTION: If you are looking for Version 1 (the Meteor Version) of this
 > repository, it lives on
-> [the `v1.x` branch](https://github.com/DCMCloud/Viewers/tree/v1.x)
+> [the `v1.x` branch](https://github.com/OHIF/Viewers/tree/v1.x)
 
 ## Why?
 
 Building a web based medical imaging viewer from scratch is time intensive, hard
 to get right, and expensive. Instead of re-inventing the wheel, you can use the
-DCMCloud Viewer as a rock solid platform to build on top of. The Viewer is a
+OHIF Viewer as a rock solid platform to build on top of. The Viewer is a
 [React][react-url] [Progressive Web Application][pwa-url] that can be embedded
 in existing applications via it's [packaged source
-(dcmcloud-viewer)][dcmcloud-viewer-url] or hosted stand-alone. The Viewer
-exposes [configuration][configuration-url] and [extensions][extensions-url] to
-support workflow customization and advanced functionality at common integration
-points.
+(ohif-viewer)][ohif-viewer-url] or hosted stand-alone. The Viewer exposes
+[configuration][configuration-url] and [extensions][extensions-url] to support
+workflow customization and advanced functionality at common integration points.
 
-If you're interested in using the DCMCloud Viewer, but you're not sure it
-supports your use case [check out our docs](https://docs.dcmcloud.org/). Still
-not sure, or you would like to propose new features? Don't hesitate to
-[create an issue](https://github.com/DCMCloud/Viewers/issues) or open a pull
+If you're interested in using the OHIF Viewer, but you're not sure it supports
+your use case [check out our docs](https://docs.ohif.org/). Still not sure, or
+you would like to propose new features? Don't hesitate to
+[create an issue](https://github.com/OHIF/Viewers/issues) or open a pull
 request.
 
 ## Getting Started
 
 This readme is specific to testing and developing locally. If you're more
 interested in production deployment strategies,
-[you can check out our documentation on publishing](https://docs.dcmcloud.org/).
+[you can check out our documentation on publishing](https://docs.ohif.org/).
 
 Want to play around before you dig in?
-[Check out our LIVE Demo](https://viewer.dcmcloud.org/)
+[Check out our LIVE Demo](https://viewer.ohif.org/)
 
 ### Setup
 
@@ -71,9 +70,9 @@ _Steps:_
 
 - `git clone git@github.com:YOUR_GITHUB_USERNAME/Viewers.git`
 
-3. Add `DCMCloud/Viewers` as a `remote` repository (the `upstream`)
+3. Add `OHIF/Viewers` as a `remote` repository (the `upstream`)
 
-- `git remote add upstream git@github.com:DCMCloud/Viewers.git`
+- `git remote add upstream git@github.com:OHIF/Viewers.git`
 
 ### Developing Locally
 
@@ -90,7 +89,7 @@ yarn start
 
 For more advanced local development scenarios, like using your own locally
 hosted PACS and test data,
-[check out our Essential: Getting Started](https://docs.dcmcloud.org/getting-started.html)
+[check out our Essential: Getting Started](https://docs.ohif.org/getting-started.html)
 guide.
 
 ### E2E Tests
@@ -130,7 +129,7 @@ yarn run test:e2e:ci
 > Large portions of the Viewer's functionality are maintained in other
 > repositories. To get a better understanding of the Viewer's architecture and
 > "where things live", read
-> [our docs on the Viewer's architecture](https://docs.dcmcloud.org/architecture/index.html#overview)
+> [our docs on the Viewer's architecture](https://docs.ohif.org/architecture/index.html#overview)
 
 It is notoriously difficult to setup multiple dependent repositories for
 end-to-end testing and development. That's why we recommend writing and running
@@ -144,7 +143,7 @@ well-tested business logic.
 4. To commit changes, run `yarn run cm`
 
 When creating tests, place the test file "next to" the file you're testing.
-[For example](https://github.com/DCMCloud/Viewers/blob/master/src/utils/index.test.js):
+[For example](https://github.com/OHIF/Viewers/blob/master/src/utils/index.test.js):
 
 ```js
 // File
@@ -166,7 +165,7 @@ Thanks goes to these wonderful people
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-<table><tr><td align="center"><a href="https://github.com/swederik"><img src="https://avatars3.githubusercontent.com/u/607793?v=4" width="100px;" alt="Erik Ziegler"/><br /><sub><b>Erik Ziegler</b></sub></a><br /><a href="https://github.com/DCMCloud/Viewers/commits?author=swederik" title="Code">💻</a> <a href="#infra-swederik" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td><td align="center"><a href="https://github.com/evren217"><img src="https://avatars1.githubusercontent.com/u/4920551?v=4" width="100px;" alt="Evren Ozkan"/><br /><sub><b>Evren Ozkan</b></sub></a><br /><a href="https://github.com/DCMCloud/Viewers/commits?author=evren217" title="Code">💻</a></td><td align="center"><a href="https://github.com/galelis"><img src="https://avatars3.githubusercontent.com/u/2378326?v=4" width="100px;" alt="Gustavo André Lelis"/><br /><sub><b>Gustavo André Lelis</b></sub></a><br /><a href="https://github.com/DCMCloud/Viewers/commits?author=galelis" title="Code">💻</a></td><td align="center"><a href="http://dannyrb.com/"><img src="https://avatars1.githubusercontent.com/u/5797588?v=4" width="100px;" alt="Danny Brown"/><br /><sub><b>Danny Brown</b></sub></a><br /><a href="https://github.com/DCMCloud/Viewers/commits?author=dannyrb" title="Code">💻</a> <a href="#infra-dannyrb" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td><td align="center"><a href="https://github.com/all-contributors/all-contributors-bot"><img src="https://avatars3.githubusercontent.com/u/46843839?v=4" width="100px;" alt="allcontributors[bot]"/><br /><sub><b>allcontributors[bot]</b></sub></a><br /><a href="https://github.com/DCMCloud/Viewers/commits?author=allcontributors" title="Documentation">📖</a></td><td align="center"><a href="https://www.linkedin.com/in/siliconvalleynextgeneration/"><img src="https://avatars0.githubusercontent.com/u/1230575?v=4" width="100px;" alt="Esref Durna"/><br /><sub><b>Esref Durna</b></sub></a><br /><a href="#question-EsrefDurna" title="Answering Questions">💬</a></td><td align="center"><a href="https://github.com/diego0020"><img src="https://avatars3.githubusercontent.com/u/7297450?v=4" width="100px;" alt="diego0020"/><br /><sub><b>diego0020</b></sub></a><br /><a href="https://github.com/DCMCloud/Viewers/commits?author=diego0020" title="Code">💻</a></td></tr><tr><td align="center"><a href="https://github.com/dlwire"><img src="https://avatars3.githubusercontent.com/u/1167291?v=4" width="100px;" alt="David Wire"/><br /><sub><b>David Wire</b></sub></a><br /><a href="https://github.com/DCMCloud/Viewers/commits?author=dlwire" title="Code">💻</a></td><td align="center"><a href="https://github.com/jfmedeiros1820"><img src="https://avatars1.githubusercontent.com/u/2211708?v=4" width="100px;" alt="João Felipe de Medeiros Moreira"/><br /><sub><b>João Felipe de Medeiros Moreira</b></sub></a><br /><a href="https://github.com/DCMCloud/Viewers/commits?author=jfmedeiros1820" title="Tests">⚠️</a></td></tr></table>
+<table><tr><td align="center"><a href="https://github.com/swederik"><img src="https://avatars3.githubusercontent.com/u/607793?v=4" width="100px;" alt="Erik Ziegler"/><br /><sub><b>Erik Ziegler</b></sub></a><br /><a href="https://github.com/OHIF/Viewers/commits?author=swederik" title="Code">💻</a> <a href="#infra-swederik" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td><td align="center"><a href="https://github.com/evren217"><img src="https://avatars1.githubusercontent.com/u/4920551?v=4" width="100px;" alt="Evren Ozkan"/><br /><sub><b>Evren Ozkan</b></sub></a><br /><a href="https://github.com/OHIF/Viewers/commits?author=evren217" title="Code">💻</a></td><td align="center"><a href="https://github.com/galelis"><img src="https://avatars3.githubusercontent.com/u/2378326?v=4" width="100px;" alt="Gustavo André Lelis"/><br /><sub><b>Gustavo André Lelis</b></sub></a><br /><a href="https://github.com/OHIF/Viewers/commits?author=galelis" title="Code">💻</a></td><td align="center"><a href="http://dannyrb.com/"><img src="https://avatars1.githubusercontent.com/u/5797588?v=4" width="100px;" alt="Danny Brown"/><br /><sub><b>Danny Brown</b></sub></a><br /><a href="https://github.com/OHIF/Viewers/commits?author=dannyrb" title="Code">💻</a> <a href="#infra-dannyrb" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td><td align="center"><a href="https://github.com/all-contributors/all-contributors-bot"><img src="https://avatars3.githubusercontent.com/u/46843839?v=4" width="100px;" alt="allcontributors[bot]"/><br /><sub><b>allcontributors[bot]</b></sub></a><br /><a href="https://github.com/OHIF/Viewers/commits?author=allcontributors" title="Documentation">📖</a></td><td align="center"><a href="https://www.linkedin.com/in/siliconvalleynextgeneration/"><img src="https://avatars0.githubusercontent.com/u/1230575?v=4" width="100px;" alt="Esref Durna"/><br /><sub><b>Esref Durna</b></sub></a><br /><a href="#question-EsrefDurna" title="Answering Questions">💬</a></td><td align="center"><a href="https://github.com/diego0020"><img src="https://avatars3.githubusercontent.com/u/7297450?v=4" width="100px;" alt="diego0020"/><br /><sub><b>diego0020</b></sub></a><br /><a href="https://github.com/OHIF/Viewers/commits?author=diego0020" title="Code">💻</a></td></tr><tr><td align="center"><a href="https://github.com/dlwire"><img src="https://avatars3.githubusercontent.com/u/1167291?v=4" width="100px;" alt="David Wire"/><br /><sub><b>David Wire</b></sub></a><br /><a href="https://github.com/OHIF/Viewers/commits?author=dlwire" title="Code">💻</a></td><td align="center"><a href="https://github.com/jfmedeiros1820"><img src="https://avatars1.githubusercontent.com/u/2211708?v=4" width="100px;" alt="João Felipe de Medeiros Moreira"/><br /><sub><b>João Felipe de Medeiros Moreira</b></sub></a><br /><a href="https://github.com/OHIF/Viewers/commits?author=jfmedeiros1820" title="Tests">⚠️</a></td></tr></table>
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
@@ -176,33 +175,33 @@ specification. Contributions of any kind welcome!
 
 ## License
 
-MIT © [DCMCloud](https://github.com/DCMCloud)
+MIT © [OHIF](https://github.com/OHIF)
 
 <!--
 Links:
 -->
 
 <!-- prettier-ignore-start -->
-[npm-url]: https://npmjs.org/package/dcmcloud-viewer
-[npm-downloads-image]: https://img.shields.io/npm/dm/dcmcloud-viewer.svg?style=flat-square
-[npm-version-image]: https://img.shields.io/npm/v/dcmcloud-viewer.svg?style=flat-square
-[docker-pulls-img]: https://img.shields.io/docker/pulls/dcmcloud/viewer.svg?style=flat-square
-[docker-image-url]: https://hub.docker.com/r/dcmcloud/viewer
+[npm-url]: https://npmjs.org/package/ohif-viewer
+[npm-downloads-image]: https://img.shields.io/npm/dm/ohif-viewer.svg?style=flat-square
+[npm-version-image]: https://img.shields.io/npm/v/ohif-viewer.svg?style=flat-square
+[docker-pulls-img]: https://img.shields.io/docker/pulls/ohif/viewer.svg?style=flat-square
+[docker-image-url]: https://hub.docker.com/r/ohif/viewer
 [all-contributors-image]: https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
 [license-url]: LICENSE
 <!-- DOCS -->
 [react-url]: https://reactjs.org/
 [pwa-url]: https://developers.google.com/web/progressive-web-apps/
-[dcmcloud-viewer-url]: https://www.npmjs.com/package/dcmcloud-viewer
-[configuration-url]: https://docs.dcmcloud.org/configuring/
-[extensions-url]: https://docs.dcmcloud.org/extensions
+[ohif-viewer-url]: https://www.npmjs.com/package/ohif-viewer
+[configuration-url]: https://docs.ohif.org/configuring/
+[extensions-url]: https://docs.ohif.org/extensions
 <!-- Misc. -->
-[react-viewer]: https://github.com/DCMCloud/Viewers/tree/react
+[react-viewer]: https://github.com/OHIF/Viewers/tree/react
 <!-- Issue Boilerplate -->
-[bugs]: https://github.com/DCMCloud/Viewers/labels/bug
-[requests-feature]: https://github.com/DCMCloud/Viewers/labels/enhancement
-[good-first-issue]: https://github.com/DCMCloud/Viewers/labels/good%20first%20issue
+[bugs]: https://github.com/OHIF/Viewers/labels/bug
+[requests-feature]: https://github.com/OHIF/Viewers/labels/enhancement
+[good-first-issue]: https://github.com/OHIF/Viewers/labels/good%20first%20issue
 [google-group]: https://groups.google.com/forum/#!forum/cornerstone-platform
 
 <!-- prettier-ignore-end -->

@@ -1,8 +1,8 @@
 import { InstanceMetadata } from './InstanceMetadata';
 import { Metadata } from './Metadata';
-import { DCMCloudInstanceMetadata } from './DCMCloudInstanceMetadata';
-import { DCMCloudSeriesMetadata } from './DCMCloudSeriesMetadata';
-import { DCMCloudStudyMetadata } from './DCMCloudStudyMetadata';
+import { OHIFInstanceMetadata } from './OHIFInstanceMetadata';
+import { OHIFSeriesMetadata } from './OHIFSeriesMetadata';
+import { OHIFStudyMetadata } from './OHIFStudyMetadata';
 import { SeriesMetadata } from './SeriesMetadata';
 import { StudyMetadata } from './StudyMetadata';
 
@@ -11,9 +11,9 @@ const metadata = {
   StudyMetadata,
   SeriesMetadata,
   InstanceMetadata,
-  DCMCloudStudyMetadata,
-  DCMCloudSeriesMetadata,
-  DCMCloudInstanceMetadata,
+  OHIFStudyMetadata,
+  OHIFSeriesMetadata,
+  OHIFInstanceMetadata,
 };
 
 export {
@@ -21,9 +21,9 @@ export {
   StudyMetadata,
   SeriesMetadata,
   InstanceMetadata,
-  DCMCloudStudyMetadata,
-  DCMCloudSeriesMetadata,
-  DCMCloudInstanceMetadata,
+  OHIFStudyMetadata,
+  OHIFSeriesMetadata,
+  OHIFInstanceMetadata,
 };
 
 export default metadata;

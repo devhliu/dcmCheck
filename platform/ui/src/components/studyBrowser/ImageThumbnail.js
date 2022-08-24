@@ -1,9 +1,10 @@
 /* global cornerstone */
 import './ImageThumbnail.styl';
 
-import { utils } from '@dcmcloud/core';
-import React, { useState, useEffect, createRef } from 'react';
+import { utils } from '@ohif/core';
+import React, { useState, useEffect, createRef, useCallback } from 'react';
 import classNames from 'classnames';
+// import ConnectedCineDialog from '../../../../viewer/src/connectedComponents/ConnectedCineDialog.js';
 
 import PropTypes from 'prop-types';
 import ViewportErrorIndicator from '../../viewer/ViewportErrorIndicator';
@@ -23,6 +24,7 @@ function ImageThumbnail(props) {
     imageId,
     stackPercentComplete,
     error: propsError,
+    showProgressBar,
   } = props;
 
   const [isLoading, setLoading] = useState(false);
@@ -39,9 +41,11 @@ function ImageThumbnail(props) {
     loadingOrError = <ViewportLoadingIndicator />;
   }
 
-  const showStackLoadingProgressBar = stackPercentComplete !== undefined;
+  const showStackLoadingProgressBar =
+    showProgressBar && stackPercentComplete !== undefined;
 
   const shouldRenderToCanvas = () => {
+
     return imageId && !imageSrc;
   };
 
@@ -57,9 +61,9 @@ function ImageThumbnail(props) {
       })
       .catch(error => {
         if (error.isCanceled) return;
-        setLoading(false);
-        setError(true);
-        throw new Error(error);
+        // setLoading(false);
+        // setError(true);
+        // throw new Error(error);
       });
   };
 
@@ -71,11 +75,11 @@ function ImageThumbnail(props) {
     }
   };
 
-  const purgeCancelablePromise = () => {
+  const purgeCancelablePromise = useCallback(() => {
     if (cancelablePromise) {
       cancelablePromise.cancel();
     }
-  };
+  });
 
   useEffect(() => {
     return () => {
@@ -85,6 +89,8 @@ function ImageThumbnail(props) {
 
   useEffect(() => {
     if (image.imageId) {
+
+      // <ConnectedCineDialog />
       cornerstone.renderToCanvas(canvasRef.current, image);
       setLoading(false);
     }
@@ -96,7 +102,13 @@ function ImageThumbnail(props) {
       setImagePromise();
       fetchImagePromise();
     }
-  }, [fetchImagePromise, image.imageId, imageId, purgeCancelablePromise, setImagePromise]);
+  }, [
+    fetchImagePromise,
+    image.imageId,
+    imageId,
+    purgeCancelablePromise,
+    setImagePromise,
+  ]);
 
   return (
     <div className={classNames('ImageThumbnail', { active: active })}>
@@ -104,14 +116,14 @@ function ImageThumbnail(props) {
         {shouldRenderToCanvas() ? (
           <canvas ref={canvasRef} width={width} height={height} />
         ) : (
-            <img
-              className="static-image"
-              src={imageSrc}
-              //width={this.props.width}
-              height={height}
-              alt={''}
-            />
-          )}
+          <img
+            className="static-image"
+            src={imageSrc}
+            //width={this.props.width}
+            height={height}
+            alt={''}
+          />
+        )}
       </div>
       {loadingOrError}
       {showStackLoadingProgressBar && (
@@ -135,6 +147,7 @@ ImageThumbnail.propTypes = {
   width: PropTypes.number,
   height: PropTypes.number,
   stackPercentComplete: PropTypes.number.isRequired,
+  showProgressBar: PropTypes.bool,
 };
 
 ImageThumbnail.defaultProps = {
@@ -143,6 +156,7 @@ ImageThumbnail.defaultProps = {
   stackPercentComplete: 0,
   width: 217,
   height: 123,
+  showProgressBar: true,
 };
 
 export default ImageThumbnail;

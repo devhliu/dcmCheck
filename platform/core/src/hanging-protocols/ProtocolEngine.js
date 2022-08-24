@@ -1,4 +1,4 @@
-import DCMCloudError from '../classes/DCMCloudError.js';
+import OHIFError from '../classes/OHIFError.js';
 import metadata from '../classes/metadata/';
 import { StudyMetadataSource } from '../classes/StudyMetadataSource.js';
 import { isImage } from '../utils/isImage.js';
@@ -27,7 +27,7 @@ export default class ProtocolEngine {
    * @param  {ProtocolStore} protocolStore Protocol Store used to keep track of all hanging protocols
    * @param  {Array} studies Array of study metadata
    * @param  {Map} priorStudies Map of prior studies
-   * @param  {Object} studyMetadataSource Instance of StudyMetadataSource (dcmcloud-viewerbase) Object to get study metadata
+   * @param  {Object} studyMetadataSource Instance of StudyMetadataSource (ohif-viewerbase) Object to get study metadata
    * @param  {Object} options
    */
   constructor(
@@ -40,7 +40,7 @@ export default class ProtocolEngine {
     // -----------
     // Type Validations
     if (!(studyMetadataSource instanceof StudyMetadataSource)) {
-      throw new DCMCloudError(
+      throw new OHIFError(
         'ProtocolEngine::constructor studyMetadataSource is not an instance of StudyMetadataSource'
       );
     }
@@ -49,7 +49,7 @@ export default class ProtocolEngine {
       !(studies instanceof Array) &&
       !studies.every(study => study instanceof StudyMetadata)
     ) {
-      throw new DCMCloudError(
+      throw new OHIFError(
         "ProtocolEngine::constructor studies is not an array or it's items are not instances of StudyMetadata"
       );
     }
@@ -298,7 +298,7 @@ export default class ProtocolEngine {
         }
 
         // Invalid data
-        if (!(priorStudy instanceof StudyMetadata)) {
+        if (!priorStudy instanceof StudyMetadata) {
           return;
         }
 
@@ -337,7 +337,7 @@ export default class ProtocolEngine {
           },
           error => {
             log.warn(error);
-            throw new DCMCloudError(
+            throw new OHIFError(
               `ProtocolEngine::matchImages could not get study metadata for the Study with the following ObjectID: ${priorStudyObjectID}`
             );
           }
@@ -381,7 +381,7 @@ export default class ProtocolEngine {
         series.forEachInstance((instance, index) => {
           // This tests to make sure there is actually image data in this instance
           // TODO: Change this when we add PDF and MPEG support
-          // See https://dcmcloudorg.atlassian.net/browse/LT-227
+          // See https://ohiforg.atlassian.net/browse/LT-227
           if (
             !isImage(instance.getTagValue('SOPClassUID')) &&
             !instance.getTagValue('Rows')
@@ -661,7 +661,7 @@ export default class ProtocolEngine {
 
       // @TODO Why should we throw an exception when a best match is not found? This was aborting the whole process.
       // if (!currentViewportData.displaySetInstanceUID) {
-      //     throw new DCMCloudError('ProtocolEngine::updateViewports No matching display set found?');
+      //     throw new OHIFError('ProtocolEngine::updateViewports No matching display set found?');
       // }
 
       viewportData.push(currentViewportData);

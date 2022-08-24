@@ -1,8 +1,8 @@
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <div align="center">
-  <h1>@dcmcloud/core</h1>
-  <p><strong>@dcmcloud/core</strong> is a collection of useful functions and classes for building web-based medical imaging applications. This library helps power DCMCloud's <a href="https://github.com/DCMCloud/Viewers">zero-footprint DICOM viewer</a>.</p>
+  <h1>@ohif/core</h1>
+  <p><strong>@ohif/core</strong> is a collection of useful functions and classes for building web-based medical imaging applications. This library helps power OHIF's <a href="https://github.com/OHIF/Viewers">zero-footprint DICOM viewer</a>.</p>
 </div>
 
 <hr />
@@ -35,7 +35,7 @@ can be used with Vue, React, Vanilla JS, or any number of other frameworks.
 
 The documentation for this library is sparse. The best way to get started is to
 look at its
-[top level exports](https://github.com/DCMCloud/Viewers/blob/master/platform/core/src/index.js),
+[top level exports](https://github.com/OHIF/Viewers/blob/master/platform/core/src/index.js),
 and explore the source code of features that interest you. If you want to see
 how we use this library, you can check out [our viewer
 implementation][react-viewer].
@@ -48,21 +48,21 @@ implementation][react-viewer].
 
 ```
 // with npm
-npm i @dcmcloud/core --save-exact
+npm i @ohif/core --save-exact
 
 // with yarn
-yarn add @dcmcloud/core --exact
+yarn add @ohif/core --exact
 ```
 
 ### Usage
 
 Usage is dependent on the feature(s) you want to leverage. The bulk of
-`@dcmcloud/core`'s features are "pure" and can be imported and used in place.
+`@ohif/core`'s features are "pure" and can be imported and used in place.
 
 _Example: retrieving study metadata from a server_
 
 ```js
-import { studies } from '@dcmcloud/core';
+import { studies } from '@ohif/core';
 
 const studiesMetadata = await studies.retrieveStudiesMetadata(
   server, // Object
@@ -85,7 +85,7 @@ producing well-tested business logic.
 4. To commit changes, run `yarn run cm`
 
 When creating tests, place the test file "next to" the file you're testing.
-[For example](https://github.com/DCMCloud/dcmcloud-core/blob/master/src/index.test.js):
+[For example](https://github.com/OHIF/ohif-core/blob/master/src/index.test.js):
 
 ```js
 // File
@@ -107,7 +107,7 @@ Thanks goes to these wonderful people
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-<table><tr><td align="center"><a href="https://github.com/swederik"><img src="https://avatars3.githubusercontent.com/u/607793?v=4" width="100px;" alt="Erik Ziegler"/><br /><sub><b>Erik Ziegler</b></sub></a><br /><a href="https://github.com/DCMCloud/dcmcloud-core/commits?author=swederik" title="Code">💻</a></td><td align="center"><a href="https://github.com/evren217"><img src="https://avatars1.githubusercontent.com/u/4920551?v=4" width="100px;" alt="Evren Ozkan"/><br /><sub><b>Evren Ozkan</b></sub></a><br /><a href="https://github.com/DCMCloud/dcmcloud-core/commits?author=evren217" title="Code">💻</a></td><td align="center"><a href="https://github.com/galelis"><img src="https://avatars3.githubusercontent.com/u/2378326?v=4" width="100px;" alt="Gustavo André Lelis"/><br /><sub><b>Gustavo André Lelis</b></sub></a><br /><a href="https://github.com/DCMCloud/dcmcloud-core/commits?author=galelis" title="Code">💻</a></td><td align="center"><a href="http://dannyrb.com/"><img src="https://avatars1.githubusercontent.com/u/5797588?v=4" width="100px;" alt="Danny Brown"/><br /><sub><b>Danny Brown</b></sub></a><br /><a href="https://github.com/DCMCloud/dcmcloud-core/commits?author=dannyrb" title="Code">💻</a></td><td align="center"><a href="https://github.com/all-contributors/all-contributors-bot"><img src="https://avatars3.githubusercontent.com/u/46843839?v=4" width="100px;" alt="allcontributors[bot]"/><br /><sub><b>allcontributors[bot]</b></sub></a><br /><a href="https://github.com/DCMCloud/dcmcloud-core/commits?author=allcontributors" title="Documentation">📖</a></td><td align="center"><a href="https://github.com/ivan-aksamentov"><img src="https://avatars0.githubusercontent.com/u/9403403?v=4" width="100px;" alt="Ivan Aksamentov"/><br /><sub><b>Ivan Aksamentov</b></sub></a><br /><a href="https://github.com/DCMCloud/dcmcloud-core/commits?author=ivan-aksamentov" title="Code">💻</a> <a href="https://github.com/DCMCloud/dcmcloud-core/commits?author=ivan-aksamentov" title="Tests">⚠️</a></td></tr></table>
+<table><tr><td align="center"><a href="https://github.com/swederik"><img src="https://avatars3.githubusercontent.com/u/607793?v=4" width="100px;" alt="Erik Ziegler"/><br /><sub><b>Erik Ziegler</b></sub></a><br /><a href="https://github.com/OHIF/ohif-core/commits?author=swederik" title="Code">💻</a></td><td align="center"><a href="https://github.com/evren217"><img src="https://avatars1.githubusercontent.com/u/4920551?v=4" width="100px;" alt="Evren Ozkan"/><br /><sub><b>Evren Ozkan</b></sub></a><br /><a href="https://github.com/OHIF/ohif-core/commits?author=evren217" title="Code">💻</a></td><td align="center"><a href="https://github.com/galelis"><img src="https://avatars3.githubusercontent.com/u/2378326?v=4" width="100px;" alt="Gustavo André Lelis"/><br /><sub><b>Gustavo André Lelis</b></sub></a><br /><a href="https://github.com/OHIF/ohif-core/commits?author=galelis" title="Code">💻</a></td><td align="center"><a href="http://dannyrb.com/"><img src="https://avatars1.githubusercontent.com/u/5797588?v=4" width="100px;" alt="Danny Brown"/><br /><sub><b>Danny Brown</b></sub></a><br /><a href="https://github.com/OHIF/ohif-core/commits?author=dannyrb" title="Code">💻</a></td><td align="center"><a href="https://github.com/all-contributors/all-contributors-bot"><img src="https://avatars3.githubusercontent.com/u/46843839?v=4" width="100px;" alt="allcontributors[bot]"/><br /><sub><b>allcontributors[bot]</b></sub></a><br /><a href="https://github.com/OHIF/ohif-core/commits?author=allcontributors" title="Documentation">📖</a></td><td align="center"><a href="https://github.com/ivan-aksamentov"><img src="https://avatars0.githubusercontent.com/u/9403403?v=4" width="100px;" alt="Ivan Aksamentov"/><br /><sub><b>Ivan Aksamentov</b></sub></a><br /><a href="https://github.com/OHIF/ohif-core/commits?author=ivan-aksamentov" title="Code">💻</a> <a href="https://github.com/OHIF/ohif-core/commits?author=ivan-aksamentov" title="Tests">⚠️</a></td></tr></table>
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
@@ -117,7 +117,7 @@ specification. Contributions of any kind welcome!
 
 ## License
 
-MIT © [DCMCloud](https://github.com/DCMCloud)
+MIT © [OHIF](https://github.com/OHIF)
 
 <!--
 Links:
@@ -125,12 +125,12 @@ Links:
 
 <!-- prettier-ignore-start -->
 <!-- ROW -->
-[npm-url]: https://npmjs.org/package/@dcmcloud/core
-[npm-downloads-image]: https://img.shields.io/npm/dm/@dcmcloud/core.svg?style=flat-square
-[npm-version-image]: https://img.shields.io/npm/v/@dcmcloud/core.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/@ohif/core
+[npm-downloads-image]: https://img.shields.io/npm/dm/@ohif/core.svg?style=flat-square
+[npm-version-image]: https://img.shields.io/npm/v/@ohif/core.svg?style=flat-square
 [all-contributors-image]: https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
 [license-url]: LICENSE
 <!-- Misc. -->
-[react-viewer]: https://github.com/DCMCloud/Viewers/tree/react
+[react-viewer]: https://github.com/OHIF/Viewers/tree/react
 <!-- prettier-ignore-end -->

@@ -2,8 +2,8 @@
 
 After following the steps outlined in
 [Getting Started](./../development/getting-started.md), you'll notice that the
-DCMCloud Viewer has data for several studies and their images. You didn't add
-this data, so where is it coming from?
+OHIF Viewer has data for several studies and their images. You didn't add this
+data, so where is it coming from?
 
 By default, the viewer is configured to connect to a remote server hosted by the
 nice folks over at [dcmjs.org][dcmjs-org]. While convenient for getting started,
@@ -15,8 +15,8 @@ remotely.
 > ATTENTION! Already have a remote or local server? Skip to the
 > [configuration section](#configuration-learn-more) below.
 
-While the DCMCloud Viewer can work with any data source, the easiest to
-configure are the ones that follow the [DICOMWeb][dicom-web] spec.
+While the OHIF Viewer can work with any data source, the easiest to configure
+are the ones that follow the [DICOMWeb][dicom-web] spec.
 
 1. Choose and install an Image Archive
 2. Upload data to your archive (e.g. with DCMTK's [storescu][storescu] or your
@@ -122,15 +122,15 @@ window.config = {
         qidoRoot: 'http://localhost:8899/dicom-web',
         wadoRoot: 'http://localhost:8899/dicom-web',
         qidoSupportsIncludeField: false,
-        imageRendering: 'wadouri',
-        thumbnailRendering: 'wadouri',
+        imageRendering: 'wadors',
+        thumbnailRendering: 'wadors',
       },
     ],
   },
 };
 ```
 
-To learn more about how you can configure the DCMCloud Viewer, check out our
+To learn more about how you can configure the OHIF Viewer, check out our
 [Configuration Guide](./index.md).
 
 ## Open Source DICOM Image Archives
@@ -153,11 +153,11 @@ _Feel free to make a Pull Request if you want to add to this list._
   -->
 
 <!-- prettier-ignore-start -->
-[dcmjs-org]: https://192.168.100.20:5006/coreapi/react/WadoURI
+[dcmjs-org]: https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/wado
 [dicom-web]: https://en.wikipedia.org/wiki/DICOMweb
 [storescu]: http://support.dcmtk.org/docs/storescu.html
 [webpack-proxy]: https://webpack.js.org/configuration/dev-server/#devserverproxy
-[orthanc-docker-compose]: https://github.com/DCMCloud/Viewers/tree/master/.docker/Nginx-Orthanc
+[orthanc-docker-compose]: https://github.com/OHIF/Viewers/tree/master/.docker/Nginx-Orthanc
 <!-- Archives -->
 [dcm4chee]: https://github.com/dcm4che/dcm4chee-arc-light
 [dcm4chee-docker]: https://github.com/dcm4che/dcm4chee-arc-light/wiki/Running-on-Docker

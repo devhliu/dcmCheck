@@ -39,9 +39,9 @@ This setup allows us to create a setup similar to the one pictured below:
   - Requires valid `Authorization: Bearer <token>` header
 - `/pacs-admin` is a reverse proxy for `orthanc`'s Web Admin
 - `/auth` is a reverse proxy for `keycloak`
-- All static resources for DCMCloud Viewer are unprotected and accessible. We
-  have application logic that will redirect unauthenticated users to the
-  appropriate `keycloak` login screen.
+- All static resources for OHIF Viewer are unprotected and accessible. We have
+  application logic that will redirect unauthenticated users to the appropriate
+  `keycloak` login screen.
 
 ## Getting Started
 
@@ -120,9 +120,9 @@ likely want to update:
 - Set secure, non-default passwords
 - Regenerate Keycloak Client Secrets
 
-#### DCMCloud Viewer
+#### OHIF Viewer
 
-The DCMCloud Viewer's configuration is imported from a static `.js` file. The
+The OHIF Viewer's configuration is imported from a static `.js` file. The
 configuration we use is set to a specific file when we build the viewer, and
 determined by the env variable: `APP_CONFIG`. You can see where we set its value
 in the `dockerfile` for this solution:
@@ -142,28 +142,28 @@ Viewer's configuration, you can run:
 
 All other files are found in: `/docker/OpenResty-Orthanc-Keycloak/`
 
-| Service           | Configuration                                        | Docs                                        |
-| ----------------- | ---------------------------------------------------- | ------------------------------------------- |
-| DCMCloud Viewer   | [dockerfile][dockerfile] / [config.js][config]       | You're reading them now!                    |
-| OpenResty (Nginx) | [`/nginx.conf`][config-nginx]                        | [lua-resty-openidc][lua-resty-openidc-docs] |
-| Orthanc           | [`/orthanc.json`][config-orthanc]                    | [Here][orthanc-docs]                        |
-| Keycloak          | [`/dcmcloud-keycloak-realm.json`][config-keycloak]\* |                                             |
+| Service           | Configuration                                    | Docs                                        |
+| ----------------- | ------------------------------------------------ | ------------------------------------------- |
+| OHIF Viewer       | [dockerfile][dockerfile] / [config.js][config]   | You're reading them now!                    |
+| OpenResty (Nginx) | [`/nginx.conf`][config-nginx]                    | [lua-resty-openidc][lua-resty-openidc-docs] |
+| Orthanc           | [`/orthanc.json`][config-orthanc]                | [Here][orthanc-docs]                        |
+| Keycloak          | [`/ohif-keycloak-realm.json`][config-keycloak]\* |                                             |
 
 \* These are the seed values for Keycloak. They can be manually updated at
 `http://127.0.0.1/auth/admin`
 
 #### Keycloak Themeing
 
-The `Login` screen for the `dcmcloud-viewer` client is using a Custom Keycloak
+The `Login` screen for the `ohif-viewer` client is using a Custom Keycloak
 theme. You can find the source files for it in
 `/docker/OpenResty-Orthanc-Keycloak/volumes/keycloak-themes/`. You can see how
 we add it to Keycloak in the `docker-compose` file, and you can read up on how
 to leverage custom themes in
 [Keycloak's own docs](https://www.keycloak.org/docs/latest/server_development/index.html#_themes).
 
-| Default Theme                                                          | DCMCloud Theme                                                           |
-| ---------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| ![Keycloak Default Theme](../../assets/img/keycloak-default-theme.png) | ![Keycloak DCMCloud Theme](../../assets/img/keycloak-dcmcloud-theme.png) |
+| Default Theme                                                          | OHIF Theme                                                       |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| ![Keycloak Default Theme](../../assets/img/keycloak-default-theme.png) | ![Keycloak OHIF Theme](../../assets/img/keycloak-ohif-theme.png) |
 
 ## Next Steps
 
@@ -268,8 +268,8 @@ for OAuth:
 For a different take on this setup, check out the repositories our community
 members put together:
 
-- [mjstealey/dcmcloud-orthanc-dimse-docker](https://github.com/mjstealey/dcmcloud-orthanc-dimse-docker)
-- [trypag/dcmcloud-orthanc-postgres-docker](https://github.com/trypag/dcmcloud-orthanc-postgres-docker)
+- [mjstealey/ohif-orthanc-dimse-docker](https://github.com/mjstealey/ohif-orthanc-dimse-docker)
+- [trypag/ohif-orthanc-postgres-docker](https://github.com/trypag/ohif-orthanc-postgres-docker)
 
 <!--
   Links
@@ -280,9 +280,9 @@ members put together:
 [orthanc-docs]: http://book.orthanc-server.com/users/configuration.html#configuration
 [lua-resty-openidc-docs]: https://github.com/zmartzone/lua-resty-openidc
 <!-- SRC -->
-[config]: https://github.com/DCMCloud/Viewers/blob/master/platform/viewer/src/config.js
-[dockerfile]: https://github.com/DCMCloud/Viewers/blob/master/platform/viewer/.recipes/OpenResty-Orthanc-Keycloak/dockerfile
-[config-nginx]: https://github.com/DCMCloud/Viewers/blob/master/platform/viewer/.recipes/OpenResty-Orthanc-Keycloak/config/nginx.conf
-[config-orthanc]: https://github.com/DCMCloud/Viewers/blob/master/platform/viewer/.recipes/OpenResty-Orthanc-Keycloak/config/orthanc.json
-[config-keycloak]: https://github.com/DCMCloud/Viewers/blob/master/platform/viewer/.recipes/OpenResty-Orthanc-Keycloak/config/dcmcloud-keycloak-realm.json
+[config]: https://github.com/OHIF/Viewers/blob/master/platform/viewer/src/config.js
+[dockerfile]: https://github.com/OHIF/Viewers/blob/master/platform/viewer/.recipes/OpenResty-Orthanc-Keycloak/dockerfile
+[config-nginx]: https://github.com/OHIF/Viewers/blob/master/platform/viewer/.recipes/OpenResty-Orthanc-Keycloak/config/nginx.conf
+[config-orthanc]: https://github.com/OHIF/Viewers/blob/master/platform/viewer/.recipes/OpenResty-Orthanc-Keycloak/config/orthanc.json
+[config-keycloak]: https://github.com/OHIF/Viewers/blob/master/platform/viewer/.recipes/OpenResty-Orthanc-Keycloak/config/ohif-keycloak-realm.json
 <!-- prettier-ignore-end -->

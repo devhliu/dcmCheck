@@ -95,9 +95,9 @@ active.
 
 ## `CommandsManager`
 
-The `CommandsManager` is a class defined in the `@dcmcloud/core` project. A
-single instance of it should be defined in the consuming application, and it
-should be used when constructing the `ExtensionManager`.
+The `CommandsManager` is a class defined in the `@ohif/core` project. A single
+instance of it should be defined in the consuming application, and it should be
+used when constructing the `ExtensionManager`.
 
 ### Instantiating
 

@@ -1,4 +1,4 @@
-# DCMCloud Viewers
+# OHIF Viewers
 
 - [Our Process](our-process.md)
 - Development
@@ -28,7 +28,7 @@
     - [Viewport](extensions/modules/viewport.md)
   - [Contexts](extensions/index.md#contexts)
   - [ExtensionManager](extensions/index.md#extensionmanager)
-  - [DCMCloud Maintained](extensions/index.md#maintained-extensions)
+  - [OHIF Maintained](extensions/index.md#maintained-extensions)
 - [Services](services/index.md)
   - [Default](services/default/index.md)
   - [UI](services/ui/index.md)

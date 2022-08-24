@@ -1,6 +1,6 @@
 import React, { Component, useState } from 'react';
 import PropTypes from 'prop-types';
-import { TextInput } from '@dcmcloud/ui';
+import { TextInput } from '@ohif/ui';
 
 import './SimpleDialog.styl';
 

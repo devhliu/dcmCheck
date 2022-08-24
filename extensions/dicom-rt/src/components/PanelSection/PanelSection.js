@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Icon } from '@dcmcloud/ui';
+import { Icon } from '@ohif/ui';
 
 import './PanelSection.css';
 import LoadingIndicator from '../LoadingIndicator/LoadingIndicator';

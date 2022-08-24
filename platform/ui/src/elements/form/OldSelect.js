@@ -19,7 +19,7 @@ class Select extends Component {
   render() {
     return (
       <select
-        className="select-dcmcloud"
+        className="select-ohif"
         value={this.state.selected}
         onChange={this.handleChange}
       >

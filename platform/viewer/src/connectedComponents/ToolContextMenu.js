@@ -1,4 +1,4 @@
-import { ContextMenu } from '@dcmcloud/ui';
+import { ContextMenu } from '@ohif/ui';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { commandsManager } from './../App.js';

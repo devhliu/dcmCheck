@@ -1,4 +1,4 @@
-import DCMCloudError from './DCMCloudError';
+import OHIFError from './OHIFError';
 
 /**
  * Abstract class to fetch study metadata.
@@ -12,8 +12,8 @@ export class StudyMetadataSource {
     /**
      * Please override this method on a specialized class.
      */
-    throw new DCMCloudError(
-      'StudyMetadataSource::getByInstanceUID is not overriden. Please, override it in a specialized class. See DCMCloudStudyMetadataSource for example'
+    throw new OHIFError(
+      'StudyMetadataSource::getByInstanceUID is not overriden. Please, override it in a specialized class. See OHIFStudyMetadataSource for example'
     );
   }
 
@@ -25,8 +25,8 @@ export class StudyMetadataSource {
     /**
      * Please override this method on a specialized class.
      */
-    throw new DCMCloudError(
-      'StudyMetadataSource::loadStudy is not overriden. Please, override it in a specialized class. See DCMCloudStudyMetadataSource for example'
+    throw new OHIFError(
+      'StudyMetadataSource::loadStudy is not overriden. Please, override it in a specialized class. See OHIFStudyMetadataSource for example'
     );
   }
 }

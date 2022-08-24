@@ -1,35 +1,33 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter, matchPath, Redirect } from 'react-router';
+import { withRouter, matchPath } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import { NProgress } from '@tanem/react-nprogress';
 import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
-import DashboardPage from './components/DashboardPage'
 import {
   ViewerbaseDragDropContext,
   ErrorBoundary,
   asyncComponent,
   retryImport,
-} from '@dcmcloud/ui';
+} from '@ohif/ui';
 import { SignoutCallbackComponent } from 'redux-oidc';
 import * as RoutesUtil from './routes/routesUtil';
 
 import NotFound from './routes/NotFound.js';
 import { Bar, Container } from './components/LoadingBar/';
-import './DCMCloudStandaloneViewer.css';
+import './OHIFStandaloneViewer.css';
 import './variables.css';
 import './theme-tide.css';
 // Contexts
 import AppContext from './context/AppContext';
-import Zaid from './components/Zaid';
 const CallbackPage = asyncComponent(() =>
   retryImport(() =>
     import(/* webpackChunkName: "CallbackPage" */ './routes/CallbackPage.js')
   )
 );
 
-class DCMCloudStandaloneViewer extends Component {
+class OHIFStandaloneViewer extends Component {
   static contextType = AppContext;
   state = {
     isLoading: false,
@@ -59,116 +57,102 @@ class DCMCloudStandaloneViewer extends Component {
     const { user, userManager } = this.props;
     const { appConfig = {} } = this.context;
     const userNotLoggedIn = userManager && (!user || user.expired);
-    // console.log("pathname", this.props.location.pathname)
-
     if (userNotLoggedIn) {
       const { pathname, search } = this.props.location;
 
       if (pathname !== '/callback') {
         sessionStorage.setItem(
-          'dcmcloud-redirect-to',
+          'OHIF-redirect-to',
           JSON.stringify({ pathname, search })
         );
       }
 
       return (
-        <>
-
-          <Switch>
-
-            <Route
-              exact
-              path="/silent-refresh.html"
-              onEnter={RoutesUtil.reload}
-            />
-            <Route
-              exact
-              path="/zaid"
-              component={<Zaid />}
-            />
-            <Route
-              exact
-              path="/logout-redirect"
-              render={() => (
-                <SignoutCallbackComponent
-                  userManager={userManager}
-                  successCallback={() => console.log('Signout successful')}
-                  errorCallback={error => {
-                    console.warn(error);
-                    console.warn('Signout failed');
-                  }}
-                />
-              )}
-            />
-            <Route
-              path="/callback"
-              render={() => <CallbackPage userManager={userManager} />}
-            />
-            <Route
-              path="/login"
-              component={() => {
-                const queryParams = new URLSearchParams(
-                  this.props.location.search
+        <Switch>
+          <Route
+            exact
+            path="/silent-refresh.html"
+            onEnter={RoutesUtil.reload}
+          />
+          <Route
+            exact
+            path="/logout-redirect"
+            render={() => (
+              <SignoutCallbackComponent
+                userManager={userManager}
+                successCallback={() => console.log('Signout successful')}
+                errorCallback={error => {
+                  console.warn(error);
+                  console.warn('Signout failed');
+                }}
+              />
+            )}
+          />
+          <Route
+            path="/callback"
+            render={() => <CallbackPage userManager={userManager} />}
+          />
+          <Route
+            path="/login"
+            component={() => {
+              const queryParams = new URLSearchParams(
+                this.props.location.search
+              );
+              const iss = queryParams.get('iss');
+              const loginHint = queryParams.get('login_hint');
+              const targetLinkUri = queryParams.get('target_link_uri');
+              const oidcAuthority =
+                appConfig.oidc !== null && appConfig.oidc[0].authority;
+              if (iss !== oidcAuthority) {
+                console.error(
+                  'iss of /login does not match the oidc authority'
                 );
-                const iss = queryParams.get('iss');
-                const loginHint = queryParams.get('login_hint');
-                const targetLinkUri = queryParams.get('target_link_uri');
-                const oidcAuthority =
-                  appConfig.oidc !== null && appConfig.oidc[0].authority;
-                if (iss !== oidcAuthority) {
-                  console.error(
-                    'iss of /login does not match the oidc authority'
+                return null;
+              }
+
+              userManager.removeUser().then(() => {
+                if (targetLinkUri !== null) {
+                  const OHIFRedirectTo = {
+                    pathname: new URL(targetLinkUri).pathname,
+                  };
+                  sessionStorage.setItem(
+                    'OHIF-redirect-to',
+                    JSON.stringify(OHIFRedirectTo)
                   );
-                  return null;
+                } else {
+                  const OHIFRedirectTo = {
+                    pathname: '/',
+                  };
+                  sessionStorage.setItem(
+                    'OHIF-redirect-to',
+                    JSON.stringify(OHIFRedirectTo)
+                  );
                 }
 
-                userManager.removeUser().then(() => {
-                  if (targetLinkUri !== null) {
-                    const dcmcloudRedirectTo = {
-                      pathname: new URL(targetLinkUri).pathname,
-                    };
-                    sessionStorage.setItem(
-                      'dcmcloud-redirect-to',
-                      JSON.stringify(dcmcloudRedirectTo)
-                    );
-                  } else {
-                    const dcmcloudRedirectTo = {
-                      pathname: '/',
-                    };
-                    sessionStorage.setItem(
-                      'dcmcloud-redirect-to',
-                      JSON.stringify(dcmcloudRedirectTo)
-                    );
-                  }
+                if (loginHint !== null) {
+                  userManager.signinRedirect({ login_hint: loginHint });
+                } else {
+                  userManager.signinRedirect();
+                }
+              });
 
-                  if (loginHint !== null) {
-                    userManager.signinRedirect({ login_hint: loginHint });
-                  } else {
-                    userManager.signinRedirect();
-                  }
-                });
+              return null;
+            }}
+          />
+          <Route
+            component={() => {
+              userManager.getUser().then(user => {
+                if (user) {
+                  userManager.signinSilent();
+                } else {
+                  userManager.signinRedirect();
+                }
+              });
 
-                return null;
-              }}
-            />
-            <Route
-              component={() => {
-                userManager.getUser().then(user => {
-                  if (user) {
-                    userManager.signinSilent();
-                  } else {
-                    userManager.signinRedirect();
-                  }
-                });
-
-                return null;
-              }}
-            />
-
-
-          </Switch>
-
-        </>
+              return null;
+            }}
+          />
+        </Switch>
       );
     }
 
@@ -180,23 +164,16 @@ class DCMCloudStandaloneViewer extends Component {
      */
     const routes = RoutesUtil.getRoutes(appConfig);
 
-
     const currentPath = this.props.location.pathname;
-    // console.log("currentPath", currentPath)
     const noMatchingRoutes = !routes.find(r =>
       matchPath(currentPath, {
         path: r.path,
         exact: true,
       })
     );
-    // console.log("noMatchingRoutes", RoutesUtil.getRoutes)
-
-
-
 
     return (
       <>
-
         <NProgress isAnimating={this.state.isLoading}>
           {({ isFinished, progress, animationDuration }) => (
             <Container
@@ -209,15 +186,10 @@ class DCMCloudStandaloneViewer extends Component {
         </NProgress>
         <Route exact path="/silent-refresh.html" onEnter={RoutesUtil.reload} />
         <Route exact path="/logout-redirect.html" onEnter={RoutesUtil.reload} />
-
-
-        {/* {userData === null ? <Redirect to="/signIn" /> : ""} */}
         {!noMatchingRoutes &&
           routes.map(({ path, Component }) => (
             <Route key={path} exact path={path}>
-              {/* {console.log("path", path)} */}
               {({ match }) => (
-
                 <CSSTransition
                   in={match !== null}
                   timeout={300}
@@ -234,7 +206,6 @@ class DCMCloudStandaloneViewer extends Component {
                     });
                   }}
                 >
-
                   {match === null ? (
                     <></>
                   ) : (
@@ -246,8 +217,7 @@ class DCMCloudStandaloneViewer extends Component {
               )}
             </Route>
           ))}
-
-        {/* {noMatchingRoutes && <NotFound />} */}
+        {noMatchingRoutes && <NotFound />}
       </>
     );
   }
@@ -259,11 +229,11 @@ const mapStateToProps = state => {
   };
 };
 
-const ConnectedDCMCloudStandaloneViewer = connect(
+const ConnectedOHIFStandaloneViewer = connect(
   mapStateToProps,
   null
-)(DCMCloudStandaloneViewer);
+)(OHIFStandaloneViewer);
 
 export default ViewerbaseDragDropContext(
-  withRouter(ConnectedDCMCloudStandaloneViewer)
+  withRouter(ConnectedOHIFStandaloneViewer)
 );

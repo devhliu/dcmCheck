@@ -59,7 +59,7 @@ services:
     networks:
       - dcm4che_default
   viewer:
-    container_name: dcmcloud-viewer
+    container_name: ohif-viewer
     build:
       context: ../
       dockerfile: Dockerfile

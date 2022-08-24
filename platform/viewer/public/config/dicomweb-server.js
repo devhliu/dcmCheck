@@ -12,7 +12,7 @@ window.config = {
         qidoSupportsIncludeField: false,
         imageRendering: 'wadouri',
         thumbnailRendering: 'wadouri',
-        enableStudyLazyLoad: false,
+        enableStudyLazyLoad: true,
       },
     ],
   },

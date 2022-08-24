@@ -226,4 +226,4 @@ class ConformanceCriteria {
 }
 
 export default ConformanceCriteria;
-//DCMCloud.measurements.ConformanceCriteria = ConformanceCriteria;
+//OHIF.measurements.ConformanceCriteria = ConformanceCriteria;

@@ -49,15 +49,15 @@ export class RadioButtonList extends Component {
       let inputSpan;
       if (this.state.checked === button.id) {
         inputSpan = (
-          <span className="dcmcloud-radio-button dcmcloud-selected">{input}</span>
+          <span className="ohif-radio-button ohif-selected">{input}</span>
         );
       } else {
-        inputSpan = <span className="dcmcloud-radio-button">{input}</span>;
+        inputSpan = <span className="ohif-radio-button">{input}</span>;
       }
 
       return (
-        <span className="dcmcloud-radio-button-container" key={button.id}>
-          <label className="dcmcloud-radio-button-label">
+        <span className="ohif-radio-button-container" key={button.id}>
+          <label className="ohif-radio-button-label">
             {inputSpan}
             {button.label}
           </label>
@@ -66,7 +66,7 @@ export class RadioButtonList extends Component {
     });
 
     return (
-      <div className="dcmcloud-radio-button-group">
+      <div className="ohif-radio-button-group">
         <form>{buttons}</form>
       </div>
     );

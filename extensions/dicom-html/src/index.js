@@ -1,12 +1,12 @@
 import React from 'react';
-import DCMCloudDicomHtmlSopClassHandler from './DCMCloudDicomHtmlSopClassHandler.js';
+import OHIFDicomHtmlSopClassHandler from './OHIFDicomHtmlSopClassHandler.js';
 import { version } from '../package.json';
 
 const Component = React.lazy(() => {
-  return import('./DCMCloudDicomHtmlViewport');
+  return import('./OHIFDicomHtmlViewport');
 });
 
-const DCMCloudDicomHtmlViewport = props => {
+const OHIFDicomHtmlViewport = props => {
   return (
     <React.Suspense fallback={<div>Loading...</div>}>
       <Component {...props} />
@@ -22,9 +22,9 @@ export default {
   version,
 
   getViewportModule() {
-    return DCMCloudDicomHtmlViewport;
+    return OHIFDicomHtmlViewport;
   },
   getSopClassHandlerModule() {
-    return DCMCloudDicomHtmlSopClassHandler;
+    return OHIFDicomHtmlSopClassHandler;
   },
 };

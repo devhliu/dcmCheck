@@ -14,7 +14,7 @@ import { QuickSwitch } from './quickSwitch';
 import { RoundedButtonGroup } from './roundedButtonGroup';
 import { SelectTree } from './selectTree';
 import { SimpleDialog } from './simpleDialog';
-import { DCMCloudModal } from './dcmcloudModal';
+import { OHIFModal } from './ohifModal';
 import { ContextMenu } from './contextMenu';
 import ErrorPage from './errorPage';
 import {
@@ -58,6 +58,6 @@ export {
   ToolbarSection,
   Tooltip,
   AboutContent,
-  DCMCloudModal,
-  ErrorPage,
+  OHIFModal,
+  ErrorPage
 };

@@ -7,10 +7,10 @@ import {
 
 // import { createLogger } from 'redux-logger';
 import { reducer as oidcReducer } from 'redux-oidc';
-import { redux } from '@dcmcloud/core';
+import { redux } from '@ohif/core';
 import thunkMiddleware from 'redux-thunk';
 
-// Combine our @dcmcloud/core and oidc reducers
+// Combine our @ohif/core and oidc reducers
 // Set init data, using values found in localStorage
 const { reducers, localStorage, sessionStorage } = redux;
 const middleware = [thunkMiddleware];

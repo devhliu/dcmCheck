@@ -1,9 +1,9 @@
 import React, { useState, useSelector } from 'react';
 import PropTypes from 'prop-types';
 
-import i18n from '@dcmcloud/i18n';
+import i18n from '@ohif/i18n';
 
-import { TabFooter, LanguageSwitcher, useSnackbarContext } from '@dcmcloud/ui';
+import { TabFooter, LanguageSwitcher, useSnackbarContext } from '@ohif/ui';
 import { useTranslation } from 'react-i18next';
 
 import './GeneralPreferences.styl';

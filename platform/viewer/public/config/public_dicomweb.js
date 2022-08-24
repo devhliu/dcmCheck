@@ -5,12 +5,12 @@ window.config = {
     dicomWeb: [
       {
         name: 'DCM4CHEE',
-        wadoUriRoot: 'https://app.dcmcloud.com/coreapi/react/WadoURI',
-        qidoRoot: 'https://app.dcmcloud.com/coreapi/react/QidoRS',
-        wadoRoot: 'https://app.dcmcloud.com/coreapi/react/WadoRS',
+        wadoUriRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/wado',
+        qidoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
+        wadoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
         qidoSupportsIncludeField: true,
-        imageRendering: 'wadouri',
-        thumbnailRendering: 'wadouri',
+        imageRendering: 'wadors',
+        thumbnailRendering: 'wadors',
         supportsFuzzyMatching: true,
       },
     ],

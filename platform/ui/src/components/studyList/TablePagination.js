@@ -43,7 +43,7 @@ class TablePagination extends PureComponent {
                 <button
                   onClick={this.prevPage}
                   disabled={this.props.currentPage === 0}
-                  className="prev-btn btn page-link"
+                  className="btn page-link"
                 >
                   {this.props.t('Previous')}
                 </button>
@@ -70,7 +70,7 @@ class TablePagination extends PureComponent {
   renderRowsPerPageDropdown() {
     return (
       <div className="form-inline form-group rows-per-page">
-        <span className="pagination-text">{this.props.t('Show')}</span>
+        <span>{this.props.t('Show')}</span>
         <select
           onChange={this.onRowsPerPageChange}
           defaultValue={this.props.rowsPerPage}
@@ -83,9 +83,7 @@ class TablePagination extends PureComponent {
             );
           })}
         </select>
-        <span className="pagination-text-row">
-          {this.props.t('RowsPerPage')}
-        </span>
+        <span>{this.props.t('RowsPerPage')}</span>
       </div>
     );
   }

@@ -1,6 +1,6 @@
-# @dcmcloud/extension-dicom-microscopy
+# @ohif/extension-dicom-microscopy
 
-![npm (scoped)](https://img.shields.io/npm/v/@dcmcloud/extension-dicom-microscopy.svg?style=flat-square)
+![npm (scoped)](https://img.shields.io/npm/v/@ohif/extension-dicom-microscopy.svg?style=flat-square)
 
 <!-- TODO: Simple image or GIF? -->
 

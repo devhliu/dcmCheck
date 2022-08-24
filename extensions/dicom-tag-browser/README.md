@@ -1,1 +1,1 @@
-# @dcmcloud/extension-dicom-tag-browser
+# @ohif/extension-dicom-tag-browser

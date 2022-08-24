@@ -1,4 +1,4 @@
-import { utils } from '@dcmcloud/core';
+import { utils } from '@ohif/core';
 import React from 'react';
 import DicomTagBrowser from './components/DicomTagBrowser';
 

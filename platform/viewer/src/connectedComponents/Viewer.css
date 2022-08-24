@@ -11,18 +11,20 @@
 
 .view-inline {
   display: flex;
+  height:100vh
 }
 
 .toolbar-section {
   display: flex;
   flex-direction: column;
-  width: auto;
+  width: 110px;
   /* height: calc(100vh - 160px) !important; */
   justify-content: space-between;
   align-items: center;
   height: 100vh;
   border: none;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar-track {
@@ -37,7 +39,8 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #e6dada;
+  background-color: #beedff;
+  border-radius: 20px;
 }
 
 

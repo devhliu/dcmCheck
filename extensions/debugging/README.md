@@ -1,1 +1,1 @@
-# @dcmcloud/extension-dicom-p10-downloader
+# @ohif/extension-dicom-p10-downloader

@@ -1,9 +1,9 @@
-import { measurements, utils } from '@dcmcloud/core';
+import { measurements, utils } from '@ohif/core';
 
 const { MeasurementApi } = measurements;
 const { studyMetadataManager } = utils;
 
-// TODO: Move this function to DCMCloud itself so we can use it on the DCMCloud measurment table (when it is finished)
+// TODO: Move this function to OHIF itself so we can use it on the OHIF measurment table (when it is finished)
 
 /**
  * Activates a set of measurements

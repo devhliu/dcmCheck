@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { TableListItem, Icon } from '@dcmcloud/ui';
+import { TableListItem, Icon } from '@ohif/ui';
 import ReactTooltip from 'react-tooltip';
 
 import './SegmentItem.css';
@@ -24,6 +24,7 @@ const SegmentItem = ({
   onClick,
   itemClass,
   color,
+  labelmap3D,
   visible,
   onVisibilityChange,
 }) => {
@@ -39,7 +40,7 @@ const SegmentItem = ({
     event.stopPropagation();
     const newVisibility = !isVisible;
     setIsVisible(newVisibility);
-    onVisibilityChange(newVisibility, index);
+    onVisibilityChange(newVisibility, index, labelmap3D);
   };
 
   return (

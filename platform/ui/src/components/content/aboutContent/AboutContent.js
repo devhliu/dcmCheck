@@ -15,13 +15,13 @@ const AboutContent = () => {
     return [
       {
         name: t('Repository URL'),
-        value: 'https://github.com/DCMCloud/Viewers/',
-        link: 'https://github.com/DCMCloud/Viewers/',
+        value: 'https://github.com/OHIF/Viewers/',
+        link: 'https://github.com/OHIF/Viewers/',
       },
       {
         name: t('Latest Master Commits'),
-        value: 'https://github.com/DCMCloud/Viewers/commits/master',
-        link: 'https://github.com/DCMCloud/Viewers/commits/master',
+        value: 'https://github.com/OHIF/Viewers/commits/master',
+        link: 'https://github.com/OHIF/Viewers/commits/master',
       },
       {
         name: 'Version Number',
@@ -73,7 +73,7 @@ const AboutContent = () => {
           className="btn btn-default"
           target="_blank"
           rel="noopener noreferrer"
-          href="https://github.com/DCMCloud/Viewers/issues/new/choose"
+          href="https://github.com/OHIF/Viewers/issues/new/choose"
         >
           {t('Report an issue')}
         </a>
@@ -82,7 +82,7 @@ const AboutContent = () => {
           className="btn btn-default"
           target="_blank"
           rel="noopener noreferrer"
-          href="https://www.dcmcloud.com/"
+          href="http://ohif.org"
         >
           {t('More details')}
         </a>

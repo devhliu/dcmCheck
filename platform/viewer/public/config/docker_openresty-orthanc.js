@@ -10,8 +10,8 @@ window.config = {
         qidoRoot: 'http://127.0.0.1/pacs/dicom-web',
         wadoRoot: 'http://127.0.0.1/pacs/dicom-web',
         qidoSupportsIncludeField: false,
-        imageRendering: 'wadouri',
-        thumbnailRendering: 'wadouri',
+        imageRendering: 'wadors',
+        thumbnailRendering: 'wadors',
         // requestOptions: {
         // undefined to use JWT + Bearer auth
         // auth: 'orthanc:orthanc',

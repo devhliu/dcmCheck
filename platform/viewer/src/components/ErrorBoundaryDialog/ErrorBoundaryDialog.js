@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import { ErrorBoundary, Icon } from '@dcmcloud/ui';
+import { ErrorBoundary, Icon } from '@ohif/ui';
 import { servicesManager } from './../../App';
 
 import './ErrorBoundaryDialog.css';
 
-// ? hot update failed for module "./App.js". Last file processed: "./components/ErrorBoundaryDialog/ErrorBoundaryDialog.js"
-// const { UIModalService } = servicesManager.services;
+const { UIModalService } = servicesManager.services;
 
 const ErrorBoundaryDialog = ({ context, children }) => {
   const handleOnError = (error, componentStack) => {
@@ -39,11 +38,10 @@ const ErrorBoundaryDialog = ({ context, children }) => {
       );
     };
 
-    // ? hot update failed for module "./App.js". Last file processed: "./components/ErrorBoundaryDialog/ErrorBoundaryDialog.js"
-    // UIModalService.show({
-    //   content: ErrorDialog,
-    //   title: `Something went wrong in ${context}`,
-    // });
+    UIModalService.show({
+      content: ErrorDialog,
+      title: `Something went wrong in ${context}`,
+    });
   };
 
   const fallbackComponent = () => (

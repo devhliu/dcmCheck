@@ -16,7 +16,7 @@
   <script
     src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=default%2CObject.values%2CArray.prototype.flat%2CObject.entries%2CSymbol%2CArray.prototype.includes%2CString.prototype.repeat%2CArray.prototype.find"></script>
 
-  <title>DCMCloud Standalone Viewer</title>
+  <title>OHIF Standalone Viewer</title>
 </head>
 
 <body>
@@ -29,9 +29,9 @@
   <script>
     var containerId = 'root';
     var componentRenderedOrUpdatedCallback = function () {
-      console.log('DCMCloud Viewer rendered/updated');
+      console.log('OHIF Viewer rendered/updated');
     };
-    window.DCMCloudViewer.installViewer(
+    window.OHIFViewer.installViewer(
       window.config, // See `/config/default.js`
       containerId,
       componentRenderedOrUpdatedCallback

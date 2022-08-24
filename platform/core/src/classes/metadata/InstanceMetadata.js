@@ -1,5 +1,5 @@
 import { Metadata } from './Metadata';
-import DCMCloudError from '../DCMCloudError.js';
+import OHIFError from '../OHIFError.js';
 
 /**
  * ATTENTION! This class should never depend on StudyMetadata or SeriesMetadata classes as this could
@@ -126,8 +126,8 @@ export class InstanceMetadata extends Metadata {
     /**
      * Please override this method on a specialized class.
      */
-    throw new DCMCloudError(
-      'InstanceMetadata::getTagValue is not overriden. Please, override it in a specialized class. See DCMCloudInstanceMetadata for example'
+    throw new OHIFError(
+      'InstanceMetadata::getTagValue is not overriden. Please, override it in a specialized class. See OHIFInstanceMetadata for example'
     );
   }
 
@@ -154,8 +154,8 @@ export class InstanceMetadata extends Metadata {
     /**
      * Please override this method
      */
-    throw new DCMCloudError(
-      'InstanceMetadata::tagExists is not overriden. Please, override it in a specialized class. See DCMCloudInstanceMetadata for example'
+    throw new OHIFError(
+      'InstanceMetadata::tagExists is not overriden. Please, override it in a specialized class. See OHIFInstanceMetadata for example'
     );
   }
 
@@ -167,8 +167,8 @@ export class InstanceMetadata extends Metadata {
     /**
      * Please override this method
      */
-    throw new DCMCloudError(
-      'InstanceMetadata::getImageId is not overriden. Please, override it in a specialized class. See DCMCloudInstanceMetadata for example'
+    throw new OHIFError(
+      'InstanceMetadata::getImageId is not overriden. Please, override it in a specialized class. See OHIFInstanceMetadata for example'
     );
   }
 

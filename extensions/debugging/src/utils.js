@@ -1,11 +1,11 @@
-import DCMCloud from '@dcmcloud/core';
+import OHIF from '@ohif/core';
 import { api } from 'dicomweb-client';
 import { saveAs } from 'file-saver';
 
 const {
   utils: { isDicomUid, resolveObjectPath, hierarchicalListUtils },
   DICOMWeb,
-} = DCMCloud;
+} = OHIF;
 
 function validDicomUid(subject) {
   if (isDicomUid(subject)) {
@@ -89,13 +89,13 @@ function getSOPInstanceReferencesFromViewports(viewports) {
 function save(promise, listOfUIDs) {
   return Promise.resolve(promise)
     .then(url => {
-      DCMCloud.log.info('Files successfully compressed:', url);
+      OHIF.log.info('Files successfully compressed:', url);
       const StudyInstanceUID = hierarchicalListUtils.getItem(listOfUIDs, 0);
       saveAs(url, `${StudyInstanceUID}.zip`);
       return url;
     })
     .catch(error => {
-      DCMCloud.log.error('Failed to create Zip file...', error);
+      OHIF.log.error('Failed to create Zip file...', error);
       return null;
     });
 }
@@ -104,8 +104,8 @@ function upload(promise, serverConfig) {
   return Promise.resolve(promise)
     .then(async instances => {
       const instancesAmount = instances.length;
-      DCMCloud.log.info(`Uploading study to ${serverConfig.url}`);
-      DCMCloud.log.info(
+      OHIF.log.info(`Uploading study to ${serverConfig.url}`);
+      OHIF.log.info(
         `${instancesAmount} instances are being uploaded. Don't close your browser.`
       );
 
@@ -126,18 +126,18 @@ function upload(promise, serverConfig) {
 
           progress++;
 
-          DCMCloud.log.info(`Progress: ${getProgress()}%`);
+          OHIF.log.info(`Progress: ${getProgress()}%`);
         }
 
-        DCMCloud.log.info('Successfully uploaded!');
+        OHIF.log.info('Successfully uploaded!');
       } catch (error) {
-        DCMCloud.log.error(`Failed to upload: ${error}`);
+        OHIF.log.error(`Failed to upload: ${error}`);
       }
 
       return instances;
     })
     .catch(error => {
-      DCMCloud.log.error(`Failed to upload: ${error}`);
+      OHIF.log.error(`Failed to upload: ${error}`);
       return null;
     });
 }

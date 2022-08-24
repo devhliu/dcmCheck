@@ -28,11 +28,11 @@ class Select extends Component {
 
   render() {
     return (
-      <div className="select-dcmcloud-container">
+      <div className="select-ohif-container">
         {this.props.label && (
-          <label className="select-dcmcloud-label" htmlFor={this.id}>{this.props.label}</label>
+          <label className="select-ohif-label" htmlFor={this.id}>{this.props.label}</label>
         )}
-        <select className="form-control select-dcmcloud" {...this.props}>
+        <select className="form-control select-ohif" {...this.props}>
           {this.props.options.map(({ key, value }) => {
             return (
               <option key={key} value={value}>

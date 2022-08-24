@@ -5,8 +5,8 @@ This repository uses `CircleCI` and `Netlify` for continous integration.
 ## Deploy Previews
 
 [Netlify Deploy previews][deploy-previews] are generated for every pull request.
-They allow pull request authors and reviewers to "Preview" the DCMCloud Viewer
-as if the changes had been merged.
+They allow pull request authors and reviewers to "Preview" the OHIF Viewer as if
+the changes had been merged.
 
 Deploy previews can be configured by modifying the `netlify.toml` file in the
 root of the repository. Some additional scripts/assets for netlify are included
@@ -51,11 +51,10 @@ be tested with the Google Adapter before merging to `master`.
 
 ### Workflow: DEPLOY
 
-The DEPLOY workflow deploys the DCMCloud Viewer when changes are merged to
-master. It uses the Netlify CLI to deploy assets created as part of the
-repository's PWA Build process (`yarn run build`). The workflow allows for
-"Manual Approval" to promote the build to `STAGING` and `PRODUCTION`
-environments.
+The DEPLOY workflow deploys the OHIF Viewer when changes are merged to master.
+It uses the Netlify CLI to deploy assets created as part of the repository's PWA
+Build process (`yarn run build`). The workflow allows for "Manual Approval" to
+promote the build to `STAGING` and `PRODUCTION` environments.
 
 <div style="text-align: center;">
   <a href="/assets/img/WORKFLOW_DEPLOY.png">
@@ -64,11 +63,11 @@ environments.
   <div><i>Workflow diagram for WORKFLOW_DEPLOY</i></div>
 </div>
 
-| Environment | Description                                                                        | URL                                                   |
-| ----------- | ---------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| Development | Always reflects latest changes on `master` branch.                                 | [Netlify][netlify-dev] / [DCMCloud][dcmcloud-dev]     |
-| Staging     | For manual testing before promotion to prod. Keeps development workflow unblocked. | [Netlify][netlify-stage] / [DCMCloud][dcmcloud-stage] |
-| Production  | Stable, tested, updated less frequently.                                           | [Netlify][netlify-prod] / [DCMCloud][dcmcloud-prod]   |
+| Environment | Description                                                                        | URL                                           |
+| ----------- | ---------------------------------------------------------------------------------- | --------------------------------------------- |
+| Development | Always reflects latest changes on `master` branch.                                 | [Netlify][netlify-dev] / [OHIF][ohif-dev]     |
+| Staging     | For manual testing before promotion to prod. Keeps development workflow unblocked. | [Netlify][netlify-stage] / [OHIF][ohif-stage] |
+| Production  | Stable, tested, updated less frequently.                                           | [Netlify][netlify-prod] / [OHIF][ohif-prod]   |
 
 ### Workflow: RELEASE
 
@@ -79,9 +78,9 @@ monorepository. If a new version is cut/released, a Docker image is created.
 Documentation is generated with `gitbook` and pushed to our `gh-pages` branch.
 GitHub hosts the `gh-pages` branch with GitHub Pages.
 
-- Platform Packages: https://github.com/dcmcloud/viewers/#platform
-- Extension Packages: https://github.com/dcmcloud/viewers/#extensions
-- Documentation: https://docs.dcmcloud.org/
+- Platform Packages: https://github.com/ohif/viewers/#platform
+- Extension Packages: https://github.com/ohif/viewers/#extensions
+- Documentation: https://docs.ohif.org/
 
 <div style="text-align: center;">
   <a href="/assets/img/WORKFLOW_RELEASE.png">
@@ -101,10 +100,10 @@ _Not yet implemented_
 <!-- prettier-ignore-start -->
 [deploy-previews]: https://www.netlify.com/blog/2016/07/20/introducing-deploy-previews-in-netlify/
 [circleci-workflows]: https://circleci.com/docs/2.0/workflows/
-[netlify-dev]: https://dcmcloud-dev.netlify.com
-[netlify-stage]: https://dcmcloud-stage.netlify.com
-[netlify-prod]: https://dcmcloud-prod.netlify.com
-[dcmcloud-dev]: https://viewer-dev.dcmcloud.org
-[dcmcloud-stage]: https://viewer-stage.dcmcloud.org
-[dcmcloud-prod]: https://viewer-prod.dcmcloud.org
+[netlify-dev]: https://ohif-dev.netlify.com
+[netlify-stage]: https://ohif-stage.netlify.com
+[netlify-prod]: https://ohif-prod.netlify.com
+[ohif-dev]: https://viewer-dev.ohif.org
+[ohif-stage]: https://viewer-stage.ohif.org
+[ohif-prod]: https://viewer-prod.ohif.org
 <!-- prettier-ignore-end -->

@@ -62,7 +62,7 @@ const commandsModule = {
  *
  */
 const sopClassHandlerModule = {
-  id: 'DCMCloudDicomHtmlSopClassHandler',
+  id: 'OHIFDicomHtmlSopClassHandler',
   sopClassUIDs: Object.values({
     BASIC_TEXT_SR: '1.2.840.10008.5.1.4.1.1.88.11',
     ENHANCED_SR: '1.2.840.10008.5.1.4.1.1.88.22',

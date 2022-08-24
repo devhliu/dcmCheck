@@ -6,10 +6,10 @@ import CornerstoneViewportDownloadForm from './CornerstoneViewportDownloadForm';
 import { version } from '../package.json';
 
 const Component = React.lazy(() => {
-  return import('./DCMCloudCornerstoneViewport');
+  return import('./OHIFCornerstoneViewport');
 });
 
-const DCMCloudCornerstoneViewport = props => {
+const OHIFCornerstoneViewport = props => {
   return (
     <React.Suspense fallback={<div>Loading...</div>}>
       <Component {...props} />
@@ -36,8 +36,8 @@ export default {
   preRegistration({ servicesManager, configuration = {} }) {
     init({ servicesManager, configuration });
   },
-  getViewportModule({ commandsManager }) {
-    const ExtendedDCMCloudCornerstoneViewport = props => {
+  getViewportModule({ commandsManager, appConfig }) {
+    const ExtendedOHIFCornerstoneViewport = props => {
       /**
        * TODO: This appears to be used to set the redux parameters for
        * the viewport when new images are loaded. It's very ugly
@@ -48,15 +48,21 @@ export default {
         jumpData.refreshViewports = false;
         commandsManager.runCommand('jumpToImage', jumpData);
       };
+
+      const { studyPrefetcher } = appConfig;
+      const isStackPrefetchEnabled =
+        studyPrefetcher && !studyPrefetcher.enabled;
+
       return (
-        <DCMCloudCornerstoneViewport
+        <OHIFCornerstoneViewport
           {...props}
           onNewImage={onNewImageHandler}
+          isStackPrefetchEnabled={isStackPrefetchEnabled}
         />
       );
     };
 
-    return ExtendedDCMCloudCornerstoneViewport;
+    return ExtendedOHIFCornerstoneViewport;
   },
   getToolbarModule() {
     return toolbarModule;

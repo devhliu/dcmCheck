@@ -109,6 +109,7 @@ class ExpandableToolMenu extends React.Component {
 
   render() {
     const getToolBarButtonComponent = () => {
+
       return (
         <ToolbarButton
           key="menu-button"

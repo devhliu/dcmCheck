@@ -9,10 +9,11 @@ export default class PlayClipButton extends Component {
   };
 
   static defaultProps = {
-    isPlaying: false,
+    isPlaying: true,
   };
 
   render() {
+    debugger
     const iconName = this.props.isPlaying ? 'stop' : 'play';
 
     return (

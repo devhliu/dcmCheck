@@ -1,8 +1,8 @@
-import DCMCloud from '@dcmcloud/core';
+import OHIF from '@ohif/core';
 import { connect } from 'react-redux';
 import DicomHtmlViewport from './DicomHtmlViewport';
 
-const { setViewportActive } = DCMCloud.redux.actions;
+const { setViewportActive } = OHIF.redux.actions;
 
 const mapStateToProps = (state, ownProps) => {
   const { viewportIndex, byteArray } = ownProps;

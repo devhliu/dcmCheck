@@ -63,6 +63,7 @@ class CineDialog extends PureComponent {
         cineFrameRate: this.props.cineFrameRate,
       });
     }
+
   }
 
   handleInputChange = event => {

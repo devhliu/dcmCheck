@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { CineDialog } from '@dcmcloud/ui';
-import DCMCloud from '@dcmcloud/core';
+import { CineDialog } from '@ohif/ui';
+import OHIF from '@ohif/core';
 import csTools from 'cornerstone-tools';
 import { commandsManager } from './../App.js';
 // Our target output kills the `as` and "import" throws a keyword error
@@ -9,7 +9,7 @@ import cloneDeep from 'lodash.clonedeep';
 
 const toolImport = csTools.import;
 const scrollToIndex = toolImport('util/scrollToIndex');
-const { setViewportSpecificData } = DCMCloud.redux.actions;
+const { setViewportSpecificData } = OHIF.redux.actions;
 
 // Why do I need or care about any of this info?
 // A dispatch action should be able to pull this at the time of an event?

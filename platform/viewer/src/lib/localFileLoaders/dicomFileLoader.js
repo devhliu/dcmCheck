@@ -1,9 +1,9 @@
 import dcmjs from 'dcmjs';
 import cornerstoneWADOImageLoader from 'cornerstone-wado-image-loader';
 import FileLoader from './fileLoader';
-import DCMCloud from '@dcmcloud/core';
+import OHIF from '@ohif/core';
 
-const metadataProvider = DCMCloud.cornerstone.metadataProvider;
+const metadataProvider = OHIF.cornerstone.metadataProvider;
 
 const DICOMFileLoader = new (class extends FileLoader {
   fileType = 'application/dicom';

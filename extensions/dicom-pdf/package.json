@@ -1,10 +1,10 @@
 {
-  "name": "@dcmcloud/extension-dicom-pdf",
-  "version": "1.0.6",
-  "description": "DCMCloud extension for Dicom PDF",
-  "author": "DCMCloud",
+  "name": "@ohif/extension-dicom-pdf",
+  "version": "1.1.2",
+  "description": "OHIF extension for Dicom PDF",
+  "author": "OHIF",
   "license": "MIT",
-  "repository": "DCMCloud/Viewers",
+  "repository": "OHIF/Viewers",
   "main": "dist/index.umd.js",
   "module": "src/index.js",
   "publishConfig": {
@@ -28,8 +28,8 @@
     "start": "yarn run dev"
   },
   "peerDependencies": {
-    "@dcmcloud/core": "^0.50.0",
-    "dicom-parser": "^1.8.3",
+    "@ohif/core": "^0.50.0",
+    "dicom-parser": "^1.8.11",
     "prop-types": "^15.6.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { ToolbarButton } from '@dcmcloud/ui';
-import { utils } from '@dcmcloud/core';
+import { ToolbarButton } from '@ohif/ui';
+import { utils } from '@ohif/core';
 
 const { studyMetadataManager } = utils;
 

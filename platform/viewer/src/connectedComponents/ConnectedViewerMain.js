@@ -1,11 +1,11 @@
-import DCMCloud from '@dcmcloud/core';
+import OHIF from '@ohif/core';
 import ViewerMain from './ViewerMain';
 import { connect } from 'react-redux';
 
 const {
   setViewportSpecificData,
   clearViewportSpecificData,
-} = DCMCloud.redux.actions;
+} = OHIF.redux.actions;
 
 const mapStateToProps = state => {
   const { activeViewportIndex, layout, viewportSpecificData } = state.viewports;

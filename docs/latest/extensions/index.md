@@ -16,7 +16,7 @@
 We use extensions to help us isolate and package groups of related features.
 Extensions provide functionality, ui components, and new behaviors. Ideally,
 they're built in a way that allows them to extend entirely different
-implementations of the `@dcmcloud/viewer` project.
+implementations of the `@ohif/viewer` project.
 
 <div style="text-align: center;">
   <a href="/assets/img/extensions-diagram.png">
@@ -25,11 +25,10 @@ implementations of the `@dcmcloud/viewer` project.
   <div><i>Diagram showing how extensions are configured and accessed.</i></div>
 </div>
 
-The `@dcmcloud/viewer`'s application level configuration gives us the ability to
-add and configure extensions. When the application starts, extensions are
-registered with the `ExtensionManager`. Different portions of the
-`@dcmcloud/viewer` project will use registered extensions to influence
-application behavior.
+The `@ohif/viewer`'s application level configuration gives us the ability to add
+and configure extensions. When the application starts, extensions are registered
+with the `ExtensionManager`. Different portions of the `@ohif/viewer` project
+will use registered extensions to influence application behavior.
 
 Extensions allow us to:
 
@@ -84,9 +83,9 @@ becomes available to the core application via the `ExtensionManager`.
 
 #### Registering at Runtime
 
-The `@dcmcloud/viewer` uses a [configuration file](../viewer/configuration.md)
-at startup. The schema for that file includes an `Extensions` key that supports
-an array of extensions to register.
+The `@ohif/viewer` uses a [configuration file](../viewer/configuration.md) at
+startup. The schema for that file includes an `Extensions` key that supports an
+array of extensions to register.
 
 ```js
 // prettier-ignore
@@ -103,7 +102,7 @@ const config = {
 
 #### Registering at Build Time
 
-The `@dcmcloud/viewer` works best when built as a "Progressive Web Application"
+The `@ohif/viewer` works best when built as a "Progressive Web Application"
 (PWA). If you know the extensions your application will need, you can specify
 them at "build time" to leverage advantages afforded to us by modern tooling:
 
@@ -113,7 +112,7 @@ them at "build time" to leverage advantages afforded to us by modern tooling:
 
 You can update the list of bundled extensions by:
 
-1. Having your `@dcmcloud/viewer` project depend on the extension
+1. Having your `@ohif/viewer` project depend on the extension
 2. Importing and adding it to the list of extensions in the
    `<repo-root>/platform/src/index.js` entrypoint.
 
@@ -149,7 +148,7 @@ differently.
 
 ### Contexts
 
-The `@dcmcloud/viewer` tracks "active contexts" that extensions can use to scope
+The `@ohif/viewer` tracks "active contexts" that extensions can use to scope
 their functionality. Some example contexts being:
 
 - Route: `ROUTE:VIEWER`, `ROUTE:STUDY_LIST`
@@ -166,7 +165,7 @@ are used to determine the appropriate implementation of the rotate behavior.
 
 ## Consuming Extensions
 
-We consume extensions, via the `ExtensionManager`, in our `@dcmcloud/viewer`
+We consume extensions, via the `ExtensionManager`, in our `@ohif/viewer`
 project.
 
 ```js
@@ -179,11 +178,11 @@ const extensionManager = new ExtensionManager({
 extensionManager.registerExtensions([ /** **/ ]);
 ```
 
-The `@dcmcloud/viewer` project handles data fetching, basic routing, wires up UI
+The `@ohif/viewer` project handles data fetching, basic routing, wires up UI
 services, and is the home to the more bespoke application logic that doesn't
 make as much sense to make reusable.
 
-Long-term, replacing the `@dcmcloud/viewer` application and consuming extensions
+Long-term, replacing the `@ohif/viewer` application and consuming extensions
 (and the `ExtensionManager`) in your own project is the ideal path for
 applications requiring a high degree of customization that can't be achieved
 with current theming, configuration, extension, and services support.
@@ -193,7 +192,7 @@ today, create a GitHub issue!
 
 ### `ExtensionManager`
 
-The `ExtensionManager` is a class made available to us via the `@dcmcloud/core`
+The `ExtensionManager` is a class made available to us via the `@ohif/core`
 project (platform/core). Our application instantiates a single instance of it,
 and provides a `ServicesManager` and `CommandsManager` along with the
 application's configuration through the appConfig key (optional).
@@ -218,14 +217,14 @@ During registration, lifecycle hooks and modules have access to the extension's
 config, the application's config and `ExtensionManager`'s `ServicesManager` and
 `CommandsManager` instances.
 
-Our `@dcmcloud/viewer` uses the `modules` member to access registered extensions
-at appropriate places in our application.
+Our `@ohif/viewer` uses the `modules` member to access registered extensions at
+appropriate places in our application.
 
 ## Maintained Extensions
 
 A small number of powerful extensions for popular use cases are maintained by
-DCMCloud. They're co-located in the [`DCMCloud/Viewers`][viewers-repo]
-repository, in the top level [`extensions/`][ext-source] directory.
+OHIF. They're co-located in the [`OHIF/Viewers`][viewers-repo] repository, in
+the top level [`extensions/`][ext-source] directory.
 
 {% include "./_maintained-extensions-table.md" %}
 
@@ -234,7 +233,7 @@ repository, in the top level [`extensions/`][ext-source] directory.
 -->
 
 <!-- prettier-ignore-start -->
-[viewers-repo]: https://github.com/DCMCloud/Viewers
-[ext-source]: https://github.com/DCMCloud/Viewers/tree/master/extensions
-[module-types]: https://github.com/DCMCloud/Viewers/blob/master/platform/core/src/extensions/MODULE_TYPES.js
+[viewers-repo]: https://github.com/OHIF/Viewers
+[ext-source]: https://github.com/OHIF/Viewers/tree/master/extensions
+[module-types]: https://github.com/OHIF/Viewers/blob/master/platform/core/src/extensions/MODULE_TYPES.js
 <!-- prettier-ignore-end -->

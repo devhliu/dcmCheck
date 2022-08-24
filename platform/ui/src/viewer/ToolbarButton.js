@@ -19,17 +19,7 @@ export function ToolbarButton(props) {
 
   const handleClick = event => {
     if (onClick) {
-      if (props.label === 'Copy Link') {
-        var inputc = document.body.appendChild(document.createElement('input'));
-        inputc.value = window.location.href;
-        inputc.focus();
-        inputc.select();
-        document.execCommand('copy');
-        inputc.parentNode.removeChild(inputc);
-        alert('Shareable link copied to the clipboard...');
-      } else {
-        onClick(event, props);
-      }
+      onClick(event, props);
     }
   };
 

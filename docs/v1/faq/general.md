@@ -5,14 +5,14 @@
 We accept and triage bug reports through Github primarily.
 
 1. [Create a Github account](https://github.com/join)
-2. Search the current [Issue List](https://github.com/DCMCloud/Viewers/issues)
-   to ensure you are not creating a duplicate issue.
+2. Search the current [Issue List](https://github.com/OHIF/Viewers/issues) to
+   ensure you are not creating a duplicate issue.
 
 If your issue already exists, post a comment to show us that this issue also
 affects you.
 
 3. If no prior issue exists,
-   [Create a New Issue](https://github.com/DCMCloud/Viewers/issues/new) on the
+   [Create a New Issue](https://github.com/OHIF/Viewers/issues/new) on the
    repository.
 
 Some tips for filing a new issue:
@@ -41,14 +41,14 @@ to communicate this to the community. If your requested feature is on the
 roadmap, then it will most likely be built at some point. If it is not, you are
 welcome to build it yourself and [contribute it](../contributing.md). If you
 have resources and would like to fund the development of a feature, please
-[contact us](http://www.dcmcloud.org).
+[contact us](http://www.ohif.org).
 
 ### Who should I contact about Academic Collaborations?
 
 [Gordon J. Harris](http://www.dfhcc.harvard.edu/insider/member-detail/member/gordon-j-harris-phd/)
 at Massachusetts General Hospital is the primary contact for any academic
 collaborators. We are always happy to hear about new groups interested in using
-the DCMCloud framework, and may be able to provide development support if the
+the OHIF framework, and may be able to provide development support if the
 proposed collaboration has an impact on cancer research.
 
 ### Do you offer commercial support?
@@ -70,19 +70,19 @@ discussion and solutions.
 
 ### Do your Viewers have [510(k) Clearance](https://www.fda.gov/MedicalDevices/DeviceRegulationandGuidance/HowtoMarketYourDevice/PremarketSubmissions/PremarketNotification510k/) from the U.S. F.D.A or [CE Marking](https://ec.europa.eu/growth/single-market/ce-marking_en) from the European Commission?
 
-**NO.** The DCMCloud Viewer, Lesion Tracker, and Standalone Viewer, **NOT**
-F.D.A. cleared or CE Marked. It is the users responsibility to ensure compliance
-with applicable rules and regulations. The
-[License](https://github.com/DCMCloud/Viewers/blob/master/LICENSE) for the
-DCMCloud Framework does not prevent your company or group from seeking F.D.A.
-clearance for a product built using the framework.
+**NO.** The OHIF Viewer, Lesion Tracker, and Standalone Viewer, **NOT** F.D.A.
+cleared or CE Marked. It is the users responsibility to ensure compliance with
+applicable rules and regulations. The
+[License](https://github.com/OHIF/Viewers/blob/master/LICENSE) for the OHIF
+Framework does not prevent your company or group from seeking F.D.A. clearance
+for a product built using the framework.
 
 If you have gone this route (or are going there), please let us know because we
 would be interested to hear about your experience.
 
 ### Are your Viewers [HIPAA](https://en.wikipedia.org/wiki/Health_Insurance_Portability_and_Accountability_Act) Compliant?
 
-**NO.** The DCMCloud Viewer, Lesion Tracker, and Standalone Viewer **DO NOT**
+**NO.** The OHIF Viewer, Lesion Tracker, and Standalone Viewer **DO NOT**
 fulfill all of the criteria to become HIPAA Compliant. It is the users
 responsibility to ensure compliance with applicable rules and regulations.
 

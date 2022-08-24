@@ -29,5 +29,5 @@ export default function handleError(error) {
 
   log.error(error);
   // TODO: Find a better way to handle errors instead of displaying a dialog for all of them.
-  // DCMCloud.ui.showDialog('dialogForm', data);
+  // OHIF.ui.showDialog('dialogForm', data);
 }

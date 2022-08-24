@@ -5,18 +5,18 @@ describe('addServers', () => {
     dicomWeb: [
       {
         name: 'DCM4CHEE',
-        wadoUriRoot: 'https://192.168.100.20:5006/coreapi/react/WadoURI',
-        qidoRoot: 'https://192.168.100.20:5006/coreapi/react/QidoRS',
-        wadoRoot: 'https://192.168.100.20:5006/coreapi/react/WadoRS',
+        wadoUriRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/wado',
+        qidoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
+        wadoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
         qidoSupportsIncludeField: true,
-        imageRendering: 'wadouri',
-        thumbnailRendering: 'wadouri',
+        imageRendering: 'wadors',
+        thumbnailRendering: 'wadors',
       },
     ],
     oidc: [
       {
-        authority: 'http://127.0.0.1/auth/realms/dcmcloud',
-        client_id: 'dcmcloud-viewer',
+        authority: 'http://127.0.0.1/auth/realms/ohif',
+        client_id: 'ohif-viewer',
         redirect_uri: 'http://127.0.0.1/callback',
         response_type: 'code',
         scope: 'openid',
@@ -33,8 +33,8 @@ describe('addServers', () => {
     addServers(servers, store);
     expect(store.dispatch).toBeCalledWith({
       server: {
-        authority: 'http://127.0.0.1/auth/realms/dcmcloud',
-        client_id: 'dcmcloud-viewer',
+        authority: 'http://127.0.0.1/auth/realms/ohif',
+        client_id: 'ohif-viewer',
         post_logout_redirect_uri: '/logout-redirect.html',
         redirect_uri: 'http://127.0.0.1/callback',
         response_type: 'code',
@@ -45,14 +45,14 @@ describe('addServers', () => {
     });
     expect(store.dispatch).toBeCalledWith({
       server: {
-        imageRendering: 'wadouri',
+        imageRendering: 'wadors',
         name: 'DCM4CHEE',
-        qidoRoot: 'https://192.168.100.20:5006/coreapi/react/QidoRS',
+        qidoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
         qidoSupportsIncludeField: true,
-        thumbnailRendering: 'wadouri',
+        thumbnailRendering: 'wadors',
         type: 'dicomWeb',
-        wadoRoot: 'https://192.168.100.20:5006/coreapi/react/WadoRS',
-        wadoUriRoot: 'https://192.168.100.20:5006/coreapi/react/WadoURI',
+        wadoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
+        wadoUriRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/wado',
       },
       type: 'ADD_SERVER',
     });

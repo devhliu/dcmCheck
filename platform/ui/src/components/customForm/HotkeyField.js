@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { hotkeys } from '@dcmcloud/core';
+import { hotkeys } from '@ohif/core';
 
 /**
  * Take the pressed key array and return the readable string for the keys

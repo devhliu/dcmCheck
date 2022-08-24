@@ -1,12 +1,12 @@
 import React from 'react';
-import DCMCloudDicomPDFSopClassHandler from './DCMCloudDicomPDFSopClassHandler.js';
+import OHIFDicomPDFSopClassHandler from './OHIFDicomPDFSopClassHandler.js';
 import { version } from '../package.json';
 
 const Component = React.lazy(() => {
-  return import('./ConnectedDCMCloudDicomPDFViewer');
+  return import('./ConnectedOHIFDicomPDFViewer');
 });
 
-const ConnectedDCMCloudDicomPDFViewer = props => {
+const ConnectedOHIFDicomPDFViewer = props => {
   return (
     <React.Suspense fallback={<div>Loading...</div>}>
       <Component {...props} />
@@ -21,9 +21,9 @@ export default {
   id: 'pdf',
   version,
   getViewportModule() {
-    return ConnectedDCMCloudDicomPDFViewer;
+    return ConnectedOHIFDicomPDFViewer;
   },
   getSopClassHandlerModule() {
-    return DCMCloudDicomPDFSopClassHandler;
+    return OHIFDicomPDFSopClassHandler;
   },
 };

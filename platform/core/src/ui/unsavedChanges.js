@@ -408,7 +408,7 @@ export const unsavedChanges = {
         },
         options
       );
-      DCMCloud.ui.showDialog('dialogConfirm', dialogOptions).then(
+      OHIF.ui.showDialog('dialogConfirm', dialogOptions).then(
         function() {
           // Unsaved changes exist but user confirms action...
           shouldProceed = true;
@@ -452,7 +452,7 @@ export const unsavedChanges = {
     if (probe > 0) {
       // Unsaved changes exist...
       hasChanges = true;
-      DCMCloud.ui.unsavedChangesDialog(function(choice) {
+      OHIF.ui.unsavedChangesDialog(function(choice) {
         callback.call(null, hasChanges, choice);
       }, options);
     } else {
@@ -493,7 +493,7 @@ export const unsavedChanges = {
         };
       }
 
-      DCMCloud.ui.unsavedChanges.presentProactiveDialog(
+      OHIF.ui.unsavedChanges.presentProactiveDialog(
         options.path,
         (hasChanges, userChoice) => {
           if (!hasChanges) return;

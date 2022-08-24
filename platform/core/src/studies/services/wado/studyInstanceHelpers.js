@@ -58,17 +58,6 @@ function buildInstanceWadoUrl(
   params.push(`objectUID=${SOPInstanceUID}`);
   params.push('contentType=application/dicom');
   params.push('transferSyntax=*');
-  params.push('key=' + getKey());
-
-  function getKey() {
-    var urlArray = window.location.href.split('/');
-    var keyTypeArray = urlArray[urlArray.length - 1].split('%5E')[1];
-    var buff = new Buffer.from(keyTypeArray, 'base64');
-    var base64ToStringNew = buff.toString('ascii').split('^')[1];
-    var keya = new Buffer.from(base64ToStringNew).toString('base64');
-
-    return keya;
-  }
 
   const paramString = params.join('&');
 
@@ -127,6 +116,11 @@ async function makeSOPInstance(server, study, instance) {
     };
     study.seriesMap[SeriesInstanceUID] = series;
     study.series.push(series);
+  } else {
+    if (series.SeriesDate === undefined)
+      series.SeriesDate = naturalizedInstance.SeriesDate;
+    if (series.SeriesTime === undefined)
+      series.SeriesTime = naturalizedInstance.SeriesTime;
   }
 
   const wadouri = buildInstanceWadoUrl(
@@ -203,7 +197,7 @@ async function makeSOPInstance(server, study, instance) {
  */
 async function addInstancesToStudy(server, study, sopInstanceList) {
   return Promise.all(
-    sopInstanceList.map(function (sopInstance) {
+    sopInstanceList.map(function(sopInstance) {
       return makeSOPInstance(server, study, sopInstance);
     })
   );

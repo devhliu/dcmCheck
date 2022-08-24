@@ -1,9 +1,8 @@
 # Viewer: Internationalization
 
-DCMCloud supports internationalization using [i18next](https://www.i18next.com/)
-through the npm package
-[@dcmcloud/i18n](https://www.npmjs.com/package/@dcmcloud/i18n), where is the
-main instance of i18n containing several languages and tools.
+OHIF supports internationalization using [i18next](https://www.i18next.com/)
+through the npm package [@ohif/i18n](https://www.npmjs.com/package/@ohif/i18n),
+where is the main instance of i18n containing several languages and tools.
 
 <div class='row'>
   <div class='column'>
@@ -19,16 +18,16 @@ main instance of i18n containing several languages and tools.
 ## Installing
 
 ```bash
-yarn add @dcmcloud/i18n
+yarn add @ohif/i18n
 
 # OR
 
-npm install --save @dcmcloud/i18n
+npm install --save @ohif/i18n
 ```
 
 ## How it works
 
-After installing `@dcmcloud/i18n` npm package, the translation function
+After installing `@ohif/i18n` npm package, the translation function
 [t](https://www.i18next.com/overview/api#t) can be used [with](#with-react) or
 [without](#without-react) React.
 
@@ -68,13 +67,13 @@ function easily.
 
 In most cases we used
 [High Order Components](https://react.i18next.com/latest/withtranslation-hoc) to
-share the `t` function among DCMCloud's components.
+share the `t` function among OHIF's components.
 
 E.g.
 
 ```js
 import React from 'react';
-import { withTranslation } from '@dcmcloud/i18n';
+import { withTranslation } from '@ohif/i18n';
 
 function MyComponent({ t, i18n }) {
   return <p>{t('my translated text')}</p>;
@@ -83,9 +82,9 @@ function MyComponent({ t, i18n }) {
 export default withTranslation('MyNameSpace')(MyComponent);
 ```
 
-> Important: if you are using React outside the DCMCloud Viewer, check the
-> [I18nextProvider](#using-outside-of-dcmcloud-viewer) section,
-> `withTranslation` HOC doesnt works without a I18nextProvider
+> Important: if you are using React outside the OHIF Viewer, check the
+> [I18nextProvider](#using-outside-of-ohif-viewer) section, `withTranslation`
+> HOC doesnt works without a I18nextProvider
 
 #### Using Hooks
 
@@ -93,19 +92,19 @@ Also, it's possible to get the `t` tool using
 [React Hooks](https://react.i18next.com/latest/usetranslation-hook), but it
 requires at least React > 16.8 😉
 
-### Using outside of DCMCloud viewer
+### Using outside of OHIF viewer
 
-DCMCloud Viewer already sets a main
+OHIF Viewer already sets a main
 [I18nextProvider](https://react.i18next.com/latest/i18nextprovider) connected to
-the shared i18n instance from `@dcmcloud/i18n`, all extensions inside DCMCloud
-Viewer will share this same provider at the end, you don't need to set new
-providers at all.
+the shared i18n instance from `@ohif/i18n`, all extensions inside OHIF Viewer
+will share this same provider at the end, you don't need to set new providers at
+all.
 
-But, if you need to use it completely outside of DCMCloud viewer, you can set
-the I18nextProvider this way:
+But, if you need to use it completely outside of OHIF viewer, you can set the
+I18nextProvider this way:
 
 ```js
-import i18n from '@dcmcloud/i18n';
+import i18n from '@ohif/i18n';
 import { I18nextProvider } from 'react-i18next';
 import App from './App';
 
@@ -115,8 +114,8 @@ import App from './App';
 ```
 
 After setting `I18nextProvider` in your React App, all translations from
-`@dcmcloud/i18n` should be available following the basic
-[With React](#with-react) usage.
+`@ohif/i18n` should be available following the basic [With React](#with-react)
+usage.
 
 ---
 
@@ -127,7 +126,7 @@ When needed, you can also use available translations _without React_.
 E.g.
 
 ```js
-import { T } from '@dcmcloud/i18n';
+import { T } from '@ohif/i18n';
 console.log(T('my translated text'));
 console.log(T('$t(Common:Play) my translated text'));
 ```
@@ -139,15 +138,15 @@ console.log(T('$t(Common:Play) my translated text'));
 ## Namespaces
 
 Namespaces are being used to organize translations in smaller portions, combined
-semantically or by use. Each `.json` file inside `@dcmcloud/i18n` npm package
+semantically or by use. Each `.json` file inside `@ohif/i18n` npm package
 becomes a new namespace automatically.
 
 - Buttons: All buttons translations
 - CineDialog: Translations for the toll tips inside the Cine Player Dialog
 - Common: all common jargons that can be reused like `t('$t(common:image)')`
-- Header: translations related to DCMCloud's Header Top Bar
-- MeasurementTable - Translations for the `@dcmcloud/ui` Measurement Table
-- UserPreferencesModal - Translations for the `@dcmcloud/ui` Preferences Modal
+- Header: translations related to OHIF's Header Top Bar
+- MeasurementTable - Translations for the `@ohif/ui` Measurement Table
+- UserPreferencesModal - Translations for the `@ohif/ui` Preferences Modal
 
 ### How to use another NameSpace inside the current NameSpace?
 
@@ -158,14 +157,14 @@ NameSpace, like this following example getting data from `Common` NameSpace:
 $t(Common:Reset)
 ```
 
-## Extending Languages in @dcmcloud/i18n
+## Extending Languages in @ohif/i18n
 
 Sometimes, even using the same language, some nouns or jargons can change
 according to the country, states or even from Hospital to Hospital.
 
 In this cases, you don't need to set an entire language again, you can extend
 languages creating a new folder inside a pre existent language folder and
-@dcmcloud/i18n will do the hard work.
+@ohif/i18n will do the hard work.
 
 This new folder must to be called with a double character name, like the `UK` in
 the following file tree:
@@ -222,7 +221,7 @@ method to add and change language resources as needed.
 E.g.
 
 ```js
-import { i18n } from '@dcmcloud/i18n';
+import { i18n } from '@ohif/i18n';
 i18next.addResourceBundle('pt-BR', 'Buttons', {
   Angle: 'Ângulo',
 });
@@ -234,8 +233,8 @@ i18next.addResourceBundle('pt-BR', 'Buttons', {
 
 To set a brand new language you can do it in two different ways:
 
-- Opening a pull request for `@dcmcloud/i18n` and sharing the translation with
-  the community. 😍 Please see [Contributing](#contributing-with-new-languages)
+- Opening a pull request for `@ohif/i18n` and sharing the translation with the
+  community. 😍 Please see [Contributing](#contributing-with-new-languages)
   section for further information.
 
 - Setting it only in your project or extension:
@@ -266,7 +265,7 @@ method `addlocales`;
 E.g. of `addLocales` usage
 
 ```js
-import { addLocales } from '@dcmcloud/i18n';
+import { addLocales } from '@ohif/i18n';
 import locales from './locales/index.js';
 addLocales(locales);
 ```
@@ -278,20 +277,20 @@ You can also set them manually, one by one, using this
 
 ## Language Detections
 
-@dcmcloud/i18n uses
+@ohif/i18n uses
 [i18next-browser-languageDetector](https://github.com/i18next/i18next-browser-languageDetector)
 to manage detections, also exports a method called initI18n that accepts a new
 detector config as parameter.
 
 ### Changing the language
 
-DCMCloud Viewer accepts a query param called `lng` in the url to change the
+OHIF Viewer accepts a query param called `lng` in the url to change the
 language.
 
 E.g.
 
 ```
-https://docs.dcmcloud.org/demo/?lng=es-MX
+https://docs.ohif.org/demo/?lng=es-MX
 ```
 
 ### Language Persistence
