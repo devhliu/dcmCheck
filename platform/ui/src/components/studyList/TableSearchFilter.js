@@ -90,7 +90,7 @@ function TableSearchFilter(props) {
               {`${displayText}`}
               <Icon name={sortIcon} style={{ fontSize: '12px' }} />
             </label>
-            {inputType === 'text' && (
+            {/* {inputType === 'text' && (
               <input
                 type="text"
                 id={`filter-${fieldName}`}
@@ -98,8 +98,8 @@ function TableSearchFilter(props) {
                 value={values[fieldName]}
                 onChange={e => onValueChange(fieldName, e.target.value)}
               />
-            )}
-            {inputType === 'date-range' && (
+            )} */}
+            {/* {inputType === 'date-range' && (
               // https://github.com/airbnb/react-dates
               <CustomDateRangePicker
                 // Required
@@ -122,7 +122,7 @@ function TableSearchFilter(props) {
                 hideKeyboardShortcutsPanel={true}
                 isOutsideRange={day => !isInclusivelyBeforeDay(day, moment())}
               />
-            )}
+            )} */}
           </th>
         );
       })

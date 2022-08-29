@@ -1,0 +1,84 @@
+@media only screen and (max-width: 425px) {
+  .access-field-container .connect-btn-container .connect-btn {
+    width: 105px;
+    padding: 0px;
+    height: 42px;
+
+  }
+
+  .AWSAccessKey_Div {
+    width: 100% !important;
+    /* height: 400px !important; */
+    padding-right: 3% !important;
+    padding-left: 3% !important;
+    margin-top: 30px !important;
+    margin-bottom: 10% !important;
+  }
+
+  .GoogleAccessKey_Div {
+    width: 100% !important;
+    /* height: 400px !important; */
+    padding-right: 3% !important;
+    padding-left: 3% !important;
+    margin-top: 30px !important;
+    margin-bottom: 10% !important;
+  }
+
+  /* Avatar in Mobile View */
+  .MuiToolbar-gutters {
+    padding-left: 16px !important;
+    padding-right: 4% !important;
+  }
+
+}
+
+.access-field-container .access-field {
+  border-radius: 0.5rem;
+  background-color: #f9f9f9;
+  padding: 1.5rem 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.AWSAccessKey_Div {
+  width: 100% !important;
+  /* height: 400px !important; */
+  padding-right: 15% !important;
+  padding-left: 15% !important;
+  margin-top: 20px !important;
+
+}
+
+.GoogleAccessKey_Div {
+  width: 100% !important;
+  /* height: 400px !important; */
+  padding-right: 15% !important;
+  padding-left: 15% !important;
+  margin-top: 20px !important;
+
+}
+
+.access-field-container .connect-btn-container .connect-btn {
+
+  padding: 0.8rem 2rem;
+  background-color: #005b9a !important;
+  border: 1px solid #005b9a;
+
+}
+
+.access-field-container .connect-btn-container .connect-btn:hover {
+
+  padding: 0.8rem 2rem;
+  background-color: #ffffff !important;
+  border: 1px solid #005b9a;
+  color: #005b9a;
+
+}
+
+.text-fields {
+  margin-bottom: 4% !important;
+}
+
+.connect-btn-container {
+  margin-top: 10px;
+}

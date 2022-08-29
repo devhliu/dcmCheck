@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
+import './StudyListNew.css';
+import '../components/DashboardPage.css';
 import PropTypes from 'prop-types';
-import OHIF from '@ohif/core';
+import DCMCloud from '@ohif/core';
 import { withRouter } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import MiniDrawer from '../components/DashboardPage';
+
 import {
   StudyList,
   PageToolbar,
@@ -22,9 +26,93 @@ import UserManagerContext from '../context/UserManagerContext';
 import WhiteLabelingContext from '../context/WhiteLabelingContext';
 import AppContext from '../context/AppContext';
 
-const { urlUtil: UrlUtil } = OHIF.utils;
+// ? MUI Table ********
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+// import TablePagination from '@material-ui/core/TablePagination';
+import TableRow from '@material-ui/core/TableRow';
+
+const { urlUtil: UrlUtil } = DCMCloud.utils;
+
+const columns = [
+  { id: 'name', label: 'Name', minWidth: 170 },
+  { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
+  {
+    id: 'population',
+    label: 'Population',
+    minWidth: 170,
+    align: 'right',
+    format: value => value.toLocaleString('en-US'),
+  },
+  {
+    id: 'size',
+    label: 'Size\u00a0(km\u00b2)',
+    minWidth: 170,
+    align: 'right',
+    format: value => value.toLocaleString('en-US'),
+  },
+  {
+    id: 'density',
+    label: 'Density',
+    minWidth: 170,
+    align: 'right',
+    format: value => value.toFixed(2),
+  },
+];
+
+function createData(name, code, population, size) {
+  const density = population / size;
+  return { name, code, population, size, density };
+}
+
+const rows = [
+  createData('India', 'IN', 1324171354, 3287263),
+  createData('China', 'CN', 1403500365, 9596961),
+  createData('Italy', 'IT', 60483973, 301340),
+  createData('United States', 'US', 327167434, 9833520),
+  createData('Canada', 'CA', 37602103, 9984670),
+  createData('Australia', 'AU', 25475400, 7692024),
+  createData('Germany', 'DE', 83019200, 357578),
+  createData('Ireland', 'IE', 4857000, 70273),
+  createData('Mexico', 'MX', 126577691, 1972550),
+  createData('Japan', 'JP', 126317000, 377973),
+  createData('France', 'FR', 67022000, 640679),
+  createData('United Kingdom', 'GB', 67545757, 242495),
+  createData('Russia', 'RU', 146793744, 17098246),
+  createData('Nigeria', 'NG', 200962417, 923768),
+  createData('Brazil', 'BR', 210147125, 8515767),
+];
+
+const useStyles = makeStyles({
+  root: {
+    width: '100%',
+  },
+  container: {
+    maxHeight: 440,
+  },
+});
+
+// ? MUI - TABLE ******
 
 function StudyListRoute(props) {
+  const classes = useStyles();
+  const [page, setPage] = React.useState(0);
+  // const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = event => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+
   const { history, server, user, studyListFunctionsEnabled } = props;
   const [t] = useTranslation('Common');
   // ~~ STATE
@@ -55,16 +143,19 @@ function StudyListRoute(props) {
   const [activeModalId, setActiveModalId] = useState(null);
   const [rowsPerPage, setRowsPerPage] = useState(25);
   const [pageNumber, setPageNumber] = useState(0);
+
   const appContext = useContext(AppContext);
   // ~~ RESPONSIVE
   const displaySize = useMedia(
     [
+      '(min-width: 1024px)',
+      '(min-width: 1440px)',
       '(min-width: 1750px)',
       '(min-width: 1000px) and (max-width: 1749px)',
       '(max-width: 999px)',
     ],
-    ['large', 'medium', 'small'],
-    'small'
+    ['large', 'medium', 'small']
+    // 'small'
   );
   // ~~ DEBOUNCED INPUT
   const debouncedSort = useDebounce(sort, 200);
@@ -78,46 +169,102 @@ function StudyListRoute(props) {
     setActiveModalId('DicomStorePicker');
   }
 
+  const fetchStudies = async () => {
+    try {
+      setSearchStatus({ error: null, isSearchingForStudies: true });
+
+      const response = await getStudyList(
+        server,
+        debouncedFilters,
+        debouncedSort,
+        rowsPerPage,
+        pageNumber,
+        displaySize
+      );
+
+      // setStudies(response);
+      var arr = response.filter((e, i) => {
+        if (i < parseInt(userData.count)) {
+          return e;
+        }
+      });
+
+      setStudies(arr);
+      localStorage.setItem('StudyListData', JSON.stringify(arr));
+      console.log('setStudies', arr);
+      setSearchStatus({ error: null, isSearchingForStudies: false });
+    } catch (error) {
+      console.warn(error);
+      setSearchStatus({ error: true, isFetching: false });
+    }
+  };
+
+  let userData;
+  useEffect(() => {
+    setTimeout(() => {
+      userData = JSON.parse(localStorage.getItem('userData'));
+      // console.log(">>>>", userData.count)
+
+      console.log('parseInt', parseInt(userData.count));
+      console.log('fetchStudies()');
+      fetchStudies();
+    }, 2000);
+  }, []);
+
   // Called when relevant state/props are updated
   // Watches filters and sort, debounced
-  useEffect(
-    () => {
-      const fetchStudies = async () => {
-        try {
-          setSearchStatus({ error: null, isSearchingForStudies: true });
 
-          const response = await getStudyList(
-            server,
-            debouncedFilters,
-            debouncedSort,
-            rowsPerPage,
-            pageNumber,
-            displaySize
-          );
+  // useEffect(
+  //   () => {
+  //     const fetchStudies = async () => {
+  //       try {
+  //         setSearchStatus({ error: null, isSearchingForStudies: true });
 
-          setStudies(response);
-          setSearchStatus({ error: null, isSearchingForStudies: false });
-        } catch (error) {
-          console.warn(error);
-          setSearchStatus({ error: true, isFetching: false });
-        }
-      };
+  //         const response = await getStudyList(
+  //           server,
+  //           debouncedFilters,
+  //           debouncedSort,
+  //           rowsPerPage,
+  //           pageNumber,
+  //           displaySize
+  //         );
 
-      if (server) {
-        fetchStudies();
-      }
-    },
-    // TODO: Can we update studies directly?
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [
-      debouncedFilters,
-      debouncedSort,
-      rowsPerPage,
-      pageNumber,
-      displaySize,
-      server,
-    ]
-  );
+  //         // setStudies(response);
+  //         var arr = response.filter((e, i) => {
+  //           if (i < userData.count) {
+  //             return e
+  //           }
+  //         })
+
+  //         setStudies(arr);
+  //         // localStorage.setItem("StudyListData", JSON.stringify(arr))
+  //         console.log("setStudies", arr)
+  //         setSearchStatus({ error: null, isSearchingForStudies: false });
+  //       } catch (error) {
+  //         console.warn(error);
+  //         setSearchStatus({ error: true, isFetching: false });
+  //       }
+  //     };
+
+  //     // if (userData) {
+  //     //   fetchStudies();
+  //     // }
+  //     if (server) {
+  //       fetchStudies();
+  //     }
+
+  //   },
+  //   // TODO: Can we update studies directly?
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   [
+  //     debouncedFilters,
+  //     debouncedSort,
+  //     rowsPerPage,
+  //     pageNumber,
+  //     displaySize,
+  //     server,
+  //   ]
+  // );
 
   // TODO: Update Server
   // if (this.props.server !== prevProps.server) {
@@ -209,7 +356,7 @@ function StudyListRoute(props) {
         />
       ) : null}
       {healthCareApiWindows}
-      <WhiteLabelingContext.Consumer>
+      {/* <WhiteLabelingContext.Consumer>
         {whiteLabeling => (
           <UserManagerContext.Consumer>
             {userManager => (
@@ -225,10 +372,10 @@ function StudyListRoute(props) {
             )}
           </UserManagerContext.Consumer>
         )}
-      </WhiteLabelingContext.Consumer>
+      </WhiteLabelingContext.Consumer> */}
       <div className="study-list-header">
         <div className="header">
-          <h1 className="header-text">{t('Study List')}</h1>
+          <h3 className="header-text">{t('Study List')}</h3>
         </div>
         <div className="actions">
           {studyListFunctionsEnabled && healthCareApiButtons}
@@ -241,9 +388,63 @@ function StudyListRoute(props) {
         </div>
       </div>
 
+      {/* <Paper className={classes.root}>
+        <TableContainer className={classes.container}>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead>
+              <TableRow>
+                {columns.map(column => (
+                  <TableCell
+                    key={column.id}
+                    align={column.align}
+                    style={{ minWidth: column.minWidth }}
+                  >
+                    {column.label}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map(row => {
+                  return (
+                    <TableRow
+                      hover
+                      role="checkbox"
+                      tabIndex={-1}
+                      key={row.code}
+                    >
+                      {columns.map(column => {
+                        const value = row[column.id];
+                        return (
+                          <TableCell key={column.id} align={column.align}>
+                            {column.format && typeof value === 'number'
+                              ? column.format(value)
+                              : value}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  );
+                })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 100]}
+          component="div"
+          count={rows.length}
+          // rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </Paper> */}
       {/* <div className="table-head-background" /> */}
+
+      {/* STUDY LIST OR DROP ZONE? */}
       <div className="study-list-container">
-        {/* STUDY LIST OR DROP ZONE? */}
         <StudyList
           isLoading={searchStatus.isSearchingForStudies}
           hasError={searchStatus.error === true}
@@ -290,8 +491,8 @@ function StudyListRoute(props) {
           studyListDateFilterNumDays={appConfig.studyListDateFilterNumDays}
           displaySize={displaySize}
         />
-        {/* PAGINATION FOOTER */}
         <TablePagination
+          className="Studylist_PageNumber"
           currentPage={pageNumber}
           nextPageFunc={() => setPageNumber(pageNumber + 1)}
           prevPageFunc={() => setPageNumber(pageNumber - 1)}
@@ -300,6 +501,7 @@ function StudyListRoute(props) {
           recordCount={studies.length}
         />
       </div>
+      {/* PAGINATION FOOTER */}
     </>
   );
 }
@@ -497,12 +699,14 @@ function _sortStudies(studies, field, order) {
  * @param {string} multi.patientNameOrId
  * @param {string} multi.accessionOrModalityOrDescription
  */
+
 async function _fetchStudies(
   server,
   filters,
   displaySize,
   { allFields, patientNameOrId, accessionOrModalityOrDescription }
 ) {
+  console.log(server, 'server');
   let queryFiltersArray = [filters];
 
   if (displaySize === 'small') {
@@ -542,8 +746,9 @@ async function _fetchStudies(
   const queryPromises = [];
 
   queryFiltersArray.forEach(filter => {
-    const searchStudiesPromise = OHIF.studies.searchStudies(server, filter);
+    const searchStudiesPromise = DCMCloud.studies.searchStudies(server, filter);
     queryPromises.push(searchStudiesPromise);
+    console.log(searchStudiesPromise, 'searchStudiesPromise');
   });
 
   const lotsOfStudies = await Promise.all(queryPromises);
