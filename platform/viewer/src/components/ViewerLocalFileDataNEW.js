@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { metadata, utils } from '@OHIF/core';
+import { metadata, utils } from '@ohif/core';
 
 import ConnectedViewer from '../connectedComponents/ConnectedViewer';
 import PropTypes from 'prop-types';
@@ -7,7 +7,6 @@ import { extensionManager } from './../App.js';
 import Dropzone from 'react-dropzone';
 import filesToStudies from '../lib/filesToStudies';
 import './ViewerLocalFileData.css';
-
 
 import { withTranslation } from 'react-i18next';
 
@@ -24,11 +23,8 @@ import FolderIcon from '@material-ui/icons/Folder';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import MiniDrawer from './DashboardPage';
 
-
-
-const { DCMCloudStudyMetadata } = metadata;
+const { OHIFStudyMetadata } = metadata;
 const { studyMetadataManager } = utils;
-
 
 const dropZoneLinkDialogFiles = (onDrop, i18n, dir) => {
   return (
@@ -36,29 +32,37 @@ const dropZoneLinkDialogFiles = (onDrop, i18n, dir) => {
       {({ getRootProps, getInputProps }) => (
         <span {...getRootProps()} className="link-dialog">
           {dir ? (
-            <Button className='DCMLocalPage_Button_SelectFolders DCMLocalPage_Button_FontSize' size='large' style={{ marginLeft: '10px' }} color="primary" endIcon={<FolderIcon />}>
+            <Button
+              className="DCMLocalPage_Button_SelectFolders DCMLocalPage_Button_FontSize"
+              size="large"
+              style={{ marginLeft: '10px' }}
+              color="primary"
+              endIcon={<FolderIcon />}
+            >
               {i18n('Select Folders')}
               <input
                 {...getInputProps()}
                 webkitdirectory="true"
                 mozdirectory="true"
               />
-
             </Button>
-
+          ) : (
             // <span>
             // </span>
-          ) : (
-            <Button className='DCMLocalPage_Button_SelectFiles DCMLocalPage_Button_FontSize' size='large' color="primary" style={{ padding: '8px 35px' }} endIcon={<InsertDriveFileIcon />}>
+            <Button
+              className="DCMLocalPage_Button_SelectFiles DCMLocalPage_Button_FontSize"
+              size="large"
+              color="primary"
+              style={{ padding: '8px 35px' }}
+              endIcon={<InsertDriveFileIcon />}
+            >
               {i18n('Select Files')}
               <input {...getInputProps()} />
-
             </Button>
 
             // <span>
             // </span>
           )}
-
         </span>
       )}
     </Dropzone>
@@ -122,8 +126,6 @@ const linksDialogMessageFolders = (onDrop, i18n) => {
 };
 
 class ViewerLocalFileData extends Component {
-
-
   static propTypes = {
     studies: PropTypes.array,
   };
@@ -134,14 +136,13 @@ class ViewerLocalFileData extends Component {
     error: null,
   };
 
-
   updateStudies = studies => {
     // Render the viewer when the data is ready
     studyMetadataManager.purge();
 
     // Map studies to new format, update metadata manager?
     const updatedStudies = studies.map(study => {
-      const studyMetadata = new DCMCloudStudyMetadata(
+      const studyMetadata = new OHIFStudyMetadata(
         study,
         study.StudyInstanceUID
       );
@@ -166,7 +167,6 @@ class ViewerLocalFileData extends Component {
     });
   };
 
-
   render() {
     const onDrop = async acceptedFiles => {
       this.setState({ loading: true });
@@ -185,8 +185,6 @@ class ViewerLocalFileData extends Component {
       return <div>Error: {JSON.stringify(this.state.error)}</div>;
     }
 
-
-
     return (
       <MiniDrawer>
         <Dropzone onDrop={onDrop} noClick>
@@ -201,34 +199,60 @@ class ViewerLocalFileData extends Component {
                   }
                 />
               ) : (
-                <div className={'drag-drop-instructions'} style={{ width: '100%', height: '100%', marginTop: 30 }}>
+                <div
+                  className={'drag-drop-instructions'}
+                  style={{ width: '100%', height: '100%', marginTop: 30 }}
+                >
                   <div className={'drag-drop-contents'}>
                     {this.state.loading ? (
                       <h3>{this.props.t('Loading...')}</h3>
                     ) : (
                       <>
-                        <h2 style={{ color: '#0a2142', fontFamily: 'inherit', padding: 15, paddingLeft: 0, marginRight: '10' }}>
+                        <h2
+                          style={{
+                            color: '#0a2142',
+                            fontFamily: 'inherit',
+                            padding: 15,
+                            paddingLeft: 0,
+                            marginRight: '10',
+                          }}
+                        >
                           {this.props.t(
                             'Drag and Drop or Select DICOM files here to load them in the Viewer'
                           )}
                         </h2>
-                        <Card style={{ width: '100%', border: '1px solid #d1cfcf', padding: 20, boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}>
+                        <Card
+                          style={{
+                            width: '100%',
+                            border: '1px solid #d1cfcf',
+                            padding: 20,
+                            boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
+                          }}
+                        >
                           <CardContent style={{ textAlign: 'center' }}>
-
-                            <GetAppIcon style={{ fontSize: '50px', color: '#0a2142' }} />
+                            <GetAppIcon
+                              style={{ fontSize: '50px', color: '#0a2142' }}
+                            />
                             <p>Select files or folders</p>
-
                           </CardContent>
-                          <div style={{ textAlign: 'center', justifyContent: 'between' }}>
-                            <span>{linksDialogMessageFiles(onDrop, this.props.t)}</span>
+                          <div
+                            style={{
+                              textAlign: 'center',
+                              justifyContent: 'between',
+                            }}
+                          >
+                            <span>
+                              {linksDialogMessageFiles(onDrop, this.props.t)}
+                            </span>
                             {/* <Button variant="outlined" color="primary">
                             </Button> */}
-                            <span>{linksDialogMessageFolders(onDrop, this.props.t)}</span>
+                            <span>
+                              {linksDialogMessageFolders(onDrop, this.props.t)}
+                            </span>
                             {/* <Button variant="outlined" color="primary">
                             </Button> */}
                           </div>
-                          <CardActions>
-                          </CardActions>
+                          <CardActions></CardActions>
                         </Card>
                       </>
                     )}
@@ -238,7 +262,6 @@ class ViewerLocalFileData extends Component {
             </div>
           )}
         </Dropzone>
-
       </MiniDrawer>
     );
   }
