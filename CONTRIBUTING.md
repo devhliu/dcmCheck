@@ -1,1 +1,2 @@
-See our contributing guidelines at [`https://docs.ohif.org`](https://docs.ohif.org/development/contributing.html)
+See our contributing guidelines at
+[`https://docs.dcmcloud.org`](https://docs.dcmcloud.org/development/contributing.html)

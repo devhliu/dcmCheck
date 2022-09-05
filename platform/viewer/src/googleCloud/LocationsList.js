@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './googleCloud.css';
 import { withTranslation } from 'react-i18next';
-import { Icon } from '@ohif/ui';
+import { Icon } from '@dcmcloud/ui';
 
 class LocationsList extends Component {
   state = {
@@ -62,15 +62,7 @@ class LocationsList extends Component {
 
     const body = (
       <tbody id="LocationList">
-        {locations
-          .filter(
-            location =>
-              location.name
-                .split('/')[3]
-                .toLowerCase()
-                .includes(filter.toLowerCase()) || filter == ''
-          )
-          .map(this.renderTableRow)}
+        {locations.filter(location => (location.name.split('/')[3].toLowerCase().includes(filter.toLowerCase()) || filter=="")).map(this.renderTableRow)}
       </tbody>
     );
 

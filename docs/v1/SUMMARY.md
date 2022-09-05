@@ -1,4 +1,4 @@
-# OHIF Viewers
+# DCMCloud Viewers
 
 - Essentials
   - [Installation](essentials/installation.md)
@@ -22,25 +22,28 @@
   - [Layout Management](layout/layout-management.md)
   - [Hanging Protocols](layout/hanging-protocols.md)
 - Packages
-  - [Measurements Package (ohif-measurements)](packages/measurements.md)
+  - [Measurements Package (dcmcloud-measurements)](packages/measurements.md)
 - Deployment
   - [Building for Production](deployment/building-for-production.md)
   - [Security](deployment/security.md)
 - I Want To...
   - [Add a Tool to the Viewer](I-want-to/add-a-tool-to-the-viewer.md)
   - [Add a Logo to the Viewer](I-want-to/add-a-logo-to-the-viewer.md)
-----
+
+---
 
 - Example Applications
-  - [OHIF Viewer](example-applications/ohif-viewer.md)
+  - [DCMCloud Viewer](example-applications/dcmcloud-viewer.md)
   - [Lesion Tracker](example-applications/lesion-tracker.md)
   - [Standalone Viewer](example-applications/standalone-viewer.md)
 
-----
+---
+
 - Standalone Viewer Integration
   - [Usage](standalone-viewer/usage.md)
 
-----
+---
+
 - Lesion Tracker
   - [User Manual](lesion-tracker/user-manual.md)
   - [Installation on Windows](lesion-tracker/installation-on-windows.md)
@@ -52,10 +55,12 @@
   - [Server Management](lesion-tracker/server-management.md)
   - [Audit Trail](lesion-tracker/audit-trail.md)
 
-----
+---
+
 - FAQ
   - [General](faq/general.md)
   - [Technical](faq/technical.md)
 
-----
+---
+
 - [Contributing](contributing.md)

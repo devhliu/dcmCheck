@@ -1,5 +1,5 @@
 import guid from '../utils/guid.js';
-import OHIFError from './OHIFError';
+import DCMCloudError from './DCMCloudError';
 import { Vector3 } from 'cornerstone-math';
 
 const OBJECT = 'object';
@@ -13,7 +13,7 @@ const OBJECT = 'object';
 class ImageSet {
   constructor(images) {
     if (Array.isArray(images) !== true) {
-      throw new OHIFError('ImageSet expects an array of images');
+      throw new DCMCloudError('ImageSet expects an array of images');
     }
 
     // @property "images"

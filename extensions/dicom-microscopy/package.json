@@ -1,10 +1,10 @@
 {
-  "name": "@ohif/extension-dicom-microscopy",
+  "name": "@dcmcloud/extension-dicom-microscopy",
   "version": "0.52.0",
-  "description": "OHIF extension for Dicom Microscopy",
-  "author": "OHIF",
+  "description": "DCMCloud extension for Dicom Microscopy",
+  "author": "DCMCloud",
   "license": "MIT",
-  "repository": "OHIF/Viewers",
+  "repository": "DCMCloud/Viewers",
   "main": "dist/index.umd.js",
   "module": "src/index.js",
   "publishConfig": {
@@ -28,7 +28,7 @@
     "start": "yarn run dev"
   },
   "peerDependencies": {
-    "@ohif/core": "^0.50.0",
+    "@dcmcloud/core": "^0.50.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },

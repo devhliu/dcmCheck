@@ -25,10 +25,10 @@ export function initCommonElementsAliases() {
     '.pull-left > .RoundedButtonGroup > .roundedButtonWrapper > .roundedButton'
   ).as('seriesBtn');
   cy.get('section.sidepanel.from-left').as('seriesPanel');
-  cy.get('div.OHIFCornerstoneViewportOverlay > div.bottom-left.overlay-element > div').as(
+  cy.get('div.DCMCloudCornerstoneViewportOverlay > div.bottom-left.overlay-element > div').as(
     'viewportInfoBottomLeft'
   );
-  cy.get('div.OHIFCornerstoneViewportOverlay > div.bottom-right.overlay-element > div').as(
+  cy.get('div.DCMCloudCornerstoneViewportOverlay > div.bottom-right.overlay-element > div').as(
     'viewportInfoBottomRight'
   );
   cy.get('.left-mid.orientation-marker').as('viewportInfoMidLeft');
@@ -48,8 +48,8 @@ export function initVTKToolsAliases() {
   cy.get('[data-cy="crosshairs"]').as('crosshairsBtn');
   cy.get('[data-cy="wwwc"]').as('wwwcBtn');
   cy.get('.slab-thickness').as('slabSlider');
-  cy.get('.select-ohif').as('modeDropdown');
-  cy.get('.ohif-check-label').as('modeCheckbox');
+  cy.get('.select-dcmcloud').as('modeDropdown');
+  cy.get('.dcmcloud-check-label').as('modeCheckbox');
   cy.get('[data-cy="layout"]').as('layoutBtn');
 }
 
@@ -80,7 +80,7 @@ export function initStudyListAliasesOnTablet() {
 
 //Creating aliases for User Preferences modal
 export function initPreferencesModalAliases() {
-  cy.get('.OHIFModal').as('preferencesModal');
+  cy.get('.DCMCloudModal').as('preferencesModal');
   cy.get('[data-cy="hotkeys"]').as('userPreferencesHotkeysTab');
   cy.get('[data-cy="general"]').as('userPreferencesGeneralTab');
   cy.get('[data-cy="window-level"]').as('userPreferencesWindowLevelTab');

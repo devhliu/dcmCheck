@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { classes, cornerstone as OHIFCornerstone } from '@ohif/core';
-import { Range } from '@ohif/ui';
+import { classes, cornerstone as DCMCloudCornerstone } from '@dcmcloud/core';
+import { Range } from '@dcmcloud/ui';
 import dcmjs from 'dcmjs';
 import DicomBrowserSelect from './DicomBrowserSelect';
 import moment from 'moment';
@@ -11,14 +11,14 @@ const { ImageSet } = classes;
 const { DicomMetaDictionary } = dcmjs.data;
 const { nameMap } = DicomMetaDictionary;
 
-const { metadataProvider } = OHIFCornerstone;
+const { metadataProvider } = DCMCloudCornerstone;
 
 const DicomTagBrowser = ({ displaySets, displaySetInstanceUID }) => {
   const [
     activeDisplaySetInstanceUID,
     setActiveDisplaySetInstanceUID,
   ] = useState(displaySetInstanceUID);
-  const [activeInstance, setActiveInstance] = useState(1);
+  const [activeInstance, setActiveInstance] = useState(0);
   const [tags, setTags] = useState([]);
   const [meta, setMeta] = useState('');
   const [instanceList, setInstanceList] = useState([]);
@@ -51,21 +51,20 @@ const DicomTagBrowser = ({ displaySets, displaySetInstanceUID }) => {
         description: displayDate,
         onClick: () => {
           setActiveDisplaySetInstanceUID(displaySetInstanceUID);
-          setActiveInstance(1);
+          setActiveInstance(0);
         },
       };
     });
 
     let metadata;
-    const isImageStack =
-      activeDisplaySet instanceof ImageSet &&
-      activeDisplaySet.isSOPClassUIDSupported === true;
+    const isImageStack = activeDisplaySet instanceof ImageSet;
 
+    let selectedInstanceValue;
     let instanceList;
 
     if (isImageStack) {
       const { images } = activeDisplaySet;
-      const image = images[activeInstance - 1];
+      const image = images[activeInstance];
 
       instanceList = images.map((image, index) => {
         const metadata = image.getData().metadata;
@@ -107,7 +106,7 @@ const DicomTagBrowser = ({ displaySets, displaySetInstanceUID }) => {
           showValue
           step={1}
           min={1}
-          max={instanceList.length}
+          max={instanceList.length - 1}
           value={activeInstance}
           valueRenderer={value => <p>Instance Number: {value}</p>}
           onChange={({ target }) => {

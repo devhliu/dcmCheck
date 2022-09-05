@@ -3,8 +3,8 @@ import './ViewportGrid.css';
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { utils } from '@ohif/core';
-import { useSnackbarContext, useLogger } from '@ohif/ui';
+import { utils } from '@dcmcloud/core';
+import { useSnackbarContext, useLogger } from '@dcmcloud/ui';
 //
 import ViewportPane from './ViewportPane.js';
 import DefaultViewport from './DefaultViewport.js';

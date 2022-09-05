@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import ConnectedViewerRetrieveStudyData from '../connectedComponents/ConnectedViewerRetrieveStudyData.js';
-import OHIF from '@ohif/core';
-const { urlUtil: UrlUtil } = OHIF.utils;
+import DCMCloud from '@dcmcloud/core';
+const { urlUtil: UrlUtil } = DCMCloud.utils;
 
 function IHEInvokeImageDisplay({ location }) {
   const {

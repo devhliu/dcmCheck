@@ -1,5 +1,4 @@
 import { api } from 'dicomweb-client';
-import StaticWadoClient from './StaticWadoClient';
 import DICOMWeb from '../../../DICOMWeb/';
 
 import errorHandler from '../../../errorHandler';
@@ -37,7 +36,7 @@ function getQIDOQueryParams(filter, serverSupportsQIDOIncludeField) {
     '00080060', // Modality
     // Add more fields here if you want them in the result
   ].join(',');
-
+  debugger
   const parameters = {
     PatientName: filter.PatientName,
     PatientID: filter.PatientID,
@@ -48,7 +47,36 @@ function getQIDOQueryParams(filter, serverSupportsQIDOIncludeField) {
     offset: filter.offset,
     fuzzymatching: filter.fuzzymatching,
     includefield: serverSupportsQIDOIncludeField ? commaSeparatedFields : 'all',
-  };
+    AccessKeyId: localStorage.getItem('AwsAccessKeyId'),
+    SecretAccessKey: localStorage.getItem('AwsSecretAccessKey'),
+    BucketName: localStorage.getItem('AwsBucketName'),
+    DCMCAccesskey: localStorage.getItem('DCMCAccessKey'),
+    BucketType: localStorage.getItem('BucketType'),
+    GoogleAccessKeyId: localStorage.getItem('GoogleAccessKeyID'),
+    GoogleSecretAccessKey: localStorage.getItem('GoogleSecretAccessKey'),
+    GoogleBucketName: localStorage.getItem('GoogleBucketName'),
+    GoogleDCMCAccesskey: localStorage.getItem('GoogleDCMCAccesskey'),
+    GoogleBucketType: localStorage.getItem('GoogleBucketType')
+    //ArrayCredentials: [{ AccessKeyId: localStorage.getItem('AwsAccessKeyId'), SecretAccessKey: localStorage.getItem('AwsSecretAccessKey'), BucketName: localStorage.getItem('AwsBucketName'), DCMCAccesskey: localStorage.getItem('DCMCAccessKey'), BucketType: localStorage.getItem('BucketType') }]
+  }
+    //,
+    // {
+    //   PatientName: filter.PatientName,
+    //   PatientID: filter.PatientID,
+    //   AccessionNumber: filter.AccessionNumber,
+    //   StudyDescription: filter.StudyDescription,
+    //   ModalitiesInStudy: filter.ModalitiesInStudy,
+    //   limit: filter.limit,
+    //   offset: filter.offset,
+    //   fuzzymatching: filter.fuzzymatching,
+    //   includefield: serverSupportsQIDOIncludeField ? commaSeparatedFields : 'all',
+    //   AccessKeyId: localStorage.getItem('GoogleAccessKeyID'),
+    //   SecretAccessKey: localStorage.getItem('GoogleSecretAccessKey'),
+    //   BucketName: localStorage.getItem('GoogleBucketName'),
+    //   DCMCAccesskey: localStorage.getItem('GoogleDCMCAccesskey'),
+    //   BucketType: localStorage.getItem('GoogleBucketType')
+    // }
+    ;
 
   // build the StudyDate range parameter
   if (filter.studyDateFrom || filter.studyDateTo) {
@@ -86,7 +114,7 @@ function resultDataToStudies(resultData) {
   const studies = [];
 
   if (!resultData || !resultData.length) return;
-
+  debugger
   resultData.forEach(study =>
     studies.push({
       StudyInstanceUID: DICOMWeb.getString(study['0020000D']),
@@ -104,10 +132,13 @@ function resultDataToStudies(resultData) {
       numberOfStudyRelatedSeries: DICOMWeb.getString(study['00201206']),
       numberOfStudyRelatedInstances: DICOMWeb.getString(study['00201208']),
       StudyDescription: DICOMWeb.getString(study['00081030']),
+      bucket: DICOMWeb.getString(study['000005']),
       // Modality: DICOMWeb.getString(study['00080060']),
       // ModalitiesInStudy: DICOMWeb.getString(study['00080061']),
       modalities: DICOMWeb.getString(
-        DICOMWeb.getModalities(study['00080060'], study['00080061'])
+        DICOMWeb.getModalities(study['00080060'], study['00080061']),
+
+
       ),
     })
   );
@@ -116,18 +147,14 @@ function resultDataToStudies(resultData) {
 }
 
 export default function Studies(server, filter) {
-  const { staticWado } = server;
   const config = {
-    ...server,
     url: server.qidoRoot,
     headers: DICOMWeb.getAuthorizationHeader(server),
     errorInterceptor: errorHandler.getHTTPErrorHandler(),
     requestHooks: [getXHRRetryRequestHook()],
   };
 
-  const dicomWeb = staticWado
-    ? new StaticWadoClient(config)
-    : new api.DICOMwebClient(config);
+  const dicomWeb = new api.DICOMwebClient(config);
   server.qidoSupportsIncludeField =
     server.qidoSupportsIncludeField === undefined
       ? true

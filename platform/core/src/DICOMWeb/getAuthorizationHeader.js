@@ -12,7 +12,7 @@ import user from '../user';
 export default function getAuthorizationHeader({ requestOptions } = {}) {
   const headers = {};
 
-  // Check for OHIF.user since this can also be run on the server
+  // Check for DCMCloud.user since this can also be run on the server
   const accessToken = user && user.getAccessToken && user.getAccessToken();
 
   // Auth for a specific server

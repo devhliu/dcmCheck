@@ -8,10 +8,7 @@ docs/_book
 src/version.js
 junit.xml
 coverage/
-*.js.map
-.yarn
-platform/docs/.docusaurus
-platform/ui/storybook-static
+.docz/
 
 # YALC (for Erik)
 .yalc

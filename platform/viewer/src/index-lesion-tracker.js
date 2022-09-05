@@ -22,8 +22,8 @@ import ReactDOM from 'react-dom';
  * by using the exported `App` component, and passing in your extensions as props using
  * the defaultExtensions property.
  */
-import OHIFLesionTrackerExtension from '@ohif/extension-lesion-tracker';
-import OHIFDicomPDFExtension from '@ohif/extension-dicom-pdf';
+import DCMCloudLesionTrackerExtension from '@dcmcloud/extension-lesion-tracker';
+import DCMCloudDicomPDFExtension from '@dcmcloud/extension-dicom-pdf';
 
 /*
  * Default Settings
@@ -36,7 +36,7 @@ if (window) {
 
 const appProps = {
   config,
-  defaultExtensions: [OHIFLesionTrackerExtension, OHIFDicomPDFExtension],
+  defaultExtensions: [DCMCloudLesionTrackerExtension, DCMCloudDicomPDFExtension],
 };
 
 /** Create App */

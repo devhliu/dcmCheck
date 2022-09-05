@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ErrorPage } from '@ohif/ui';
+import { ErrorPage } from '@dcmcloud/ui';
 
 export const retryImport = (fn, retriesLeft = 5, interval = 1000) =>
   new Promise((resolve, reject) => {

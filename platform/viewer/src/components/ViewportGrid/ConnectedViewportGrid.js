@@ -1,5 +1,5 @@
 import ViewportGrid from './ViewportGrid.js';
-import { MODULE_TYPES } from '@ohif/core';
+import { MODULE_TYPES } from '@dcmcloud/core';
 import { connect } from 'react-redux';
 import { extensionManager } from './../../App.js';
 import memoize from 'lodash/memoize';

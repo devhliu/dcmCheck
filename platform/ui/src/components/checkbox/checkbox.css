@@ -1,8 +1,8 @@
-.ohif-check-container {
+.dcmcloud-check-container {
   --check-button-dim: 15px;
 }
 
-.ohif-check-container input {
+.dcmcloud-check-container input {
   position: absolute;
   opacity: 0;
   height: inherit;
@@ -10,7 +10,7 @@
   cursor: default;
 }
 
-.ohif-check-container {
+.dcmcloud-check-container {
   display: block;
   position: relative;
   padding-left: 35px;
@@ -22,7 +22,7 @@
   user-select: none;
 }
 
-.ohif-checkbox {
+.dcmcloud-checkbox {
   width: var(--check-button-dim);
   height: var(--check-button-dim);
   position: absolute;
@@ -32,25 +32,25 @@
   background-color: var(--ui-gray-lighter);
 }
 
-.ohif-checkbox:hover {
+.dcmcloud-checkbox:hover {
   background-color: var(--default-color);
 }
 
-.ohif-checkbox:after {
+.dcmcloud-checkbox:after {
   content: '';
   position: absolute;
   width: 70%;
   height: 70%;
 }
 
-.ohif-checkbox.ohif-checked:after {
+.dcmcloud-checkbox.dcmcloud-checked:after {
   display: block;
   top: 14%;
   left: 14%;
   background: white;
 }
 
-.ohif-check-label {
+.dcmcloud-check-label {
   font-size: 12px;
   font-weight: 500;
 }

@@ -3,13 +3,13 @@ import { Link, withRouter } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Dropdown, AboutContent, withModal } from '@ohif/ui';
+import { Dropdown, AboutContent, withModal } from '@dcmcloud/ui';
 //
 import { UserPreferences } from './../UserPreferences';
 import AWSAccessKeyFields from '../UserPreferences/AWSAccessKeyFields';
 import DCMCloudLogo from '../DCMCloudLogo/DCMCloudLogo.js';
 import './Header.css';
-import { Icon } from '@ohif/ui';
+import { Icon } from '@dcmcloud/ui';
 import UploadFile from '../UserPreferences/UploadFile';
 
 function Header(props) {

@@ -5,32 +5,21 @@ window.config = {
   showStudyList: true,
   filterQueryParam: false,
   disableServersCache: false,
-  studyPrefetcher: {
-    enabled: true,
-    order: 'closest',
-    displaySetCount: 3,
-    preventCache: false,
-    prefetchDisplaySetsTimeout: 300,
-    maxNumPrefetchRequests: 100,
-    displayProgress: true,
-    includeActiveDisplaySet: true,
-  },
   servers: {
     dicomWeb: [
       {
         name: 'DCM4CHEE',
-        wadoUriRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/wado',
-        qidoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
-        wadoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
+        wadoUriRoot: 'https://app.dcmcloud.com/coreapi/react/WadoURI',
+        qidoRoot: 'https://app.dcmcloud.com/coreapi/react/QidoRS',
+        wadoRoot: 'https://app.dcmcloud.com/coreapi/react/WadoRS',
         qidoSupportsIncludeField: true,
-        imageRendering: 'wadors',
-        thumbnailRendering: 'wadors',
-        enableStudyLazyLoad: true,
+        imageRendering: 'wadouri',
+        thumbnailRendering: 'wadouri',
+        enableStudyLazyLoad: false,
         supportsFuzzyMatching: true,
       },
     ],
   },
-
   // Extensions should be able to suggest default values for these?
   // Or we can require that these be explicitly set
   hotkeys: [
@@ -135,6 +124,6 @@ window.config = {
   // If the server is particularly slow to respond to series metadata
   //  requests as it extracts the metadata from raw files everytime,
   //  try setting this to even lower value
-  // Leave it undefined for no limit, suitable for HTTP/2 enabled servers
+  // Leave it undefined for no limit, sutiable for HTTP/2 enabled servers
   // maxConcurrentMetadataRequests: 5,
 };

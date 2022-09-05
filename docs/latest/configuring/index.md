@@ -24,7 +24,7 @@ and registered extension's features, are configured using this file.
 Alternatively, when using the `umd` bundle for embedded use cases, these same
 values are what you'll pass to `installViewer` method:
 
-`OHIFStandaloneViewer.installViewer(window.config)`
+`DCMCloudStandaloneViewer.installViewer(window.config)`
 
 ### Environment Variables
 
@@ -54,19 +54,20 @@ window.config = {
     dicomWeb: [
       {
         name: 'DCM4CHEE',
-        wadoUriRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/wado',
-        qidoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
-        wadoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
+        wadoUriRoot: 'https://192.168.100.20:5006/coreapi/react/WadoURI',
+        qidoRoot: 'https://192.168.100.20:5006/coreapi/react/QidoRS',
+        wadoRoot: 'https://192.168.100.20:5006/coreapi/react/WadoRS',
         qidoSupportsIncludeField: true,
-        imageRendering: 'wadors',
-        thumbnailRendering: 'wadors',
+        imageRendering: 'wadouri',
+        thumbnailRendering: 'wadouri',
       },
     ],
   },
 };
 ```
 
-The configuration can also be written as a JS Function in case you need to inject dependencies like external services:
+The configuration can also be written as a JS Function in case you need to
+inject dependencies like external services:
 
 ```js
 window.config = ({ servicesManager } = {}) => {
@@ -86,12 +87,12 @@ window.config = ({ servicesManager } = {}) => {
       dicomWeb: [
         {
           name: 'DCM4CHEE',
-          wadoUriRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/wado',
-          qidoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
-          wadoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
+          wadoUriRoot: 'http://localhost:51104/coreapi/WadoURI',
+          qidoRoot: 'https://192.168.100.20:5006/coreapi/react/QidoRS',
+          wadoRoot: 'https://192.168.100.20:5006/coreapi/react/WadoRS',
           qidoSupportsIncludeField: true,
-          imageRendering: 'wadors',
-          thumbnailRendering: 'wadors',
+          imageRendering: 'wadouri',
+          thumbnailRendering: 'wadouri',
         },
       ],
     },
@@ -120,7 +121,7 @@ output.
   -->
 
 <!-- prettier-ignore-start -->
-[default-config]: https://github.com/OHIF/Viewers/blob/master/platform/viewer/public/config/default.js
-[html-templates]: https://github.com/OHIF/Viewers/tree/master/platform/viewer/public/html-templates
-[config-files]: https://github.com/OHIF/Viewers/tree/master/platform/viewer/public/config
+[default-config]: https://github.com/DCMCloud/Viewers/blob/master/platform/viewer/public/config/default.js
+[html-templates]: https://github.com/DCMCloud/Viewers/tree/master/platform/viewer/public/html-templates
+[config-files]: https://github.com/DCMCloud/Viewers/tree/master/platform/viewer/public/config
 <!-- prettier-ignore-end -->

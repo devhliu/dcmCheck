@@ -10,7 +10,7 @@ import {
   ErrorBoundary,
   asyncComponent,
   retryImport,
-} from '@ohif/ui';
+} from '@dcmcloud/ui';
 import { SignoutCallbackComponent } from 'redux-oidc';
 import * as RoutesUtil from './routes/routesUtil';
 
@@ -27,7 +27,7 @@ const CallbackPage = asyncComponent(() =>
   )
 );
 
-class OHIFStandaloneViewer extends Component {
+class DCMCloudStandaloneViewer extends Component {
   static contextType = AppContext;
   state = {
     isLoading: false,
@@ -62,7 +62,7 @@ class OHIFStandaloneViewer extends Component {
 
       if (pathname !== '/callback') {
         sessionStorage.setItem(
-          'OHIF-redirect-to',
+          'dcmcloud-redirect-to',
           JSON.stringify({ pathname, search })
         );
       }
@@ -112,20 +112,20 @@ class OHIFStandaloneViewer extends Component {
 
               userManager.removeUser().then(() => {
                 if (targetLinkUri !== null) {
-                  const OHIFRedirectTo = {
+                  const dcmcloudRedirectTo = {
                     pathname: new URL(targetLinkUri).pathname,
                   };
                   sessionStorage.setItem(
-                    'OHIF-redirect-to',
-                    JSON.stringify(OHIFRedirectTo)
+                    'dcmcloud-redirect-to',
+                    JSON.stringify(dcmcloudRedirectTo)
                   );
                 } else {
-                  const OHIFRedirectTo = {
+                  const dcmcloudRedirectTo = {
                     pathname: '/',
                   };
                   sessionStorage.setItem(
-                    'OHIF-redirect-to',
-                    JSON.stringify(OHIFRedirectTo)
+                    'dcmcloud-redirect-to',
+                    JSON.stringify(dcmcloudRedirectTo)
                   );
                 }
 
@@ -229,11 +229,11 @@ const mapStateToProps = state => {
   };
 };
 
-const ConnectedOHIFStandaloneViewer = connect(
+const ConnectedDCMCloudStandaloneViewer = connect(
   mapStateToProps,
   null
-)(OHIFStandaloneViewer);
+)(DCMCloudStandaloneViewer);
 
 export default ViewerbaseDragDropContext(
-  withRouter(ConnectedOHIFStandaloneViewer)
+  withRouter(ConnectedDCMCloudStandaloneViewer)
 );

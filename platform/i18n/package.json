@@ -1,10 +1,10 @@
 {
-  "name": "@ohif/i18n",
+  "name": "@dcmcloud/i18n",
   "version": "0.53.0",
-  "description": "Internationalization library for The OHIF Viewer",
-  "author": "OHIF",
+  "description": "Internationalization library for The DCMCloud Viewer",
+  "author": "DCMCloud",
   "license": "MIT",
-  "repository": "OHIF/Viewers",
+  "repository": "DCMCloud/Viewers",
   "main": "dist/index.umd.js",
   "module": "src/index.js",
   "engines": {

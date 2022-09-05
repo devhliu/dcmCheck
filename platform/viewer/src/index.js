@@ -23,15 +23,15 @@ import ReactDOM from 'react-dom';
  * by using the exported `App` component, and passing in your extensions as props using
  * the defaultExtensions property.
  */
-import OHIFVTKExtension from '@ohif/extension-vtk';
-import OHIFDicomHtmlExtension from '@ohif/extension-dicom-html';
-import OHIFDicomSegmentationExtension from '@ohif/extension-dicom-segmentation';
-import OHIFDicomRtExtension from '@ohif/extension-dicom-rt';
-import OHIFDicomMicroscopyExtension from '@ohif/extension-dicom-microscopy';
-import OHIFDicomPDFExtension from '@ohif/extension-dicom-pdf';
-//import OHIFDicomTagBrowserExtension from '@ohif/extension-dicom-tag-browser';
+import DCMCloudVTKExtension from '@dcmcloud/extension-vtk';
+import DCMCloudDicomHtmlExtension from '@dcmcloud/extension-dicom-html';
+import DCMCloudDicomSegmentationExtension from '@dcmcloud/extension-dicom-segmentation';
+import DCMCloudDicomRtExtension from '@dcmcloud/extension-dicom-rt';
+import DCMCloudDicomMicroscopyExtension from '@dcmcloud/extension-dicom-microscopy';
+import DCMCloudDicomPDFExtension from '@dcmcloud/extension-dicom-pdf';
+//import DCMCloudDicomTagBrowserExtension from '@dcmcloud/extension-dicom-tag-browser';
 // Add this for Debugging purposes:
-//import OHIFDebuggingExtension from '@ohif/extension-debugging';
+//import DCMCloudDebuggingExtension from '@dcmcloud/extension-debugging';
 import { version } from '../package.json';
 
 /*
@@ -47,14 +47,14 @@ if (window) {
 const appProps = {
   config,
   defaultExtensions: [
-    OHIFVTKExtension,
-    OHIFDicomHtmlExtension,
-    OHIFDicomMicroscopyExtension,
-    OHIFDicomPDFExtension,
-    OHIFDicomSegmentationExtension,
-    OHIFDicomRtExtension,
-    //OHIFDebuggingExtension,
-    //OHIFDicomTagBrowserExtension,
+    DCMCloudVTKExtension,
+    DCMCloudDicomHtmlExtension,
+    DCMCloudDicomMicroscopyExtension,
+    DCMCloudDicomPDFExtension,
+    DCMCloudDicomSegmentationExtension,
+    DCMCloudDicomRtExtension,
+    //DCMCloudDebuggingExtension,
+    //DCMCloudDicomTagBrowserExtension,
   ],
 };
 

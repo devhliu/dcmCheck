@@ -4,10 +4,10 @@ import adjust from './icons/adjust.svg';
 import angleDoubleDown from './icons/angle-double-down.svg';
 import angleDoubleUp from './icons/angle-double-up.svg';
 import angleLeft from './icons/angle-left.svg';
-import arrows from './icons/arrows.svg';
+import arrows from './icons/pan-icon.svg';
 import arrowsAltH from './icons/arrows-alt-h.svg';
 import arrowsAltV from './icons/arrows-alt-v.svg';
-import bars from './icons/bars.svg';
+import bars from './icons/bar-icon.svg';
 import brain from './icons/brain.svg';
 import brush from './icons/brush.svg';
 import caretDown from './icons/caret-down.svg';
@@ -39,7 +39,12 @@ import fastForward from './icons/fast-forward.svg';
 import stop from './icons/stop.svg';
 import info from './icons/info.svg';
 import inlineEdit from './icons/inline-edit.svg';
-import level from './icons/level.svg';
+// import level from './icons/level.svg';
+import level from './icons/level-icon.svg';
+import importIcon from './icons/import.svg';
+import cloudUploadIcon from './icons/cloud-upload.svg';
+import awsBrands from './icons/aws-brands.svg';
+import googleIcon from './icons/google_drive.svg';
 import link from './icons/link.svg';
 import linkCircles from './icons/link-circles.svg';
 import list from './icons/list.svg';
@@ -54,8 +59,8 @@ import measureTargetNe from './icons/measure-target-ne.svg';
 import measureTargetUn from './icons/measure-target-un.svg';
 import measureTemp from './icons/measure-temp.svg';
 import objectGroup from './icons/object-group.svg';
-import ohifLogo from './icons/ohif-logo.svg';
-import ohifTextLogo from './icons/ohif-text-logo.svg';
+import dcmcloudLogo from './icons/dcmcloud-logo.svg';
+import dcmcloudTextLogo from './icons/dcmcloud-text-logo.svg';
 import oval from './icons/oval.svg';
 import palette from './icons/palette.svg';
 import play from './icons/play.svg';
@@ -78,7 +83,7 @@ import star from './icons/star.svg';
 import stepBackward from './icons/step-backward.svg';
 import stepForward from './icons/step-forward.svg';
 import sun from './icons/sun.svg';
-import th from './icons/th.svg';
+import th from './icons/grid.svg';
 import thLarge from './icons/th-large.svg';
 import thList from './icons/th-list.svg';
 import times from './icons/times.svg';
@@ -89,6 +94,21 @@ import youtube from './icons/youtube.svg';
 import eye from './icons/eye.svg';
 import eyeClosed from './icons/eye-closed.svg';
 import envelopeSquare from './icons/envelope-square.svg';
+import dciLogo from './icons/header-logo.svg';
+import setting from './icons/setting.svg';
+import scale from './icons/scale.svg';
+import magnify from './icons/magnify.svg';
+import window from './icons/window.svg';
+import dentalProbe from './icons/dental-probe.svg';
+import ellipse from './icons/ellipse.svg';
+import rectangular from './icons/rectangular.svg';
+import invert from './icons/invert.svg';
+import rotateR from './icons/rotate-r.svg';
+import flipV from './icons/flip-v.svg';
+import flipH from './icons/flip-h.svg';
+import transfer from './icons/transfer.svg';
+import image from './icons/image.svg';
+import clear from './icons/clear.svg';
 
 const ICONS = {
   eye,
@@ -132,8 +152,11 @@ const ICONS = {
   'power-off': powerOff,
   'inline-edit': inlineEdit,
   list,
-  'ohif-logo': ohifLogo,
-  'ohif-text-logo': ohifTextLogo,
+  'dcmcloud-logo': dcmcloudLogo,
+  'dci-logo': dciLogo,
+  setting,
+  scale,
+  'dcmcloud-text-logo': dcmcloudTextLogo,
   lock,
   play,
   database,
@@ -150,6 +173,10 @@ const ICONS = {
   'th-list': thList,
   sun,
   palette,
+  'import-icon': importIcon,
+  'aws-icon': awsBrands,
+  'google-icon': googleIcon,
+  'cloud-upload-icon': cloudUploadIcon,
   youtube,
   oval,
   'ellipse-h': ellipseH,
@@ -180,6 +207,18 @@ const ICONS = {
   liver,
   save: saveRegular,
   'envelope-square': envelopeSquare,
+  magnify,
+  window,
+  'dental-probe': dentalProbe,
+  ellipse,
+  rectangular,
+  invert,
+  'rotate-r': rotateR,
+  'flip-v': flipV,
+  'flip-h': flipH,
+  transfer,
+  image,
+  clear,
 };
 
 /**

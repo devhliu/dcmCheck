@@ -10,7 +10,7 @@
         <!-- CORNERSTONE.js -->
         <tr>
             <td>
-                <a href="https://www.npmjs.com/package/@ohif/extension-cornerstone">
+                <a href="https://www.npmjs.com/package/@dcmcloud/extension-cornerstone">
                     Cornerstone
                 </a>
             </td>
@@ -22,7 +22,7 @@
         <!-- VTK.js -->
         <tr>
             <td>
-                <a href="https://www.npmjs.com/package/@ohif/extension-vtk">
+                <a href="https://www.npmjs.com/package/@dcmcloud/extension-vtk">
                     VTK.js
                 </a>
             </td>
@@ -34,40 +34,40 @@
         <!-- dicom-html -->
         <tr>
             <td>
-                <a href="https://www.npmjs.com/package/@ohif/extension-dicom-html">DICOM HTML</a>
+                <a href="https://www.npmjs.com/package/@dcmcloud/extension-dicom-html">DICOM HTML</a>
             </td>
             <td>
-                Renders text and HTML content for <a href="https://github.com/OHIF/Viewers/blob/master/extensions/dicom-html/src/OHIFDicomHtmlSopClassHandler.js#L4-L12">specific SopClassUIDs</a>.
+                Renders text and HTML content for <a href="https://github.com/DCMCloud/Viewers/blob/master/extensions/dicom-html/src/DCMCloudDicomHtmlSopClassHandler.js#L4-L12">specific SopClassUIDs</a>.
             </td>
             <td>Viewport, SopClassHandler</td>
         </tr>
         <!-- dicom-pdf -->
         <tr>
             <td>
-                <a href="https://www.npmjs.com/package/@ohif/extension-dicom-pdf">DICOM PDF</a>
+                <a href="https://www.npmjs.com/package/@dcmcloud/extension-dicom-pdf">DICOM PDF</a>
             </td>
             <td>
-                Renders PDFs for a <a href="https://github.com/OHIF/Viewers/blob/master/extensions/dicom-pdf/src/OHIFDicomPDFSopClassHandler.js#L4-L6">specific SopClassUID</a>.
+                Renders PDFs for a <a href="https://github.com/DCMCloud/Viewers/blob/master/extensions/dicom-pdf/src/DCMCloudDicomPDFSopClassHandler.js#L4-L6">specific SopClassUID</a>.
             </td>
             <td>Viewport, SopClassHandler</td>
         </tr>
         <!-- dicom-microscopy -->
         <tr>
             <td>
-                <a href="https://www.npmjs.com/package/@ohif/extension-dicom-microscopy">DICOM Microscopy</a>
+                <a href="https://www.npmjs.com/package/@dcmcloud/extension-dicom-microscopy">DICOM Microscopy</a>
             </td>
             <td>
-                Renders Microscopy images for a <a href="https://github.com/OHIF/Viewers/blob/master/extensions/dicom-microscopy/src/DicomMicroscopySopClassHandler.js#L5-L7">specific SopClassUID</a>.
+                Renders Microscopy images for a <a href="https://github.com/DCMCloud/Viewers/blob/master/extensions/dicom-microscopy/src/DicomMicroscopySopClassHandler.js#L5-L7">specific SopClassUID</a>.
             </td>
             <td>Viewport, SopClassHandler</td>
         </tr>
         <!-- dicom-segmentation -->
         <tr>
             <td>
-                <a href="https://www.npmjs.com/package/@ohif/extension-dicom-segmentation">DICOM Segmentation</a>
+                <a href="https://www.npmjs.com/package/@dcmcloud/extension-dicom-segmentation">DICOM Segmentation</a>
             </td>
             <td>
-                Renders segmentation images for a <a href="https://github.com/OHIF/Viewers/blob/master/extensions/dicom-segmentation/src/OHIFDicomSegSopClassHandler.js#L5-L7">specific SopClassUID</a>.
+                Renders segmentation images for a <a href="https://github.com/DCMCloud/Viewers/blob/master/extensions/dicom-segmentation/src/DCMCloudDicomSegSopClassHandler.js#L5-L7">specific SopClassUID</a>.
             </td>
             <td>Panel, Toolbar</td>
         </tr>

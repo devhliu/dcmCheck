@@ -1,4 +1,4 @@
-import OHIF from '@ohif/core';
+import DCMCloud from '@dcmcloud/core';
 import { api } from 'dicomweb-client';
 import dicomParser from 'dicom-parser';
 import JSZip from 'jszip';
@@ -13,7 +13,7 @@ const {
     hierarchicalListUtils,
     progressTrackingUtils: progressUtils,
   },
-} = OHIF;
+} = DCMCloud;
 
 /**
  * Public Methods
@@ -114,7 +114,7 @@ async function downloadBuffers(settings, dicomWebClient) {
 
 async function zipAll(buffers, settings) {
   const zip = new JSZip();
-  OHIF.log.info('Adding DICOM P10 files to archive:', buffers.length);
+  DCMCloud.log.info('Adding DICOM P10 files to archive:', buffers.length);
   buffers.forEach((buffer, i) => {
     const path = buildPath(buffer) || `${i}.dcm`;
     zip.file(path, buffer);
@@ -144,8 +144,8 @@ function buildSettings(listOfUIDs, options) {
   );
 
   // Print tree of hierarchical references
-  OHIF.log.info('Downloading DICOM P10 files for references:');
-  OHIF.log.info(hierarchicalListUtils.print(listOfUIDs));
+  DCMCloud.log.info('Downloading DICOM P10 files for references:');
+  DCMCloud.log.info(hierarchicalListUtils.print(listOfUIDs));
 
   return {
     options: Object(options),
@@ -172,7 +172,7 @@ function buildPath(buffer) {
       path = `${StudyInstanceUID}/${SeriesInstanceUID}/${SOPInstanceUID}.dcm`;
     }
   } catch (e) {
-    OHIF.log.error('Error parsing downloaded DICOM P10 file...', e);
+    DCMCloud.log.error('Error parsing downloaded DICOM P10 file...', e);
   }
   return path;
 }

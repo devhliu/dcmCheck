@@ -56,8 +56,8 @@ export default class ServicesManager {
       const hasConfiguration = Array.isArray(service);
 
       if (hasConfiguration) {
-        const [ohifService, configuration] = service;
-        this.registerService(ohifService, configuration);
+        const [dcmcloudService, configuration] = service;
+        this.registerService(dcmcloudService, configuration);
       } else {
         this.registerService(service);
       }

@@ -1,4 +1,4 @@
-import { metadata } from '@ohif/core';
+import { metadata } from '@dcmcloud/core';
 
 export default function getSourceDisplaySet(studies, rtStructDisplaySet, activateLabelMap = true) {
   const referencedDisplaySet = metadata.StudyMetadata.getReferencedDisplaySet(

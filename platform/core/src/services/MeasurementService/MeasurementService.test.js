@@ -13,7 +13,7 @@ describe('MeasurementService.js', () => {
   let source;
   let definition;
   let matchingCriteria;
-  let toSourceSchema;
+  let toAnnotation;
   let toMeasurement;
   let annotation;
 
@@ -34,20 +34,11 @@ describe('MeasurementService.js', () => {
       unit: 'mm',
       area: 123,
       type: measurementService.VALUE_TYPES.POLYLINE,
-      points: [
-        { x: 1, y: 2 },
-        { x: 1, y: 2 },
-      ],
+      points: [{ x: 1, y: 2 }, { x: 1, y: 2 }],
       source: source,
     };
-    toSourceSchema = () => annotation;
-    toMeasurement = () => {
-      if (Object.keys(measurement).includes('invalidProperty')) {
-        throw new Error('Measurement does not match schema');
-      }
-
-      return measurement;
-    }
+    toAnnotation = () => annotation;
+    toMeasurement = () => measurement;
     matchingCriteria = {
       valueType: measurementService.VALUE_TYPES.POLYLINE,
       points: 2,
@@ -61,16 +52,16 @@ describe('MeasurementService.js', () => {
       measurementService.createSource('Testing', '1');
     });
 
-    it('throws Error if no name provided', () => {
-      expect(() => {
-        measurementService.createSource(null, '1')
-      }).toThrow(new Error('Source name not provided.'));
+    it('logs warning and return early if no name provided', () => {
+      measurementService.createSource(null, '1');
+
+      expect(log.warn.mock.calls.length).toBe(1);
     });
 
-    it('throws Error if no version provided', () => {
-      expect(() => {
-        measurementService.createSource('Testing', null)
-      }).toThrow(new Error('Source version not provided.'));
+    it('logs warning and return early if no version provided', () => {
+      measurementService.createSource('Testing', null);
+
+      expect(log.warn.mock.calls.length).toBe(1);
     });
   });
 
@@ -80,84 +71,83 @@ describe('MeasurementService.js', () => {
         source,
         definition,
         matchingCriteria,
-        toSourceSchema,
+        toAnnotation,
         toMeasurement
       );
     });
 
-    it('throws Error if invalid source provided', () => {
-      expect(() => {
-        const invalidSource = {};
+    it('logs warning and return early if no matching criteria provided', () => {
+      measurementService.addMapping(
+        source,
+        definition,
+        null,
+        toAnnotation,
+        toMeasurement
+      );
 
-        measurementService.addMapping(
-          invalidSource,
-          definition,
-          matchingCriteria,
-          toSourceSchema,
-          toMeasurement
-        );
-      }).toThrow(new Error('Invalid source.'));
+      expect(log.warn.mock.calls.length).toBe(1);
     });
 
-    it('throws Error if no matching criteria provided', () => {
-      expect(() => {
-        measurementService.addMapping(
-          source,
-          definition,
-          null,
-          toSourceSchema,
-          toMeasurement
-        );
-      }).toThrow(new Error('Matching criteria not provided.'));
+    it('logs warning and return early if invalid source provided', () => {
+      const invalidSoure = {};
+
+      measurementService.addMapping(
+        invalidSoure,
+        definition,
+        matchingCriteria,
+        toAnnotation,
+        toMeasurement
+      );
+
+      expect(log.warn.mock.calls.length).toBe(1);
     });
 
+    it('logs warning and return early if no source provided', () => {
+      measurementService.addMapping(
+        null /* source */,
+        definition,
+        matchingCriteria,
+        toAnnotation,
+        toMeasurement
+      );
 
-    it('throws Error if no source provided', () => {
-      expect(() => {
-        measurementService.addMapping(
-          null /* source */,
-          definition,
-          matchingCriteria,
-          toSourceSchema,
-          toMeasurement
-        );
-      }).toThrow(new Error('Invalid source.'));
+      expect(log.warn.mock.calls.length).toBe(1);
     });
 
     it('logs warning and return early if no definition provided', () => {
-      expect(() => {
-        measurementService.addMapping(
-          source,
-          null /* definition */,
-          matchingCriteria,
-          toSourceSchema,
-          toMeasurement
-        );
-      }).toThrow(new Error('Definition not provided.'));
+      measurementService.addMapping(
+        source,
+        null /* definition */,
+        matchingCriteria,
+        toAnnotation,
+        toMeasurement
+      );
+
+      expect(log.warn.mock.calls.length).toBe(1);
     });
 
-    it('throws Error if no measurement mapping function provided', () => {
-      expect(() => {
-        measurementService.addMapping(
-          source,
-          definition,
-          matchingCriteria,
-          null /* toSourceSchema */,
-          toMeasurement
-        );
-      }).toThrow(new Error('Mapping function to source schema not provided.'));
+    it('logs warning and return early if no measurement mapping function provided', () => {
+      measurementService.addMapping(
+        source,
+        definition,
+        matchingCriteria,
+        null /* toAnnotation */,
+        toMeasurement
+      );
+
+      expect(log.warn.mock.calls.length).toBe(1);
     });
 
-    it('throws Error if no annotation mapping function provided', () => {
-      expect(() => {
-        measurementService.addMapping(
-          source,
-          definition,
-          matchingCriteria,
-          toSourceSchema,
-          null /* toMeasurement */
-        );
-      }).toThrow(new Error('Measurement mapping function not provided.'));
+    it('logs warning and return early if no annotation mapping function provided', () => {
+      measurementService.addMapping(
+        source,
+        definition,
+        matchingCriteria,
+        toAnnotation,
+        null /* toMeasurement */
+      );
+
+      expect(log.warn.mock.calls.length).toBe(1);
     });
   });
 
@@ -167,7 +157,7 @@ describe('MeasurementService.js', () => {
         source,
         definition,
         matchingCriteria,
-        toSourceSchema,
+        toAnnotation,
         toMeasurement
       );
       const measurementId = source.addOrUpdate(definition, annotation);
@@ -181,7 +171,7 @@ describe('MeasurementService.js', () => {
         source,
         definition,
         {},
-        toSourceSchema,
+        toAnnotation,
         toMeasurement
       );
       const measurementId = source.addOrUpdate(definition, annotation);
@@ -203,7 +193,7 @@ describe('MeasurementService.js', () => {
         source,
         definition,
         matchingCriteria,
-        toSourceSchema,
+        toAnnotation,
         toMeasurement
       );
 
@@ -222,7 +212,7 @@ describe('MeasurementService.js', () => {
         source,
         definition,
         matchingCriteria,
-        toSourceSchema,
+        toAnnotation,
         toMeasurement
       );
 
@@ -242,7 +232,7 @@ describe('MeasurementService.js', () => {
         source,
         definition,
         matchingCriteria,
-        toSourceSchema,
+        toAnnotation,
         toMeasurement
       );
 
@@ -255,9 +245,9 @@ describe('MeasurementService.js', () => {
     });
 
     it('fails to add new measurements when no mapping', () => {
-      expect(() => {
-        source.addOrUpdate(definition, measurement);
-      }).toThrow()
+      source.addOrUpdate(definition, measurement);
+
+      expect(log.warn.mock.calls.length).toBe(1);
     });
 
     it('fails to add new measurements when invalid mapping function', () => {
@@ -265,13 +255,13 @@ describe('MeasurementService.js', () => {
         source,
         definition,
         matchingCriteria,
-        toSourceSchema,
+        toAnnotation,
         1 /* Invalid */
       );
 
-      expect(() => {
-        source.addOrUpdate(definition, measurement);
-      }).toThrow()
+      source.addOrUpdate(definition, measurement);
+
+      expect(log.warn.mock.calls.length).toBe(1);
     });
 
     it('adds new measurement with custom id', () => {
@@ -281,7 +271,7 @@ describe('MeasurementService.js', () => {
         source,
         definition,
         matchingCriteria,
-        toSourceSchema,
+        toAnnotation,
         toMeasurement
       );
 
@@ -298,28 +288,28 @@ describe('MeasurementService.js', () => {
       expect(newMeasurement).toEqual(savedMeasurement);
     });
 
-    it('throws Error if adding invalid measurement', () => {
+    it('logs warning and return if adding invalid measurement', () => {
       measurement.invalidProperty = {};
 
       measurementService.addMapping(
         source,
         definition,
         matchingCriteria,
-        toSourceSchema,
+        toAnnotation,
         toMeasurement
       );
 
-      expect(() => {
-        source.addOrUpdate(definition, measurement);
-      }).toThrow()
+      source.addOrUpdate(definition, measurement);
+
+      expect(log.warn.mock.calls.length).toBe(2);
     });
 
-    it('updates existing measurement', () => {
+    it('updates existent measurement', () => {
       measurementService.addMapping(
         source,
         definition,
         matchingCriteria,
-        toSourceSchema,
+        toAnnotation,
         toMeasurement
       );
 
@@ -340,7 +330,7 @@ describe('MeasurementService.js', () => {
         source,
         definition,
         matchingCriteria,
-        toSourceSchema,
+        toAnnotation,
         toMeasurement
       );
 
@@ -364,7 +354,7 @@ describe('MeasurementService.js', () => {
         source,
         definition,
         matchingCriteria,
-        toSourceSchema,
+        toAnnotation,
         toMeasurement
       );
 
@@ -391,7 +381,7 @@ describe('MeasurementService.js', () => {
         source,
         definition,
         matchingCriteria,
-        toSourceSchema,
+        toAnnotation,
         toMeasurement
       );
 

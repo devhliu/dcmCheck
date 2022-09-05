@@ -1,13 +1,13 @@
-import OHIF from '@ohif/core';
+import DCMCloud from '@dcmcloud/core';
 import { connect } from 'react-redux';
-import { StudyBrowser } from '@ohif/ui';
+import { StudyBrowser } from '@dcmcloud/ui';
 import cloneDeep from 'lodash.clonedeep';
 import findDisplaySetByUID from './findDisplaySetByUID';
 import { servicesManager } from './../App.js';
 
-const { studyMetadataManager } = OHIF.utils;
+const { studyMetadataManager } = DCMCloud.utils;
 
-const { setActiveViewportSpecificData } = OHIF.redux.actions;
+const { setActiveViewportSpecificData } = DCMCloud.redux.actions;
 
 // TODO
 // - Determine in which display set is active from Redux (activeViewportIndex and layout viewportData)
@@ -50,10 +50,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       if (displaySet.isDerived) {
         const { Modality } = displaySet;
         if (Modality === 'SEG' && servicesManager) {
-          const {
-            LoggerService,
-            UINotificationService,
-          } = servicesManager.services;
+          const {LoggerService, UINotificationService} = servicesManager.services;
           const onDisplaySetLoadFailureHandler = error => {
             LoggerService.error({ error, message: error.message });
             UINotificationService.show({
@@ -64,25 +61,20 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             });
           };
 
-          const {
-            referencedDisplaySet,
-            activatedLabelmapPromise,
-          } = displaySet.getSourceDisplaySet(
+          const {referencedDisplaySet, activatedLabelmapPromise} = displaySet.getSourceDisplaySet(
             ownProps.studyMetadata,
             true,
             onDisplaySetLoadFailureHandler
           );
           displaySet = referencedDisplaySet;
 
-          activatedLabelmapPromise.then(activatedLabelmapIndex => {
-            const selectionFired = new CustomEvent(
-              'extensiondicomsegmentationsegselected',
-              {
-                detail: { activatedLabelmapIndex: activatedLabelmapIndex },
-              }
-            );
+          activatedLabelmapPromise.then((activatedLabelmapIndex) => {
+            const selectionFired = new CustomEvent("extensiondicomsegmentationsegselected", {
+              "detail": {"activatedLabelmapIndex":activatedLabelmapIndex}
+            });
             document.dispatchEvent(selectionFired);
           });
+
         } else {
           displaySet = displaySet.getSourceDisplaySet(ownProps.studyMetadata);
         }

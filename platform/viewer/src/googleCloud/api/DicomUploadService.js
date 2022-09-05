@@ -1,6 +1,6 @@
 import { httpErrorToStr, checkDicomFile } from '../utils/helpers';
 import { api } from 'dicomweb-client';
-import { errorHandler } from '@ohif/core';
+import { errorHandler } from '@dcmcloud/core';
 
 class DicomUploadService {
   async smartUpload(files, url, uploadCallback, cancellationToken) {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { asyncComponent, retryImport } from '@ohif/ui';
+import { asyncComponent, retryImport } from '@dcmcloud/ui';
 
 import commandsModule from './commandsModule.js';
 import toolbarModule from './toolbarModule.js';
@@ -8,9 +8,11 @@ import { version } from '../package.json';
 // This feels weird
 // import loadLocales from './loadLocales';
 
-const OHIFVTKViewport = asyncComponent(() =>
+const DCMCloudVTKViewport = asyncComponent(() =>
   retryImport(() =>
-    import(/* webpackChunkName: "OHIFVTKViewport" */ './OHIFVTKViewport.js')
+    import(
+      /* webpackChunkName: "DCMCloudVTKViewport" */ './DCMCloudVTKViewport.js'
+    )
   )
 );
 
@@ -23,7 +25,7 @@ const vtkExtension = {
 
   getViewportModule({ commandsManager, servicesManager }) {
     const ExtendedVTKViewport = props => (
-      <OHIFVTKViewport
+      <DCMCloudVTKViewport
         {...props}
         servicesManager={servicesManager}
         commandsManager={commandsManager}

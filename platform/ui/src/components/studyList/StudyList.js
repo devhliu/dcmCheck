@@ -1,11 +1,14 @@
 import './StudyList.styl';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import classNames from 'classnames';
 import TableSearchFilter from './TableSearchFilter.js';
 import PropTypes from 'prop-types';
 import { StudyListLoadingText } from './StudyListLoadingText.js';
 import { useTranslation } from 'react-i18next';
+// import googleLogo from '../../elements/Svg/google-drive-brands.svg';
+// const awsLogo = require('/public/aws-brands.svg');
+import { Icon } from '@dcmcloud/ui';
 
 const getContentFromUseMediaValue = (
   displaySize,
@@ -39,7 +42,7 @@ function StudyList(props) {
     displaySize,
   } = props;
   const { t, ready: translationsAreReady } = useTranslation('StudyList');
-
+  debugger;
   const largeTableMeta = [
     {
       displayText: t('PatientName'),
@@ -74,6 +77,12 @@ function StudyList(props) {
     {
       displayText: t('StudyDescription'),
       fieldName: 'StudyDescription',
+      inputType: 'text',
+      size: 335,
+    },
+    {
+      displayText: t('Bucket'),
+      fieldName: 'bucket',
       inputType: 'text',
       size: 335,
     },
@@ -118,6 +127,9 @@ function StudyList(props) {
   const totalSize = tableMeta
     .map(field => field.size)
     .reduce((prev, next) => prev + next);
+  useEffect(() => {
+    console.log(studies);
+  }, [studies]);
 
   return translationsAreReady ? (
     <table className="table table--striped table--hoverable">
@@ -179,7 +191,9 @@ function StudyList(props) {
           studies.map((study, index) => (
             <TableRow
               key={`${study.StudyInstanceUID}-${index}`}
-              onClick={StudyInstanceUID => handleSelectItem(StudyInstanceUID)}
+              onClick={StudyInstanceUID =>
+                handleSelectItem(StudyInstanceUID, study.bucket)
+              }
               AccessionNumber={study.AccessionNumber || ''}
               modalities={study.modalities}
               PatientID={study.PatientID || ''}
@@ -187,6 +201,7 @@ function StudyList(props) {
               StudyDate={study.StudyDate}
               StudyDescription={study.StudyDescription || ''}
               StudyInstanceUID={study.StudyInstanceUID}
+              bucket={study.bucket}
               displaySize={displaySize}
             />
           ))}
@@ -207,6 +222,7 @@ StudyList.propTypes = {
   }).isRequired,
   onSort: PropTypes.func.isRequired,
   // ~~ FILTERS
+
   filterValues: PropTypes.shape({
     PatientName: PropTypes.string.isRequired,
     PatientID: PropTypes.string.isRequired,
@@ -214,6 +230,7 @@ StudyList.propTypes = {
     StudyDate: PropTypes.string.isRequired,
     modalities: PropTypes.string.isRequired,
     StudyDescription: PropTypes.string.isRequired,
+    bucket: PropTypes.string.isRequired,
     patientNameOrId: PropTypes.string.isRequired,
     accessionOrModalityOrDescription: PropTypes.string.isRequired,
     allFields: PropTypes.string.isRequired,
@@ -226,7 +243,7 @@ StudyList.propTypes = {
 };
 
 StudyList.defaultProps = {};
-
+debugger;
 function TableRow(props) {
   const {
     AccessionNumber,
@@ -237,6 +254,7 @@ function TableRow(props) {
     StudyDate,
     StudyDescription,
     StudyInstanceUID,
+    bucket,
     onClick: handleClick,
     displaySize,
   } = props;
@@ -258,6 +276,17 @@ function TableRow(props) {
         {modalities || `(${t('Empty')})`}
       </td>
       <td>{StudyDescription}</td>
+      <td style={{ padding: '0px' }}>
+        {bucket == 'google' ? (
+          <Icon name="google-icon" className="google-icon" width="40px" />
+        ) : (
+          // <img src={require(`aws-brands.svg`)} height="40px" />
+          <Icon name="aws-icon" className="aws-icon" width="40px" />
+        )
+        // 'aws'
+        }
+      </td>
+      {/* <td>{bucket || `(${'AWS'})`}</td> */}
     </tr>
   );
 
@@ -266,9 +295,12 @@ function TableRow(props) {
       onClick={() => handleClick(StudyInstanceUID)}
       className={classNames({ active: isHighlighted })}
     >
-      <td className={classNames({ 'empty-value': !PatientName })}>
+      <td
+        style={{ color: '#202020', fontWeight: '500' }}
+        className={classNames({ 'empty-value': !PatientName })}
+      >
         {PatientName || `(${t('Empty')})`}
-        <div style={{ color: '#60656f' }}>{PatientID}</div>
+        <div style={{ color: '#60656f', fontWeight: '400' }}>{PatientID}</div>
       </td>
       <td>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -317,7 +349,9 @@ function TableRow(props) {
         </div>
       </td>
       {/* DATE */}
-      <td style={{ textAlign: 'center' }}>{StudyDate}</td>
+      <td style={{ textAlign: 'center', color: '#202020', fontWeight: '500' }}>
+        {StudyDate}
+      </td>
     </tr>
   );
 
@@ -398,6 +432,7 @@ TableRow.propTypes = {
   PatientName: PropTypes.string.isRequired,
   StudyDate: PropTypes.string.isRequired,
   StudyDescription: PropTypes.string.isRequired,
+  bucket: PropTypes.string.isRequired,
   StudyInstanceUID: PropTypes.string.isRequired,
   displaySize: PropTypes.string,
 };

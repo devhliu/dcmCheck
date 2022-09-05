@@ -1,6 +1,6 @@
-import OHIF from '@ohif/core';
+import DCMCloud from '@dcmcloud/core';
 
-const { utils } = OHIF;
+const { utils } = DCMCloud;
 
 const SOP_CLASS_UIDS = {
   VL_WHOLE_SLIDE_MICROSCOPY_IMAGE_STORAGE: '1.2.840.10008.5.1.4.1.1.77.1.6',

@@ -9,67 +9,63 @@ function StudyBrowser(props) {
     onThumbnailClick,
     onThumbnailDoubleClick,
     supportsDrag,
-    showThumbnailProgressBar,
   } = props;
 
   return (
-    <div className="study-browser">
-      <div className="scrollable-study-thumbnails">
-        {studies
-          .map((study, studyIndex) => {
-            const { StudyInstanceUID } = study;
-            return study.thumbnails.map((thumb, thumbIndex) => {
-              // TODO: Thumb has more props than we care about?
-              const {
-                active,
-                altImageText,
-                displaySetInstanceUID,
-                imageId,
-                derivedDisplaySetsNumber,
-                numImageFrames,
-                SeriesDescription,
-                SeriesNumber,
-                hasWarnings,
-                hasDerivedDisplaySets,
-              } = thumb;
+    <div className="scrollable-study-thumbnails">
+      {studies
+        .map((study, studyIndex) => {
+          const { StudyInstanceUID } = study;
+          return study.thumbnails.map((thumb, thumbIndex) => {
+            // TODO: Thumb has more props than we care about?
+            const {
+              active,
+              altImageText,
+              displaySetInstanceUID,
+              imageId,
+              InstanceNumber,
+              numImageFrames,
+              SeriesDescription,
+              SeriesNumber,
+              stackPercentComplete,
+              hasWarnings,
+            } = thumb;
 
-              return (
-                <div
-                  key={thumb.displaySetInstanceUID}
-                  className="thumbnail-container"
-                  data-cy="thumbnail-list"
-                >
-                  <Thumbnail
-                    active={active}
-                    supportsDrag={supportsDrag}
-                    key={`${studyIndex}_${thumbIndex}`}
-                    id={`${studyIndex}_${thumbIndex}`} // Unused?
-                    // Study
-                    StudyInstanceUID={StudyInstanceUID} // used by drop
-                    // Thumb
-                    altImageText={altImageText}
-                    imageId={imageId}
-                    derivedDisplaySetsNumber={derivedDisplaySetsNumber}
-                    displaySetInstanceUID={displaySetInstanceUID} // used by drop
-                    numImageFrames={numImageFrames}
-                    SeriesDescription={SeriesDescription}
-                    SeriesNumber={SeriesNumber}
-                    hasWarnings={hasWarnings}
-                    hasDerivedDisplaySets={hasDerivedDisplaySets}
-                    // Events
-                    onClick={onThumbnailClick.bind(
-                      undefined,
-                      displaySetInstanceUID
-                    )}
-                    onDoubleClick={onThumbnailDoubleClick}
-                    showProgressBar={showThumbnailProgressBar}
-                  />
-                </div>
-              );
-            });
-          })
-          .flat()}
-      </div>
+            return (
+              <div
+                key={thumb.displaySetInstanceUID}
+                className="thumbnail-container"
+                data-cy="thumbnail-list"
+              >
+                <Thumbnail
+                  active={active}
+                  supportsDrag={supportsDrag}
+                  key={`${studyIndex}_${thumbIndex}`}
+                  id={`${studyIndex}_${thumbIndex}`} // Unused?
+                  // Study
+                  StudyInstanceUID={StudyInstanceUID} // used by drop
+                  // Thumb
+                  altImageText={altImageText}
+                  imageId={imageId}
+                  InstanceNumber={InstanceNumber}
+                  displaySetInstanceUID={displaySetInstanceUID} // used by drop
+                  numImageFrames={numImageFrames}
+                  SeriesDescription={SeriesDescription}
+                  SeriesNumber={SeriesNumber}
+                  hasWarnings={hasWarnings}
+                  stackPercentComplete={stackPercentComplete}
+                  // Events
+                  onClick={onThumbnailClick.bind(
+                    undefined,
+                    displaySetInstanceUID
+                  )}
+                  onDoubleClick={onThumbnailDoubleClick}
+                />
+              </div>
+            );
+          });
+        })
+        .flat()}
     </div>
   );
 }
@@ -85,7 +81,7 @@ StudyBrowser.propTypes = {
           altImageText: PropTypes.string,
           displaySetInstanceUID: PropTypes.string.isRequired,
           imageId: PropTypes.string,
-          derivedDisplaySetsNumber: PropTypes.number,
+          InstanceNumber: PropTypes.number,
           numImageFrames: PropTypes.number,
           SeriesDescription: PropTypes.string,
           SeriesNumber: PropTypes.number,
@@ -97,7 +93,6 @@ StudyBrowser.propTypes = {
   supportsDrag: PropTypes.bool,
   onThumbnailClick: PropTypes.func,
   onThumbnailDoubleClick: PropTypes.func,
-  showThumbnailProgressBar: PropTypes.bool,
 };
 
 StudyBrowser.defaultProps = {
@@ -105,7 +100,6 @@ StudyBrowser.defaultProps = {
   supportsDrag: true,
   onThumbnailClick: noop,
   onThumbnailDoubleClick: noop,
-  showThumbnailProgressBar: true,
 };
 
 export { StudyBrowser };

@@ -1,11 +1,11 @@
 import React from 'react';
 // Svgs
-import ohifLogoText from './svgs/ohif-logo-text.svg';
-import ohifLogoWrappedText from './svgs/ohif-logo-wrapped-text.svg';
+import dcmcloudLogoText from './svgs/dcmcloud-logo-text.svg';
+import dcmcloudLogoWrappedText from './svgs/dcmcloud-logo-wrapped-text.svg';
 
 const SVGS = {
-  'ohif-logo-wrapped-text': ohifLogoWrappedText,
-  'ohif-logo-text': ohifLogoText,
+  'dcmcloud-logo-wrapped-text': dcmcloudLogoWrappedText,
+  'dcmcloud-logo-text': dcmcloudLogoText,
 };
 
 /**

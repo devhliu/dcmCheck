@@ -1,12 +1,10 @@
-import OHIF from '@ohif/core';
-import { SimpleDialog } from '@ohif/ui';
+import DCMCloud from '@dcmcloud/core';
+import { SimpleDialog } from '@dcmcloud/ui';
 import cornerstone from 'cornerstone-core';
 import csTools from 'cornerstone-tools';
 import merge from 'lodash.merge';
 import initCornerstoneTools from './initCornerstoneTools.js';
 import measurementServiceMappingsFactory from './utils/measurementServiceMappings/measurementServiceMappingsFactory';
-import dicomSRModule from './tools/modules/dicomSRModule';
-import srModuleId from './tools/id';
 
 /**
  *
@@ -16,8 +14,6 @@ import srModuleId from './tools/id';
  */
 export default function init({ servicesManager, configuration }) {
   const { UIDialogService, MeasurementService } = servicesManager.services;
-
-  csTools.register('module', srModuleId, dicomSRModule);
 
   const callInputDialog = (data, event, callback) => {
     if (UIDialogService) {
@@ -41,15 +37,8 @@ export default function init({ servicesManager, configuration }) {
     }
   };
 
-  const {
-    csToolsConfig,
-    stackPrefetch = {
-      maxImagesToPrefetch: Infinity,
-      preserveExistingPool: false,
-      maxSimultaneousRequests: 20,
-    },
-  } = configuration;
-  const metadataProvider = OHIF.cornerstone.metadataProvider;
+  const { csToolsConfig } = configuration;
+  const metadataProvider = DCMCloud.cornerstone.metadataProvider;
 
   cornerstone.metaData.addProvider(
     metadataProvider.get.bind(metadataProvider),
@@ -63,7 +52,7 @@ export default function init({ servicesManager, configuration }) {
     autoResizeViewports: false,
   };
 
-  initCornerstoneTools({ ...defaultCsToolsConfig, ...stackPrefetch });
+  initCornerstoneTools(defaultCsToolsConfig);
 
   const toolsGroupedByType = {
     touch: [csTools.PanMultiTouchTool, csTools.ZoomTouchPinchTool],

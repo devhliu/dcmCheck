@@ -1,4 +1,4 @@
-import OHIF from '@ohif/core';
+import DCMCloud from '@dcmcloud/core';
 import cornerstone from 'cornerstone-core';
 import csTools from 'cornerstone-tools';
 import throttle from 'lodash.throttle';
@@ -10,7 +10,7 @@ const {
   onAdded,
   onRemoved,
   onModified,
-} = OHIF.measurements.MeasurementHandlers;
+} = DCMCloud.measurements.MeasurementHandlers;
 
 const MEASUREMENT_ACTION_MAP = {
   added: onAdded,

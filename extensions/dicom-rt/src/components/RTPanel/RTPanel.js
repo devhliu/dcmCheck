@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import cornerstoneTools from 'cornerstone-tools';
 import cornerstone from 'cornerstone-core';
 
-import { ScrollableArea, TableList, Icon } from '@ohif/ui';
+import { ScrollableArea, TableList, Icon } from '@dcmcloud/ui';
 
-import { utils } from '@ohif/core';
+import { utils } from '@dcmcloud/core';
 
 import './RTPanel.css';
 import StructureSetItem from '../StructureSetItem/StructureSetItem';
@@ -81,10 +81,13 @@ const RTPanel = ({
   useEffect(() => {
     updateStructureSets();
 
-    document.addEventListener('rt-panel-tab-updated', updateStructureSets);
+    document.addEventListener('extensiondicomrtrtloaded', updateStructureSets);
 
     return () => {
-      document.removeEventListener('rt-panel-tab-updated', updateStructureSets);
+      document.removeEventListener(
+        'extensiondicomrtrtloaded',
+        updateStructureSets
+      );
     };
   }, []);
 

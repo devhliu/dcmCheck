@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import StudyLoadingMonitor from '../components/StudyLoadingMonitor.js';
-import OHIF from '@ohif/core';
+import DCMCloud from '@dcmcloud/core';
 
 const {
   setStudyLoadingProgress,
   clearStudyLoadingProgress,
-} = OHIF.redux.actions;
+} = DCMCloud.redux.actions;
 
 const mapDispatchToProps = dispatch => {
   return {

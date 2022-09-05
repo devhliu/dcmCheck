@@ -21,7 +21,8 @@ article: ["Best Practices for Modals / Overlays / Dialog Windows"][ux-article]
 ## Interface
 
 For a more detailed look on the options and return values each of these methods
-is expected to support, [check out it's interface in `@ohif/core`][interface]
+is expected to support, [check out it's interface in
+`@dcmcloud/core`][interface]
 
 | API Member | Description                           |
 | ---------- | ------------------------------------- |
@@ -30,11 +31,11 @@ is expected to support, [check out it's interface in `@ohif/core`][interface]
 
 ## Implementations
 
-| Implementation                     | Consumer                      |
-| ---------------------------------- | ----------------------------- |
-| [Modal Provider][modal-provider]\* | [OHIFModal][modal-consumer]\* |
+| Implementation                     | Consumer                          |
+| ---------------------------------- | --------------------------------- |
+| [Modal Provider][modal-provider]\* | [DCMCloudModal][modal-consumer]\* |
 
-`*` - Denotes maintained by OHIF
+`*` - Denotes maintained by DCMCloud
 
 > 3rd Party implementers may be added to this table via pull requests.
 
@@ -43,8 +44,8 @@ is expected to support, [check out it's interface in `@ohif/core`][interface]
 -->
 
 <!-- prettier-ignore-start -->
-[interface]: https://github.com/OHIF/Viewers/blob/master/platform/core/src/services/UIModalService/index.js
-[modal-provider]: https://github.com/OHIF/Viewers/blob/master/platform/ui/src/contextProviders/ModalProvider.js
-[modal-consumer]: https://github.com/OHIF/Viewers/tree/master/platform/ui/src/components/ohifModal
+[interface]: https://github.com/DCMCloud/Viewers/blob/master/platform/core/src/services/UIModalService/index.js
+[modal-provider]: https://github.com/DCMCloud/Viewers/blob/master/platform/ui/src/contextProviders/ModalProvider.js
+[modal-consumer]: https://github.com/DCMCloud/Viewers/tree/master/platform/ui/src/components/dcmcloudModal
 [ux-article]: https://uxplanet.org/best-practices-for-modals-overlays-dialog-windows-c00c66cddd8c
 <!-- prettier-ignore-end -->

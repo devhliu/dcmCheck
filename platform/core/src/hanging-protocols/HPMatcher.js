@@ -1,4 +1,4 @@
-import OHIFError from '../classes/OHIFError.js';
+import DCMCloudError from '../classes/DCMCloudError.js';
 import metadata from '../classes/metadata/';
 import { validate } from './lib/validate.js';
 import { CustomAttributeRetrievalCallbacks } from './customAttributes';
@@ -17,7 +17,7 @@ const { InstanceMetadata } = metadata;
 const match = (metadataInstance, rules) => {
   // Make sure the supplied data is valid.
   if (!(metadataInstance instanceof InstanceMetadata)) {
-    throw new OHIFError(
+    throw new DCMCloudError(
       'HPMatcher::match metadataInstance must be an instance of InstanceMetadata'
     );
   }

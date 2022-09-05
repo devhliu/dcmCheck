@@ -135,7 +135,7 @@ class DicomLoaderService {
           if (invalidParams) {
             return;
           }
-
+          debugger;
           getDicomDataMethod = wadorsRetriever.bind(
             this,
             url,

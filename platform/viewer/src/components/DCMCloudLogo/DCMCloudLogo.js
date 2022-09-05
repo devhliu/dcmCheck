@@ -1,6 +1,6 @@
 import './DCMCloudLogo.css';
 
-import { Icon } from '@ohif/ui';
+import { Icon } from '@dcmcloud/ui';
 import React from 'react';
 
 function DCMCloudLogo() {

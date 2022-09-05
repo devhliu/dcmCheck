@@ -1,26 +1,17 @@
 window.config = {
   routerBasename: '/pwa',
   showStudyList: true,
-  studyPrefetcher: {
-    enabled: true,
-    order: 'closest',
-    displaySetCount: 3,
-    preventCache: false,
-    prefetchDisplaySetsTimeout: 300,
-    displayProgress: true,
-    includeActiveDisplaySet: true,
-  },
   servers: {
     dicomWeb: [
       {
         name: 'DCM4CHEE',
-        wadoUriRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/wado',
-        qidoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
-        wadoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
+        wadoUriRoot: 'https://app.dcmcloud.com/coreapi/react/WadoURI',
+        qidoRoot: 'https://app.dcmcloud.com/coreapi/react/QidoRS',
+        wadoRoot: 'https://app.dcmcloud.com/coreapi/react/WadoRS',
         qidoSupportsIncludeField: true,
-        imageRendering: 'wadors',
-        thumbnailRendering: 'wadors',
-        enableStudyLazyLoad: true,
+        imageRendering: 'wadouri',
+        thumbnailRendering: 'wadouri',
+        enableStudyLazyLoad: false,
         supportsFuzzyMatching: true,
       },
     ],

@@ -1,5 +1,5 @@
 import setActiveLabelmap from './utils/setActiveLabelMap';
-import { metadata } from '@ohif/core';
+import { metadata } from '@dcmcloud/core';
 
 export default function getSourceDisplaySet(studies, segDisplaySet, activateLabelMap = true, onDisplaySetLoadFailureHandler) {
   const referencedDisplaySet = metadata.StudyMetadata.getReferencedDisplaySet(segDisplaySet, studies);

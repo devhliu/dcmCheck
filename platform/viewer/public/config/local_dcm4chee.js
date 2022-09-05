@@ -11,8 +11,8 @@ window.config = {
         qidoRoot: 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/rs',
         wadoRoot: 'http://localhost:8080/dcm4chee-arc/aets/DCM4CHEE/rs',
         qidoSupportsIncludeField: true,
-        imageRendering: 'wadors',
-        thumbnailRendering: 'wadors',
+        imageRendering: 'wadouri',
+        thumbnailRendering: 'wadouri',
         requestOptions: {
           auth: 'admin:admin',
         },

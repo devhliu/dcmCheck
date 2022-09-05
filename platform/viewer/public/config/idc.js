@@ -14,8 +14,8 @@ window.config = function(props) {
       console.warn(error.status);
 
       // Could use services manager here to bring up a dialog/modal if needed.
-      console.warn('test, navigate to https://ohif.org/');
-      window.location = 'https://ohif.org/';
+      console.warn('test, navigate to https://www.dcmcloud.com//');
+      window.location = 'https://www.dcmcloud.com/';
     },
     healthcareApiEndpoint: 'https://proxy-dot-idc-dev.appspot.com/v1beta1',
   };

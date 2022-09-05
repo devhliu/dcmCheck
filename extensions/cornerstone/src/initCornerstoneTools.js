@@ -2,9 +2,9 @@ import Hammer from 'hammerjs';
 import cornerstone from 'cornerstone-core';
 import cornerstoneMath from 'cornerstone-math';
 import cornerstoneTools from 'cornerstone-tools';
-import OHIF from '@ohif/core';
+import DCMCloud from '@dcmcloud/core';
 
-const { log } = OHIF;
+const { log } = DCMCloud;
 
 export default function(configuration = {}) {
   // For debugging
@@ -37,8 +37,8 @@ export default function(configuration = {}) {
 
   // Configure stack prefetch
   cornerstoneTools.stackPrefetch.setConfiguration({
-    maxImagesToPrefetch: configuration.maxImagesToPrefetch,
-    preserveExistingPool: configuration.preserveExistingPool,
-    maxSimultaneousRequests: configuration.maxSimultaneousRequests,
+    maxImagesToPrefetch: Infinity,
+    preserveExistingPool: false,
+    maxSimultaneousRequests: 20,
   });
 }

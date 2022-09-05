@@ -1,12 +1,12 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
-import OHIF from '@ohif/core';
+import { Component } from "react";
+import PropTypes from "prop-types";
+import DCMCloud from "@dcmcloud/core";
 
-const { StudyPrefetcher } = OHIF.classes;
+const { StudyPrefetcher } = DCMCloud.classes;
 
 class StudyPrefetcherComponent extends Component {
   static propTypes = {
-    studies: PropTypes.array,
+    studies: PropTypes.array
   };
 
   componentDidMount() {

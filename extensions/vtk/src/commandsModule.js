@@ -10,7 +10,7 @@ import { vec3 } from 'gl-matrix';
 import setMPRLayout from './utils/setMPRLayout.js';
 import setViewportToVTK from './utils/setViewportToVTK.js';
 import Constants from 'vtk.js/Sources/Rendering/Core/VolumeMapper/Constants.js';
-import OHIFVTKViewport from './OHIFVTKViewport';
+import DCMCloudVTKViewport from './DCMCloudVTKViewport';
 
 const { BlendMode } = Constants;
 
@@ -186,7 +186,7 @@ const commandsModule = ({ commandsManager, servicesManager }) => {
         apis[viewports.activeViewportIndex] = api;
       }
 
-      const stack = OHIFVTKViewport.getCornerstoneStack(
+      const stack = DCMCloudVTKViewport.getCornerstoneStack(
         studies,
         StudyInstanceUID,
         displaySetInstanceUID,

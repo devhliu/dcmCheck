@@ -1,7 +1,7 @@
-import { asyncComponent, retryImport } from '@ohif/ui';
-import OHIF from '@ohif/core';
+import { asyncComponent, retryImport } from '@dcmcloud/ui';
+import DCMCloud from '@dcmcloud/core';
 
-const { urlUtil: UrlUtil } = OHIF.utils;
+const { urlUtil: UrlUtil } = DCMCloud.utils;
 
 // Dynamic Import Routes (CodeSplitting)
 const IHEInvokeImageDisplay = asyncComponent(() =>
@@ -31,94 +31,11 @@ const StandaloneRouting = asyncComponent(() =>
     )
   )
 );
-// const ViewerLocalFileData = asyncComponent(() =>
-//   retryImport(() =>
-//     import(
-//       /* webpackChunkName: "ViewerLocalFileData" */ '../connectedComponents/ViewerLocalFileData.js'
-//     )
-//   )
-// );
-
 const ViewerLocalFileData = asyncComponent(() =>
   retryImport(() =>
     import(
-      /* webpackChunkName: "ViewerLocalFileData" */ '../components/ViewerLocalFileDataNEW'
+      /* webpackChunkName: "ViewerLocalFileData" */ '../connectedComponents/ViewerLocalFileData.js'
     )
-  )
-);
-const Login = asyncComponent(() =>
-  retryImport(() =>
-    import(/* webpackChunkName: "Authenticate" */ '../components/Login')
-  )
-);
-const SignUp = asyncComponent(() =>
-  retryImport(() =>
-    import(/* webpackChunkName: "SignUp" */ '../components/SignUp')
-  )
-);
-
-const SuccessPage = asyncComponent(() =>
-  retryImport(() =>
-    import(/* webpackChunkName: "SuccessPage" */ '../components/SuccessPage')
-  )
-);
-
-const PackagePrice = asyncComponent(() =>
-  retryImport(() =>
-    import(/* webpackChunkName: "PackagePrice" */ '../components/PackagePrice')
-  )
-);
-
-const AWSAccessKeyForm = asyncComponent(() =>
-  retryImport(() =>
-    import(
-      /* webpackChunkName: "PackagePrice" */ '../components/AWSAccessKeyForm'
-    )
-  )
-);
-const GoogleAccessKeyForm = asyncComponent(() =>
-  retryImport(() =>
-    import(
-      /* webpackChunkName: "PackagePrice" */ '../components/GoogleAccessKeyForm'
-    )
-  )
-);
-
-const UploadFile = asyncComponent(() =>
-  retryImport(() =>
-    import(
-      /* webpackChunkName: "PackagePrice" */ '../components/UserPreferences/UploadFile'
-    )
-  )
-);
-const ReactComponent = asyncComponent(() =>
-  retryImport(() =>
-    import(
-      /* webpackChunkName: "PackagePrice" */ '../components/ReactComponent'
-    )
-  )
-);
-const AngularComponent = asyncComponent(() =>
-  retryImport(() =>
-    import(
-      /* webpackChunkName: "PackagePrice" */ '../components/AngularComponent'
-    )
-  )
-);
-const HTMLComponent = asyncComponent(() =>
-  retryImport(() =>
-    import(/* webpackChunkName: "PackagePrice" */ '../components/HTMLComponent')
-  )
-);
-// const TemplatePage = asyncComponent(() =>
-//   retryImport(() =>
-//     import(/* webpackChunkName: "PackagePrice" */ '../components/TemplatePage')
-//   )
-// );
-
-const StudylistNew = asyncComponent(() =>
-  retryImport(() =>
-    import(/* webpackChunkName: "PackagePrice" */ '../components/StudylistNew')
   )
 );
 
@@ -140,73 +57,15 @@ const ROUTES_DEF = {
       path: '/viewer',
       component: StandaloneRouting,
     },
-
-    signIn: {
-      path: ['/signIn', '/'],
-      component: Login,
-    },
-    signUp: {
-      path: '/signUp',
-      component: SignUp,
-    },
-    SuccessPage: {
-      path: '/success',
-      component: SuccessPage,
-    },
-    PackagePrice: {
-      path: '/package',
-      component: PackagePrice,
-    },
-    // TemplatePage: {
-    //   path: '/template',
-    //   component: TemplatePage,
-    // },
-
-    AWSAccessKeyForm: {
-      path: '/DashboardPage/AWSAccessKey',
-      component: AWSAccessKeyForm,
-    },
-    GoogleAccessKeyForm: {
-      path: '/DashboardPage/GoogleAccessKey',
-      component: GoogleAccessKeyForm,
-    },
-
-    UploadFile: {
-      path: '/DashboardPage/UploadFile',
-      component: UploadFile,
-    },
-    ReactComponent: {
-      path: '/DashboardPage/ReactComponent',
-      component: ReactComponent,
-    },
-    AngularComponent: {
-      path: '/DashboardPage/AngularComponent',
-      component: AngularComponent,
-    },
-    HTMLComponent: {
-      path: '/DashboardPage/HTMLComponent',
-      component: HTMLComponent,
-    },
-
-    // StudylistNew: {
-    //   path: '/DashboardPage/StudylistNew',
-    //   component: StudylistNew,
-    // },
-
     list: {
-      path: ['/DashboardPage/StudylistNew'],
+      path: ['/studylist', '/'],
       component: StudyListRouting,
       condition: appConfig => {
         return appConfig.showStudyList;
       },
     },
-
-    // local: {
-    //   path: '/local',
-    //   component: ViewerLocalFileData,
-    // },
     local: {
-      path: '/DashboardPage/local',
+      path: '/local',
       component: ViewerLocalFileData,
     },
     IHEInvokeImageDisplay: {

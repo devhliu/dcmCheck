@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { TableListItem, Icon, Tooltip, OverlayTrigger } from '@ohif/ui';
+import { TableListItem, Icon, Tooltip, OverlayTrigger } from '@dcmcloud/ui';
 import ReactTooltip from 'react-tooltip';
 
 import './StructureSetItem.css';

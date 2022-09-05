@@ -3,8 +3,8 @@ import cornerstone from 'cornerstone-core';
 import cornerstoneTools from 'cornerstone-tools';
 import PropTypes from 'prop-types';
 
-import { ViewportDownloadForm } from '@ohif/ui';
-import { utils } from '@ohif/core';
+import { ViewportDownloadForm } from '@dcmcloud/ui';
+import { utils } from '@dcmcloud/core';
 
 import { getEnabledElement } from './state';
 

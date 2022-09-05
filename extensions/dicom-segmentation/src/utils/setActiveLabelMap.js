@@ -1,4 +1,4 @@
-import { utils, log } from '@ohif/core';
+import { utils, log } from '@dcmcloud/core';
 import cornerstoneTools from 'cornerstone-tools';
 import refreshViewports from './refreshViewports';
 
@@ -47,22 +47,13 @@ export default async function setActiveLabelmap(
     return labelmapIndex;
   }
 
-  if (!displaySet.isLoaded && !displaySet.loadError) {
+  if (!displaySet.isLoaded) {
     try {
       await displaySet.load(referencedDisplaySet, studies);
     } catch (error) {
       displaySet.isLoaded = false;
       displaySet.loadError = true;
-      displaySet.segLoadErrorMessagge = error.message;
       onDisplaySetLoadFailure(error);
-
-      /*
-       * TODO: Improve the way we notify parts of the app
-       * that depends on derived display sets to be loaded.
-       * (Implement pubsub for better tracking of derived display sets)
-       */
-      const event = new CustomEvent('segmentationLoadingError');
-      document.dispatchEvent(event);
 
       return -1;
     }

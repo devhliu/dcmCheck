@@ -1,4 +1,4 @@
-import { redux } from '@ohif/core';
+import { redux } from '@dcmcloud/core';
 import store from './../../store';
 
 const commandsModule = ({ commandsManager }) => {

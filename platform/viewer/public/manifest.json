@@ -1,7 +1,7 @@
 {
-  "name": "OHIF Viewer",
+  "name": "DCMCloud Viewer",
   "short_name": "Viewer",
-  "description": "OHIF Viewer",
+  "description": "DCMCloud Viewer",
   "dir": "auto",
   "lang": "en-US",
   "orientation": "any",

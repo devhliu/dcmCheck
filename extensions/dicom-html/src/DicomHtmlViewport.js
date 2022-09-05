@@ -160,7 +160,7 @@ const getContentSequence = (data, level = 1) => {
 
   const root = [];
   if (header) {
-    const HeaderDynamicLevel = `h${Math.min(level, 6)}`;
+    const HeaderDynamicLevel = `h${level}`;
 
     root.push(<HeaderDynamicLevel key={header}>{header}</HeaderDynamicLevel>);
   }
@@ -170,7 +170,7 @@ const getContentSequence = (data, level = 1) => {
 
     if (key === '_meta') {
       const HeaderDynamicLevel = `h3`;
-      root.push(<hr key={root.length} />);
+      root.push(<hr />);
       root.push(
         <HeaderDynamicLevel key="Metadata">
           DICOM File Meta Information
@@ -217,7 +217,7 @@ class DicomHtmlViewport extends Component {
   };
 
   componentDidMount() {
-    this.setContentFromByteArray(this.props.byteArray);
+    const dataSet = this.setContentFromByteArray(this.props.byteArray);
   }
 
   setContentFromByteArray(byteArray) {

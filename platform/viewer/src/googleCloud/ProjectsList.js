@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './googleCloud.css';
 import { withTranslation } from 'react-i18next';
-import { Icon } from '@ohif/ui';
+import { Icon } from '@dcmcloud/ui';
 
 class ProjectsList extends Component {
   state = {
@@ -65,15 +65,16 @@ class ProjectsList extends Component {
     }
 
     const lowerCaseFilter = filter.toLowerCase();
-    const filteredProjects = projects.filter(
-      project =>
-        typeof project.name === 'string' &&
-        (filter === '' || project.name.toLowerCase().includes(lowerCaseFilter))
+    const filteredProjects = projects.filter(project =>
+      typeof project.name  === 'string' &&
+      (filter === "" || project.name.toLowerCase().includes(lowerCaseFilter))
     );
 
     const body = (
       <tbody id="ProjectList">
-        {filteredProjects.map(this.renderTableRow)}
+        {
+          filteredProjects.map(this.renderTableRow)
+        }
       </tbody>
     );
 

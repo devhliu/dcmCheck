@@ -1,4 +1,4 @@
-# @ohif/i18n
+# @dcmcloud/i18n
 
 More information available at
-[OHIF Docs](https://docs.ohif.org/viewer/internationalization.html).
+[DCMCloud Docs](https://docs.dcmcloud.org/viewer/internationalization.html).

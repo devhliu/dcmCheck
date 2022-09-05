@@ -1,4 +1,4 @@
-import { redux } from '@ohif/core';
+import { redux } from '@dcmcloud/core';
 
 const { setLayout } = redux.actions;
 

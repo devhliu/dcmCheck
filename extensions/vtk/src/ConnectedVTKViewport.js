@@ -1,8 +1,8 @@
-import OHIF from '@ohif/core';
+import DCMCloud from '@dcmcloud/core';
 import { connect } from 'react-redux';
 import VTKViewport from './VTKViewport';
 
-const { setViewportActive, setViewportSpecificData } = OHIF.redux.actions;
+const { setViewportActive, setViewportSpecificData } = DCMCloud.redux.actions;
 
 const mapStateToProps = (state, ownProps) => {
   let dataFromStore;

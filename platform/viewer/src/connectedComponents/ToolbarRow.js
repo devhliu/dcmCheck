@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTranslation } from 'react-i18next';
 
-import { MODULE_TYPES } from '@ohif/core';
+import { MODULE_TYPES } from '@dcmcloud/core';
 import {
   ExpandableToolMenu,
   RoundedButtonGroup,
   ToolbarButton,
   withModal,
   withDialog,
-} from '@ohif/ui';
+} from '@dcmcloud/ui';
 
 import './ToolbarRow.css';
 import { commandsManager, extensionManager } from './../App.js';

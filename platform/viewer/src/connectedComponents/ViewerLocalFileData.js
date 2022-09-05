@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { metadata, utils } from '@ohif/core';
+import { metadata, utils } from '@dcmcloud/core';
 
 import ConnectedViewer from './ConnectedViewer.js';
 import PropTypes from 'prop-types';
@@ -9,7 +9,7 @@ import filesToStudies from '../lib/filesToStudies';
 import './ViewerLocalFileData.css';
 import { withTranslation } from 'react-i18next';
 
-const { OHIFStudyMetadata } = metadata;
+const { DCMCloudStudyMetadata } = metadata;
 const { studyMetadataManager } = utils;
 
 const dropZoneLinkDialog = (onDrop, i18n, dir) => {
@@ -67,7 +67,7 @@ class ViewerLocalFileData extends Component {
 
     // Map studies to new format, update metadata manager?
     const updatedStudies = studies.map(study => {
-      const studyMetadata = new OHIFStudyMetadata(
+      const studyMetadata = new DCMCloudStudyMetadata(
         study,
         study.StudyInstanceUID
       );

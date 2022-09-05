@@ -1,5 +1,5 @@
-import OHIF from '@ohif/core';
-import { useLogger } from '@ohif/ui';
+import DCMCloud from '@dcmcloud/core';
+import { useLogger } from '@dcmcloud/ui';
 
 import {
   save,
@@ -17,7 +17,7 @@ import state from './state';
 
 const {
   utils: { Queue },
-} = OHIF;
+} = DCMCloud;
 
 export function getCommands(context, servicesManager, extensionManager) {
   const queue = new Queue(1);
@@ -163,7 +163,7 @@ export function getCommands(context, servicesManager, extensionManager) {
  */
 
 function progress(status) {
-  OHIF.log.info(
+  DCMCloud.log.info(
     'Download and Zip Progress:',
     (status.progress * 100.0).toFixed(2) + '%'
   );
@@ -171,8 +171,8 @@ function progress(status) {
 
 function error(e) {
   if (e.message === 'Queue limit reached') {
-    OHIF.log.warn('A download is already in progress, please wait.');
+    DCMCloud.log.warn('A download is already in progress, please wait.');
   } else {
-    OHIF.log.error(e);
+    DCMCloud.log.error(e);
   }
 }

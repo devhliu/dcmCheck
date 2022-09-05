@@ -4,7 +4,7 @@ Themeing is currently accomplished with color variables that are defined within
 the [`:root`](https://css-tricks.com/almanac/selectors/r/root/) selector
 (allowing them to cascade across all elements). This repository's components,
 and the ones we consume from our
-[`@ohif/ui` component library](https://react.ohif.org/styling-and-theming)
+[`@dcmcloud/ui` component library](https://react.dcmcloud.org/styling-and-theming)
 utilize them. We are interested in pursuing more robust themeing options, and
 open to pull requests and discussion issues.
 

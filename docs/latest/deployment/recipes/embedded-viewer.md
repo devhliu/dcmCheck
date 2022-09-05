@@ -1,9 +1,9 @@
 # Embedded Viewer
 
-The quickest and easiest way to get the OHIF Viewer up and running is to embed
-it into an existing web application. It allows us to forego a "build step", and
-add a powerful medical imaging viewer to an existing web page using only a few
-include tags. Here's how it works:
+The quickest and easiest way to get the DCMCloud Viewer up and running is to
+embed it into an existing web application. It allows us to forego a "build
+step", and add a powerful medical imaging viewer to an existing web page using
+only a few include tags. Here's how it works:
 
 {% include "./../_embedded-viewer-diagram.md" %}
 
@@ -17,19 +17,19 @@ include tags. Here's how it works:
     </a>
   </li>
   <li>
-    <a href="https://unpkg.com/@ohif/viewer">
-      <code>@ohif/viewer@latest</code>
+    <a href="https://unpkg.com/@dcmcloud/viewer">
+      <code>@dcmcloud/viewer@latest</code>
     </a>
   </li>
 </ul>
 
 <ol start="2">
-  <li>Create a JS Object or Function to hold the OHIF Viewer's configuration. Here are some
+  <li>Create a JS Object or Function to hold the DCMCloud Viewer's configuration. Here are some
    example values that would allow the viewer to hit our public PACS:</li>
 </ol>
 
 ```js
-// Set before importing `ohif-viewer` (JS Object)
+// Set before importing `dcmcloud-viewer` (JS Object)
 window.config = {
   // default: '/'
   routerBasename: '/',
@@ -37,19 +37,19 @@ window.config = {
     dicomWeb: [
       {
         name: 'DCM4CHEE',
-        wadoUriRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/wado',
-        qidoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
-        wadoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
+        wadoUriRoot: 'https://192.168.100.20:5006/coreapi/react/WadoURI',
+        qidoRoot: 'https://192.168.100.20:5006/coreapi/react/QidoRS',
+        wadoRoot: 'https://192.168.100.20:5006/coreapi/react/WadoRS',
         qidoSupportsIncludeField: true,
-        imageRendering: 'wadors',
-        thumbnailRendering: 'wadors',
+        imageRendering: 'wadouri',
+        thumbnailRendering: 'wadouri',
       },
     ],
   },
 };
 ```
 
-To learn more about how you can configure the OHIF Viewer, check out our
+To learn more about how you can configure the DCMCloud Viewer, check out our
 [Configuration Guide](../../configuring/index.md).
 
 <ol start="3"><li>
@@ -57,12 +57,12 @@ To learn more about how you can configure the OHIF Viewer, check out our
 </li></ol>
 
 ```js
-// Made available by the `@ohif/viewer` script included in step 1
+// Made available by the `@dcmcloud/viewer` script included in step 1
 var containerId = 'id-of-div-to-render-component-to';
 var componentRenderedOrUpdatedCallback = function() {
-  console.log('OHIF Viewer rendered/updated');
+  console.log('DCMCloud Viewer rendered/updated');
 };
-window.OHIFViewer.installViewer(
+window.DCMCloudViewer.installViewer(
   window.config,
   containerId,
   componentRenderedOrUpdatedCallback
@@ -73,9 +73,9 @@ You can see a live example of this recipe in [this CodeSandbox][code-sandbox].
 
 ## Add Extensions
 
-The UMD build of the OHIF Viewer is a "light weight" build that only contains
-the core extensions required for basic 2D image viewing. It's possible to add
-other extensions at runtime.
+The UMD build of the DCMCloud Viewer is a "light weight" build that only
+contains the core extensions required for basic 2D image viewing. It's possible
+to add other extensions at runtime.
 
 This only requires us to include a single script tag, and add it using the
 `extensions` key to our config. In this practical example, we register our
@@ -83,7 +83,7 @@ popular whole slide microscopy extension:
 
 ```html
 <script
-  src="https://unpkg.com/@ohif/extension-dicom-microscopy@0.50.5/dist/index.umd.js"
+  src="https://unpkg.com/@dcmcloud/extension-dicom-microscopy@0.50.5/dist/index.umd.js"
   crossorigin
 ></script>
 
@@ -91,7 +91,7 @@ popular whole slide microscopy extension:
 <script>
   window.config = {
     // ...
-    extensions: [OHIFExtDicomMicroscopy],
+    extensions: [DCMCloudExtDicomMicroscopy],
   };
 </script>
 ```
@@ -111,8 +111,8 @@ First, check out this fully functional [CodeSandbox][code-sandbox] example. If
 you're still having trouble, feel free to search or GitHub issues. Can't find
 anything related your problem? Create a new one.
 
-> My application's styles are impacting the OHIF Viewer's look and feel. What
-> can I do?
+> My application's styles are impacting the DCMCloud Viewer's look and feel.
+> What can I do?
 
 When you include stylesheets and scripts, they are added globally. This has the
 potential of causing conflicts with other scripts and styles on the page. To
@@ -123,22 +123,24 @@ Good. Now `embed` that new page using an
 This should produce the expected result while also protecting your page from any
 globally defined styles/scripts.
 
-> We're trying to embed the OHIF Viewer into an existing React App, but seeing
-> react-dom and react conflicts. What can we do?
+> We're trying to embed the DCMCloud Viewer into an existing React App, but
+> seeing react-dom and react conflicts. What can we do?
 
-If you are installing OHIF viewer inside another react app, you may use `installViewer` as follows:
+If you are installing DCMCloud viewer inside another react app, you may use
+`installViewer` as follows:
+
 ```
-import { installViewer } from '@ohif/viewer'
+import { installViewer } from '@dcmcloud/viewer'
 
-const ohifViewerConfig = window.config // or set it here
-const containerId = 'ohif'
+const dcmcloudViewerConfig = window.config // or set it here
+const containerId = 'dcmcloud'
 const componentRenderedOrUpdatedCallback = function() {
-    console.log('OHIF Viewer rendered/updated');
+    console.log('DCMCloud Viewer rendered/updated');
 };
 
 componentDidMount() {
    installViewer(
-      ohifViewerConfig,
+      dcmcloudViewerConfig,
       containerId,
       componentRenderedOrUpdatedCallback
     );
@@ -153,11 +155,10 @@ render () {
 ```
 
 `installViewer` is a convenience method that pulls in some dependencies that may
-not be compatible with existing `react` apps. `@ohif/viewer` also exports `App`
-which is a react component that takes the `configuration` outlined above as
-props. You can use it as a reusable component, and to avoid `react` version
+not be compatible with existing `react` apps. `@dcmcloud/viewer` also exports
+`App` which is a react component that takes the `configuration` outlined above
+as props. You can use it as a reusable component, and to avoid `react` version
 conflict issues.
-
 
 <!--
   LINKS

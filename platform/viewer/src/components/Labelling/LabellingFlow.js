@@ -1,4 +1,4 @@
-import { Icon, SelectTree } from '@ohif/ui';
+import { Icon, SelectTree } from '@dcmcloud/ui';
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import cloneDeep from 'lodash.clonedeep';

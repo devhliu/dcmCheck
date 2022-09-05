@@ -1,4 +1,4 @@
-# This dockerfile is used to publish the `ohif/viewer` image on dockerhub.
+# This dockerfile is used to publish the `dcmcloud/viewer` image on dockerhub.
 #
 # It's a good example of how to build our static application and package it
 # with a web server capable of hosting it as static content.
@@ -20,8 +20,8 @@
 
 
 # Stage 1: Build the application
-# docker build -t ohif/viewer:latest .
-FROM node:14-slim as builder
+# docker build -t dcmcloud/viewer:latest .
+FROM node:15.13.0-slim as builder
 
 RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
@@ -42,7 +42,7 @@ COPY yarn.lock /usr/src/app/yarn.lock
 RUN apt-get update && apt-get install -y python make g++
 # Run the install before copying the rest of the files
 RUN yarn config set workspaces-experimental true
-RUN yarn install --verbose
+RUN yarn install
 
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
 ENV QUICK_BUILD true
@@ -53,7 +53,7 @@ RUN yarn run build
 
 # Stage 2: Bundle the built application into a Docker container
 # which runs Nginx using Alpine Linux
-FROM nginx:1.21.1-alpine
+FROM nginx:1.15.5-alpine
 RUN apk add --no-cache bash
 RUN rm -rf /etc/nginx/conf.d
 COPY .docker/Viewer-v2.x /etc/nginx/conf.d

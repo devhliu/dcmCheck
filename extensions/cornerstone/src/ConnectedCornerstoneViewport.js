@@ -1,16 +1,15 @@
 import CornerstoneViewport from 'react-cornerstone-viewport';
-import OHIF from '@ohif/core';
+import DCMCloud from '@dcmcloud/core';
 import { connect } from 'react-redux';
 import throttle from 'lodash.throttle';
 import { setEnabledElement } from './state';
-import initSRTools from './tools/initSRTools';
 
-const { setViewportActive, setViewportSpecificData } = OHIF.redux.actions;
+const { setViewportActive, setViewportSpecificData } = DCMCloud.redux.actions;
 const {
   onAdded,
   onRemoved,
   onModified,
-} = OHIF.measurements.MeasurementHandlers;
+} = DCMCloud.measurements.MeasurementHandlers;
 
 // TODO: Transition to enums for the action names so that we can ensure they stay up to date
 // everywhere they're used.
@@ -29,7 +28,7 @@ const mapStateToProps = (state, ownProps) => {
   if (state.extensions && state.extensions.cornerstone) {
     dataFromStore = state.extensions.cornerstone;
   }
-  debugger
+
   // If this is the active viewport, enable prefetching.
   const { viewportIndex } = ownProps; //.viewportData;
   const isActive = viewportIndex === state.viewports.activeViewportIndex;
@@ -37,7 +36,8 @@ const mapStateToProps = (state, ownProps) => {
     state.viewports.viewportSpecificData[viewportIndex] || {};
 
   // CINE
-  let isPlaying = true;
+  let isPlaying =
+    state.viewports.viewportSpecificData[0]['Modality'] === 'US' ? true : false;
   let frameRate = 24;
 
   if (viewportSpecificData && viewportSpecificData.cine) {
@@ -54,11 +54,7 @@ const mapStateToProps = (state, ownProps) => {
     // Currently justing using escape hatch + commands
     // activeTool: activeButton && activeButton.command,
     ...dataFromStore,
-    isStackPrefetchEnabled: ownProps.hasOwnProperty('isStackPrefetchEnabled')
-      ? ownProps.isStackPrefetchEnabled
-      : ownProps.stackPrefetch
-        ? ownProps.stackPrefetch.enabled
-        : isActive,
+    isStackPrefetchEnabled: isActive,
     isPlaying,
     frameRate,
     //stack: viewportSpecificData.stack,
@@ -93,7 +89,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
           plugin: 'cornerstone',
         })
       );
-      initSRTools(enabledElement);
     },
 
     onMeasurementsChanged: (event, action) => {

@@ -113,13 +113,12 @@ const _paletteColorCache = {
 };
 
 function _getPaletteColor(server, paletteColorLookupTableData, lutDescriptor) {
-  const numLutEntries = lutDescriptor[0] ? lutDescriptor[0] : 65536;
+  const numLutEntries = lutDescriptor[0];
   const bits = lutDescriptor[2];
 
   const arrayBufferToPaletteColorLUT = arraybuffer => {
-    const byteArray = bits === 16 ?
-      new Uint16Array(arraybuffer) :
-      new Uint8Array(arraybuffer);
+    const byteArray =
+      bits === 16 ? new Uint16Array(arraybuffer) : new Uint8Array(arraybuffer);
     const lut = [];
 
     for (let i = 0; i < numLutEntries; i++) {
@@ -144,6 +143,7 @@ function _getPaletteColor(server, paletteColorLookupTableData, lutDescriptor) {
       errorInterceptor: errorHandler.getHTTPErrorHandler(),
       requestHooks: [getXHRRetryRequestHook()],
     };
+    debugger;
     const dicomWeb = new api.DICOMwebClient(config);
     const options = {
       BulkDataURI: uri,

@@ -13,10 +13,10 @@ const ErrorFallback = ({ error, componentStack, resetErrorBoundary }) => {
   );
 };
 
-const OHIFErrorBoundary = ({
-  context = 'OHIF',
-  onReset = () => { },
-  onError = () => { },
+const DCMCloudErrorBoundary = ({
+  context = 'DCMCloud',
+  onReset = () => {},
+  onError = () => {},
   fallbackComponent,
   children,
 }) => {
@@ -40,12 +40,16 @@ const OHIFErrorBoundary = ({
   );
 };
 
-OHIFErrorBoundary.propTypes = {
+DCMCloudErrorBoundary.propTypes = {
   context: PropTypes.string,
   onReset: PropTypes.func,
   onError: PropTypes.func,
   children: PropTypes.node.isRequired,
-  fallbackComponent: PropTypes.oneOfType([PropTypes.node, PropTypes.func, PropTypes.element]),
+  fallbackComponent: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.func,
+    PropTypes.element,
+  ]),
 };
 
-export default OHIFErrorBoundary;
+export default DCMCloudErrorBoundary;

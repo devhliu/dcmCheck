@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import Viewer from './Viewer.js';
-import OHIF from '@ohif/core';
+import DCMCloud from '@dcmcloud/core';
 
-const { setTimepoints, setMeasurements } = OHIF.redux.actions;
+const { setTimepoints, setMeasurements } = DCMCloud.redux.actions;
 
 const getActiveServer = servers => {
   const isActive = a => a.active === true;

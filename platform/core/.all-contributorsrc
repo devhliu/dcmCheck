@@ -90,8 +90,8 @@
     }
   ],
   "contributorsPerLine": 7,
-  "projectName": "@ohif/core",
-  "projectOwner": "OHIF",
+  "projectName": "@dcmcloud/core",
+  "projectOwner": "DCMCloud",
   "repoType": "github",
   "repoHost": "https://github.com"
 }

@@ -1,4 +1,4 @@
-import OHIF from '@ohif/core';
+import DCMCloud from '@dcmcloud/core';
 import cornerstone from 'cornerstone-core';
 import cornerstoneWADOImageLoader from 'cornerstone-wado-image-loader';
 import dicomParser from 'dicom-parser';
@@ -26,7 +26,7 @@ export function setConfiguration(appConfig) {
   cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
   cornerstoneWADOImageLoader.external.dicomParser = dicomParser;
 
-  OHIF.user.getAccessToken = () => {
+  DCMCloud.user.getAccessToken = () => {
     // TODO: Get the Redux store from somewhere else
     const state = window.store.getState();
     if (!state.oidc || !state.oidc.user) {
@@ -36,7 +36,7 @@ export function setConfiguration(appConfig) {
     return state.oidc.user.access_token;
   };
 
-  OHIF.errorHandler.getHTTPErrorHandler = () => {
+  DCMCloud.errorHandler.getHTTPErrorHandler = () => {
     // const { appConfig = {} } = AppContext;
 
     return appConfig.httpErrorHandler;
@@ -44,7 +44,7 @@ export function setConfiguration(appConfig) {
 
   cornerstoneWADOImageLoader.configure({
     beforeSend: function(xhr) {
-      const headers = OHIF.DICOMWeb.getAuthorizationHeader();
+      const headers = DCMCloud.DICOMWeb.getAuthorizationHeader();
 
       if (headers.Authorization) {
         xhr.setRequestHeader('Authorization', headers.Authorization);

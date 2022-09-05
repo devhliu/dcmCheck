@@ -29,11 +29,11 @@ const items = [
   'Subcutaneous',
 ];
 
-const OHIFLabellingData = items.map(item => {
+const DCMCloudLabellingData = items.map(item => {
   return {
     label: item,
     value: item,
   };
 });
 
-export default OHIFLabellingData;
+export default DCMCloudLabellingData;

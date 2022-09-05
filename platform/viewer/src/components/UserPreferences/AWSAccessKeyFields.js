@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TabComponents } from '@ohif/ui';
+import { TabComponents } from '@dcmcloud/ui';
 import './AWSAccessKeyFields.styl';
 
 const AWSAccessKeyFields = () => {
@@ -236,8 +236,8 @@ function CheckConnectivityMain() {
     }),
     body: JSON.stringify(data),
   };
-  // fetch('https://app.OHIF.com/api/files/CheckConnectivity?BucketName=' + BucketName + '&Accesskey=' + AccessKeyId + '&SecretAccessKey=' + SecretAccessKey + '&bucketType=google&dcmcAccessKey=eWF2b3ktMjFhNmQuYXBwc3BvdC5jb21fZGNtY2xvdWQ=', requestOptions)
-  fetch('https://app.OHIF.com/api/files/CheckConnectivity', requestOptions)
+  // fetch('https://app.dcmcloud.com/api/files/CheckConnectivity?BucketName=' + BucketName + '&Accesskey=' + AccessKeyId + '&SecretAccessKey=' + SecretAccessKey + '&bucketType=google&dcmcAccessKey=eWF2b3ktMjFhNmQuYXBwc3BvdC5jb21fZGNtY2xvdWQ=', requestOptions)
+  fetch('https://app.dcmcloud.com/api/files/CheckConnectivity', requestOptions)
     .then(response => response.json())
     .then(data => {
       if (data == true) {
@@ -279,8 +279,8 @@ function CheckConnectivityMainGoogle() {
     }),
     body: JSON.stringify(data),
   };
-  // fetch('https://app.OHIF.com/api/files/CheckConnectivity?BucketName=' + BucketName + '&Accesskey=' + AccessKeyId + '&SecretAccessKey=' + SecretAccessKey + '&bucketType=google&dcmcAccessKey=eWF2b3ktMjFhNmQuYXBwc3BvdC5jb21fZGNtY2xvdWQ=', requestOptions)
-  fetch('https://app.OHIF.com/api/files/CheckConnectivity', requestOptions)
+  // fetch('https://app.dcmcloud.com/api/files/CheckConnectivity?BucketName=' + BucketName + '&Accesskey=' + AccessKeyId + '&SecretAccessKey=' + SecretAccessKey + '&bucketType=google&dcmcAccessKey=eWF2b3ktMjFhNmQuYXBwc3BvdC5jb21fZGNtY2xvdWQ=', requestOptions)
+  fetch('https://app.dcmcloud.com/api/files/CheckConnectivity', requestOptions)
     .then(response => response.json())
     .then(data => {
       if (data == true) {

@@ -1,14 +1,14 @@
 import cornerstone from 'cornerstone-core';
 import cornerstoneTools from 'cornerstone-tools';
-import OHIF from '@ohif/core';
+import DCMCloud from '@dcmcloud/core';
 
 import setCornerstoneLayout from './utils/setCornerstoneLayout.js';
 import { getEnabledElement } from './state';
 import CornerstoneViewportDownloadForm from './CornerstoneViewportDownloadForm';
 const scroll = cornerstoneTools.import('util/scroll');
 
-const { studyMetadataManager } = OHIF.utils;
-const { setViewportSpecificData } = OHIF.redux.actions;
+const { studyMetadataManager } = DCMCloud.utils;
+const { setViewportSpecificData } = DCMCloud.redux.actions;
 
 const refreshCornerstoneViewports = () => {
   cornerstone.getEnabledElements().forEach(enabledElement => {
@@ -133,7 +133,7 @@ const commandsModule = ({ servicesManager }) => {
       });
 
       measurementsToRemove.forEach(measurementData => {
-        OHIF.measurements.MeasurementHandlers.onRemoved({
+        DCMCloud.measurements.MeasurementHandlers.onRemoved({
           detail: {
             toolType: measurementData.toolType,
             measurementData,
@@ -142,12 +142,10 @@ const commandsModule = ({ servicesManager }) => {
       });
     },
     nextImage: ({ viewports }) => {
-      debugger
       const enabledElement = getEnabledElement(viewports.activeViewportIndex);
       scroll(enabledElement, 1);
     },
     previousImage: ({ viewports }) => {
-      debugger
       const enabledElement = getEnabledElement(viewports.activeViewportIndex);
       scroll(enabledElement, -1);
     },
@@ -176,7 +174,7 @@ const commandsModule = ({ servicesManager }) => {
       description,
     }) {
       // Update all measurements by measurement number
-      const measurementApi = OHIF.measurements.MeasurementApi.Instance;
+      const measurementApi = DCMCloud.measurements.MeasurementApi.Instance;
       const measurements = measurementApi.tools[toolType].filter(
         m => m.measurementNumber === measurementNumber
       );

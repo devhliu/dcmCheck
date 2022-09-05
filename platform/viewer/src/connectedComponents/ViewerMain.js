@@ -142,10 +142,7 @@ class ViewerMain extends Component {
     if (displaySet.isDerived) {
       const { Modality } = displaySet;
       if (Modality === 'SEG' && servicesManager) {
-        const {
-          LoggerService,
-          UINotificationService,
-        } = servicesManager.services;
+        const { LoggerService, UINotificationService } = servicesManager.services;
         const onDisplaySetLoadFailureHandler = error => {
           LoggerService.error({ error, message: error.message });
           UINotificationService.show({
@@ -162,6 +159,7 @@ class ViewerMain extends Component {
           onDisplaySetLoadFailureHandler
         );
         displaySet = referencedDisplaySet;
+
       } else {
         displaySet = displaySet.getSourceDisplaySet(this.props.studies);
       }
@@ -210,17 +208,17 @@ class ViewerMain extends Component {
     // Remove beforeUnload event handler...
     //window.removeEventListener('beforeunload', unloadHandlers.beforeUnload);
     // Destroy the synchronizer used to update reference lines
-    //OHIF.viewer.updateImageSynchronizer.destroy();
+    //DCMCloud.viewer.updateImageSynchronizer.destroy();
     // TODO: Instruct all plugins to clean up themselves
     //
     // Clear references to all stacks in the StackManager
     //StackManager.clearStacks();
     // @TypeSafeStudies
-    // Clears OHIF.viewer.Studies collection
-    //OHIF.viewer.Studies.removeAll();
+    // Clears DCMCloud.viewer.Studies collection
+    //DCMCloud.viewer.Studies.removeAll();
     // @TypeSafeStudies
-    // Clears OHIF.viewer.StudyMetadataList collection
-    //OHIF.viewer.StudyMetadataList.removeAll();
+    // Clears DCMCloud.viewer.StudyMetadataList collection
+    //DCMCloud.viewer.StudyMetadataList.removeAll();
   }
 }
 

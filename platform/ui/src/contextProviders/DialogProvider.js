@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import Draggable from 'react-draggable';
 import classNames from 'classnames';
 
-import { utils } from '@ohif/core';
+import { utils } from '@dcmcloud/core';
 
 import './DialogProvider.styl';
 

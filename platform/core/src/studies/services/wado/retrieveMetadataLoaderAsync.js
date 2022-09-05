@@ -1,4 +1,4 @@
-import StaticWadoClient from '../qido/StaticWadoClient';
+import { api } from 'dicomweb-client';
 import dcmjs from 'dcmjs';
 import DICOMWeb from '../../../DICOMWeb/';
 import RetrieveMetadataLoader from './retrieveMetadataLoader';
@@ -73,8 +73,7 @@ export default class RetrieveMetadataLoaderAsync extends RetrieveMetadataLoader 
   configLoad() {
     const { server } = this;
 
-    const client = new StaticWadoClient({
-      ...server,
+    const client = new api.DICOMwebClient({
       url: server.qidoRoot,
       headers: DICOMWeb.getAuthorizationHeader(server),
       errorInterceptor: errorHandler.getHTTPErrorHandler(),

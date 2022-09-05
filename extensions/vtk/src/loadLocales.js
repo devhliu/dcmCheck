@@ -1,4 +1,4 @@
-import i18n from '@ohif/i18n';
+import i18n from '@dcmcloud/i18n';
 import locales from './locales';
 
 async function loadLocales() {

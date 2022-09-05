@@ -35,5 +35,5 @@ this list.**
   Links
   -->
 
-[gh-issues]: https://github.com/OHIF/Viewers/issues/
+[gh-issues]: https://github.com/DCMCloud/Viewers/issues/
 [google-group]: https://groups.google.com/forum/#!forum/cornerstone-platform

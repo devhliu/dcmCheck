@@ -1,5 +1,4 @@
 import '@percy/cypress';
-import { enable } from 'cornerstone-core';
 import 'cypress-file-upload';
 import { DragSimulator } from '../helpers/DragSimulator.js';
 import {
@@ -152,9 +151,11 @@ Cypress.Commands.add('addLine', (viewport, firstClick, secondClick) => {
 
     // TODO: Added a wait which appears necessary in Cornerstone Tools >4?
     cy.wrap($viewport)
-      .click(x1, y1).wait(100)
+      .click(x1, y1)
+      .wait(100)
       .trigger('mousemove', { clientX: x2, clientY: y2 })
-      .click(x2, y2).wait(100);
+      .click(x2, y2)
+      .wait(100);
   });
 });
 
@@ -200,11 +201,6 @@ Cypress.Commands.add('waitDicomImage', (timeout = 50000) => {
       .its('cornerstone')
       .then({ timeout }, $cornerstone => {
         return new Cypress.Promise(resolve => {
-          const onEnabled = enabledEvt => {
-            const element = enabledEvt.detail.element;
-
-            element.addEventListener('cornerstoneimagerendered', onEvent);
-          };
           const onEvent = renderedEvt => {
             const element = renderedEvt.detail.element;
 
@@ -215,17 +211,15 @@ Cypress.Commands.add('waitDicomImage', (timeout = 50000) => {
             );
             resolve();
           };
-          const enabledElements = $cornerstone.getEnabledElements();
-          if (enabledElements && enabledElements.length && !enabledElements[0].invalid) {
-            // Sometimes the page finishes rendering before this gets run,
-            // if so, just resolve immediately.
-            resolve();
-          } else {
-            $cornerstone.events.addEventListener(
-              'cornerstoneelementenabled',
-              onEnabled
-            );
-          }
+          const onEnabled = enabledEvt => {
+            const element = enabledEvt.detail.element;
+
+            element.addEventListener('cornerstoneimagerendered', onEvent);
+          };
+          $cornerstone.events.addEventListener(
+            'cornerstoneelementenabled',
+            onEnabled
+          );
         });
       });
   }
@@ -463,7 +457,7 @@ Cypress.Commands.add('openPreferences', () => {
   cy.log('Open User Preferences Modal');
   // Open User Preferences modal
   cy.get('body').then(body => {
-    if (body.find('.OHIFModal').length === 0) {
+    if (body.find('.DCMCloudModal').length === 0) {
       cy.get('[data-cy="options-menu"]')
         .scrollIntoView()
         .click()
@@ -489,7 +483,7 @@ Cypress.Commands.add('closePreferences', () => {
     }
 
     // Close User Preferences Modal (if displayed)
-    if (body.find('.OHIFModal__header').length > 0) {
+    if (body.find('.DCMCloudModal__header').length > 0) {
       cy.get('[data-cy="close-button"]').click({ force: true });
     }
   });
@@ -512,9 +506,6 @@ Cypress.Commands.add('resetUserHotkeyPreferences', () => {
     cy.get('@restoreBtn').click();
   });
 
-  // Click on Save Button
-  cy.get('@saveBtn').click();
-
   // Close Success Message overlay (if displayed)
   cy.get('body').then(body => {
     if (body.find('.sb-closeIcon').length > 0) {
@@ -522,6 +513,8 @@ Cypress.Commands.add('resetUserHotkeyPreferences', () => {
         .first()
         .click({ force: true });
     }
+    // Click on Save Button
+    cy.get('@saveBtn').click();
   });
 });
 
@@ -534,9 +527,6 @@ Cypress.Commands.add('resetUserGeneralPreferences', () => {
     cy.get('@restoreBtn').click();
   });
 
-  // Click on Save Button
-  cy.get('@saveBtn').click();
-
   // Close Success Message overlay (if displayed)
   cy.get('body').then(body => {
     if (body.find('.sb-closeIcon').length > 0) {
@@ -544,6 +534,8 @@ Cypress.Commands.add('resetUserGeneralPreferences', () => {
         .first()
         .click({ force: true });
     }
+    // Click on Save Button
+    cy.get('@saveBtn').click();
   });
 });
 
@@ -552,13 +544,12 @@ Cypress.Commands.add(
   (function_label, shortcut) => {
     // Within scopes all `.get` and `.contains` to within the matched elements
     // dom instead of checking from document
-    cy.get('.HotkeysPreferences')
-      .within(() => {
-        cy.contains(function_label) // label we're looking for
-          .parent()
-          .find('input') // closest input to that label
-          .type(shortcut, { force: true }); // Set new shortcut for that function
-      });
+    cy.get('.HotkeysPreferences').within(() => {
+      cy.contains(function_label) // label we're looking for
+        .parent()
+        .find('input') // closest input to that label
+        .type(shortcut, { force: true }); // Set new shortcut for that function
+    });
   }
 );
 

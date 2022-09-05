@@ -32,7 +32,7 @@ Each `ViewportComponent` will receive the following props:
 | `viewportData`  | object          | `viewportSpecificData` (probably) |
 | `viewportIndex` | number          |                                   |
 
-### `@ohif/viewer`
+### `@dcmcloud/viewer`
 
 Viewport components are managed by the `ViewportGrid` Component. Which Viewport
 component is used depends on:

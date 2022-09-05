@@ -1,8 +1,8 @@
-import { LayoutButton } from '@ohif/ui';
-import OHIF from '@ohif/core';
+import { LayoutButton } from '@dcmcloud/ui';
+import DCMCloud from '@dcmcloud/core';
 import { connect } from 'react-redux';
 
-const { setLayout, setViewportActive } = OHIF.redux.actions;
+const { setLayout, setViewportActive } = DCMCloud.redux.actions;
 
 const mapStateToProps = state => {
   return {

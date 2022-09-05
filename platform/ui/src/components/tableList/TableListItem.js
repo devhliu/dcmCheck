@@ -12,13 +12,16 @@ export class TableListItem extends Component {
     itemIndex: PropTypes.number,
     itemMeta: PropTypes.node,
     itemMetaClass: PropTypes.string,
-    itemKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    itemKey: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
     onItemClick: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
     itemMeta: null,
-    itemMetaClass: '',
+    itemMetaClass: ''
   };
 
   render() {

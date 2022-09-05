@@ -1,6 +1,6 @@
 # Study Metadata Module
 
-This module defines the API/Data-Model by which OHIF Viewerbase package and
+This module defines the API/Data-Model by which DCMCloud Viewerbase package and
 possibly distinct viewer implementations can access studies metadata. This
 module does not attempt to define any means of _loading_ study metadata from any
 data end-point but only how the data that has been previously loaded into the
@@ -10,16 +10,16 @@ implementations that need the data.
 ## Intro
 
 For various reasons like sorting, grouping or simply rendering study
-information, OHIF Viewerbase package and applications depending on it usually
-have the need to access study metadata. Before the current initiative there was
-no uniform way of achieving that since each implementation provides study
-metadata on its own specific ways. The application and the package itself needed
-to have a deep knowledge of the data structures provided by the data endpoint to
-perform any of the operations mentioned above, meaning that any data access code
-needed to be adapted or rewritten.
+information, DCMCloud Viewerbase package and applications depending on it
+usually have the need to access study metadata. Before the current initiative
+there was no uniform way of achieving that since each implementation provides
+study metadata on its own specific ways. The application and the package itself
+needed to have a deep knowledge of the data structures provided by the data
+endpoint to perform any of the operations mentioned above, meaning that any data
+access code needed to be adapted or rewritten.
 
 The intent of the current module is to provide a fairly consistent and flexible
-API/Data-Model by which OHIF Viewerbase package (and different viewer
+API/Data-Model by which DCMCloud Viewerbase package (and different viewer
 implementations that depend on it) can manipulate DICOM matadata retrieved from
 distinct data end points (e.g., a proprietary back end servers) in uniform ways
 with minor to no modifications needed.
@@ -27,14 +27,14 @@ with minor to no modifications needed.
 ## Implementation
 
 The current API implementation defines three classes of objects:
-`StudyMetadata`, `SeriesMetadata` and `InstanceMetadata`. Inside OHIF Viewerbase
-package, every access to Study, Series or SOP Instance metadata is achieved by
-the interface exposed by these three classes. By inheriting from them and
-overriding or extending their methods, different applications with different
-data models can adapt even the most peculiar data structures to the uniform
-interface defined by those classes. Together these classes define a flexible and
-extensible data manipulation layer leaving routines and algorithms that depend
-on that data untouched.
+`StudyMetadata`, `SeriesMetadata` and `InstanceMetadata`. Inside DCMCloud
+Viewerbase package, every access to Study, Series or SOP Instance metadata is
+achieved by the interface exposed by these three classes. By inheriting from
+them and overriding or extending their methods, different applications with
+different data models can adapt even the most peculiar data structures to the
+uniform interface defined by those classes. Together these classes define a
+flexible and extensible data manipulation layer leaving routines and algorithms
+that depend on that data untouched.
 
 ## Design Decisions & "_Protected_" Members
 

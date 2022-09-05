@@ -1,4 +1,4 @@
-import OHIF from '@ohif/core';
+import DCMCloud from '@dcmcloud/core';
 import dcmjs from 'dcmjs';
 import cornerstone from 'cornerstone-core';
 import cornerstoneTools from 'cornerstone-tools';
@@ -9,7 +9,7 @@ import { vec3 } from 'gl-matrix';
 const dicomlab2RGB = dcmjs.data.Colors.dicomlab2RGB;
 const globalImageIdSpecificToolStateManager =
   cornerstoneTools.globalImageIdSpecificToolStateManager;
-const { DicomLoaderService } = OHIF.utils;
+const { DicomLoaderService } = DCMCloud.utils;
 
 export default async function loadRTStruct(
   rtStructDisplaySet,
@@ -171,13 +171,7 @@ export default async function loadRTStruct(
    * allows us to easily watch the module or the rtstruct loading process in any other component
    * without subscribing to external events.
    */
-  const event = new CustomEvent('extensiondicomrtrtloaded', {
-    detail: {
-      rtStructDisplaySet,
-      referencedDisplaySet,
-      studies,
-    },
-  });
+  const event = new CustomEvent('extensiondicomrtrtloaded');
   document.dispatchEvent(event);
 }
 

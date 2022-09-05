@@ -29,8 +29,8 @@ export default class ExtensionManager {
       const hasConfiguration = Array.isArray(extension);
 
       if (hasConfiguration) {
-        const [ohifExtension, configuration] = extension;
-        this.registerExtension(ohifExtension, configuration);
+        const [dcmcloudExtension, configuration] = extension;
+        this.registerExtension(dcmcloudExtension, configuration);
       } else {
         this.registerExtension(extension);
       }

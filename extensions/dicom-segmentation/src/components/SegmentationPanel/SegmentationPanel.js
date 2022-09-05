@@ -4,8 +4,8 @@ import cornerstoneTools from 'cornerstone-tools';
 import cornerstone from 'cornerstone-core';
 import moment from 'moment';
 import classNames from 'classnames';
-import { utils, log } from '@ohif/core';
-import { ScrollableArea, TableList, Icon } from '@ohif/ui';
+import { utils, log } from '@dcmcloud/core';
+import { ScrollableArea, TableList, Icon } from '@dcmcloud/ui';
 import DICOMSegTempCrosshairsTool from '../../tools/DICOMSegTempCrosshairsTool';
 
 import setActiveLabelmap from '../../utils/setActiveLabelMap';
@@ -224,17 +224,28 @@ const SegmentationPanel = ({
         )
       );
     };
-  }, [
-    activeIndex,
-    viewports,
-  ]);
+  }, [activeIndex, viewports]);
 
-  const updateSegmentationComboBox = e => {
+  const updateSegmentationComboBox = (e) => {
     const index = e.detail.activatedLabelmapIndex;
     if (index !== -1) {
       setState(state => ({ ...state, selectedSegmentation: index }));
+    } else {
+      cleanSegmentationComboBox();
     }
-  };
+  }
+
+  const cleanSegmentationComboBox = () => {
+    setState(state => ({
+      ...state,
+      segmentsHidden: [],
+      segmentNumbers: [],
+      labelMapList: [],
+      segmentList: [],
+      isDisabled: true,
+      selectedSegmentation: -1,
+    }));
+  }
 
   const refreshSegmentations = () => {
     const activeViewport = getActiveViewport();
@@ -298,8 +309,7 @@ const SegmentationPanel = ({
     );
 
     const filteredReferencedSegDisplaysets = referencedSegDisplaysets.filter(
-      segDisplay => segDisplay.loadError !== true
-    );
+      (segDisplay => segDisplay.loadError !== true));
 
     return filteredReferencedSegDisplaysets.map((displaySet, index) => {
       const {
@@ -416,43 +426,23 @@ const SegmentationPanel = ({
     return enabledElements[activeIndex].element;
   };
 
-  const onSegmentVisibilityChangeHandler = (
-    isVisible,
-    segmentNumber,
-    labelmap3D
-  ) => {
-    let segmentsHidden = [];
-    if (labelmap3D.metadata.hasOverlapping) {
-      /** Get all labelmaps with this segmentNumber and that
-       * are from the same series (overlapping segments) */
-      const { labelmaps3D } = getBrushStackState();
-
-      const sameSeriesLabelMaps3D = labelmaps3D.filter(({ metadata }) => {
-        return (
-          labelmap3D.metadata.segmentationSeriesInstanceUID ===
-          metadata.segmentationSeriesInstanceUID
-        );
-      });
-
-      const possibleLabelMaps3D = sameSeriesLabelMaps3D.filter(
-        ({ labelmaps2D }) => {
-          return labelmaps2D.some(({ segmentsOnLabelmap }) =>
-            segmentsOnLabelmap.includes(segmentNumber)
-          );
-        }
+  const onSegmentVisibilityChangeHandler = (isVisible, segmentNumber) => {
+    /** Get all labelmaps with this segmentNumber (overlapping segments) */
+    const { labelmaps3D } = getBrushStackState();
+    const possibleLabelMaps3D = labelmaps3D.filter(({ labelmaps2D }) => {
+      return labelmaps2D.some(({ segmentsOnLabelmap }) =>
+        segmentsOnLabelmap.includes(segmentNumber)
       );
+    });
 
-      possibleLabelMaps3D.forEach(labelmap3D => {
-        labelmap3D.segmentsHidden[segmentNumber] = !isVisible;
-
-        segmentsHidden = [
-          ...new Set([...segmentsHidden, ...labelmap3D.segmentsHidden]),
-        ];
-      });
-    } else {
+    let segmentsHidden = [];
+    possibleLabelMaps3D.forEach(labelmap3D => {
       labelmap3D.segmentsHidden[segmentNumber] = !isVisible;
-      segmentsHidden = [...labelmap3D.segmentsHidden];
-    }
+
+      segmentsHidden = [
+        ...new Set([...segmentsHidden, ...labelmap3D.segmentsHidden]),
+      ];
+    });
 
     setState(state => ({ ...state, segmentsHidden }));
 
@@ -519,7 +509,6 @@ const SegmentationPanel = ({
           label={segmentLabel}
           index={segmentNumber}
           color={color}
-          labelmap3D={labelmap3D}
           visible={!labelmap3D.segmentsHidden[segmentIndex]}
           onVisibilityChange={onSegmentVisibilityChangeHandler}
         />
@@ -694,7 +683,7 @@ const SegmentationPanel = ({
           count={state.segmentList.length}
           isVisible={
             state.segmentsHidden.filter(isHidden => isHidden === true).length <
-            state.segmentNumbers.length && state.segmentNumbers.length > 0
+            state.segmentNumbers.length
           }
           onVisibilityChange={onVisibilityChangeHandler}
         >

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { useSnackbarContext, TabFooter, HotkeyField } from '@ohif/ui';
+import { useSnackbarContext, TabFooter, HotkeyField } from '@dcmcloud/ui';
 import { useTranslation } from 'react-i18next';
 
 import { hotkeysValidators } from './hotkeysValidators';

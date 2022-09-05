@@ -36,6 +36,16 @@ const enums = {
 
 const definitions = [
   {
+    id: 'CopyLink',
+    label: 'Copy Link',
+    icon: 'link',
+    type: TOOLBAR_BUTTON_TYPES.BUILT_IN,
+    options: {
+      behavior: TOOLBAR_BUTTON_BEHAVIORS.SET_TOOL_Copy_Link,
+      togglable: true,
+    },
+  },
+  {
     id: 'StackScroll',
     label: 'Stack Scroll',
     icon: 'bars',
@@ -74,7 +84,7 @@ const definitions = [
   {
     id: 'Length',
     label: 'Length',
-    icon: 'measure-temp',
+    icon: 'scale',
     //
     type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
     commandName: 'setToolActive',
@@ -92,7 +102,7 @@ const definitions = [
   {
     id: 'Angle',
     label: 'Angle',
-    icon: 'angle-left',
+    icon: 'measure-temp',
     //
     type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
     commandName: 'setToolActive',
@@ -124,7 +134,7 @@ const definitions = [
       {
         id: 'Magnify',
         label: 'Magnify',
-        icon: 'circle',
+        icon: 'magnify',
         //
         type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
         commandName: 'setToolActive',
@@ -133,7 +143,7 @@ const definitions = [
       {
         id: 'WwwcRegion',
         label: 'ROI Window',
-        icon: 'stop',
+        icon: 'window',
         //
         type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
         commandName: 'setToolActive',
@@ -142,7 +152,7 @@ const definitions = [
       {
         id: 'DragProbe',
         label: 'Probe',
-        icon: 'dot-circle',
+        icon: 'dental-probe',
         //
         type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
         commandName: 'setToolActive',
@@ -151,7 +161,7 @@ const definitions = [
       {
         id: 'EllipticalRoi',
         label: 'Ellipse',
-        icon: 'circle-o',
+        icon: 'ellipse',
         //
         type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
         commandName: 'setToolActive',
@@ -160,7 +170,7 @@ const definitions = [
       {
         id: 'RectangleRoi',
         label: 'Rectangle',
-        icon: 'square-o',
+        icon: 'rectangular',
         //
         type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
         commandName: 'setToolActive',
@@ -169,7 +179,7 @@ const definitions = [
       {
         id: 'Invert',
         label: 'Invert',
-        icon: 'adjust',
+        icon: 'invert',
         //
         type: TOOLBAR_BUTTON_TYPES.COMMAND,
         commandName: 'invertViewport',
@@ -177,7 +187,7 @@ const definitions = [
       {
         id: 'RotateRight',
         label: 'Rotate Right',
-        icon: 'rotate-right',
+        icon: 'rotate-r',
         //
         type: TOOLBAR_BUTTON_TYPES.COMMAND,
         commandName: 'rotateViewportCW',
@@ -185,7 +195,7 @@ const definitions = [
       {
         id: 'FlipH',
         label: 'Flip H',
-        icon: 'ellipse-h',
+        icon: 'flip-h',
         //
         type: TOOLBAR_BUTTON_TYPES.COMMAND,
         commandName: 'flipViewportHorizontal',
@@ -193,7 +203,7 @@ const definitions = [
       {
         id: 'FlipV',
         label: 'Flip V',
-        icon: 'ellipse-v',
+        icon: 'flip-v',
         //
         type: TOOLBAR_BUTTON_TYPES.COMMAND,
         commandName: 'flipViewportVertical',
@@ -201,7 +211,7 @@ const definitions = [
       {
         id: 'Clear',
         label: 'Clear',
-        icon: 'trash',
+        icon: 'clear',
         //
         type: TOOLBAR_BUTTON_TYPES.COMMAND,
         commandName: 'clearAnnotations',
@@ -209,7 +219,7 @@ const definitions = [
       {
         id: 'Bidirectional',
         label: 'Bidirectional',
-        icon: 'measure-target',
+        icon: 'transfer',
         //
         type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
         commandName: 'setToolActive',
@@ -217,8 +227,8 @@ const definitions = [
       },
       {
         id: 'Download',
-        label: 'Download',
-        icon: 'create-screen-capture',
+        label: 'Key Image',
+        icon: 'image',
         //
         type: TOOLBAR_BUTTON_TYPES.BUILT_IN,
         options: {

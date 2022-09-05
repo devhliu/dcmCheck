@@ -27,14 +27,14 @@ class TextInput extends React.Component {
 
   render() {
     return (
-      <div className="input-ohif-container">
+      <div className="input-dcmcloud-container">
         {this.props.label && (
-          <label className="input-ohif-label" htmlFor={this.props.id}>{this.props.label}</label>
+          <label className="input-dcmcloud-label" htmlFor={this.props.id}>{this.props.label}</label>
         )}
         <input
           type={this.props.type}
           id={this.props.id}
-          className="form-control input-ohif"
+          className="form-control input-dcmcloud"
           {...this.props}
         />
       </div>

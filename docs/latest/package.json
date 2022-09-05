@@ -1,5 +1,5 @@
 {
-  "name": "ohif-viewer-latest-docs",
+  "name": "dcmcloud-viewer-latest-docs",
   "version": "2.0.0",
   "description": "Open Health Imaging Foundation Viewers Metarepo for documentation",
   "main": ".eslintrc.js",
@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OHIF/Viewers.git"
+    "url": "git+https://github.com/DCMCloud/Viewers.git"
   },
   "keywords": [
     "dicom",
     "cornerstone",
-    "OHIF",
+    "DCMCloud",
     "zero",
     "footprint",
     "medical",
@@ -26,9 +26,9 @@
   "author": "Open Health Imaging Foundation",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/OHIF/Viewers/issues"
+    "url": "https://github.com/DCMCloud/Viewers/issues"
   },
-  "homepage": "https://github.com/OHIF/Viewers#readme",
+  "homepage": "https://github.com/DCMCloud/Viewers#readme",
   "dependencies": {
     "gitbook-plugin-anchors": "^0.7.1",
     "gitbook-plugin-edit-link": "^2.0.2",

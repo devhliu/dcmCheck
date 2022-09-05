@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
 import './ViewportDownloadForm.styl';
-import { TextInput, Select, Icon } from '@ohif/ui';
+import { TextInput, Select, Icon } from '@dcmcloud/ui';
 import classnames from 'classnames';
 
 const FILE_TYPE_OPTIONS = [
@@ -25,6 +25,109 @@ const FILE_TYPE_OPTIONS = [
 
 const DEFAULT_FILENAME = 'image';
 const REFRESH_VIEWPORT_TIMEOUT = 1000;
+
+function getKey() {
+  var urlArray = window.location.href.split('/');
+  var keyTypeArray = urlArray[urlArray.length - 1];
+
+  return keyTypeArray;
+}
+
+function loadUploadedImage() {
+  document.getElementById('uploadBtnDiv').style.display = 'none';
+  document.getElementById('deleteBtnDiv').style.display = 'block';
+  event.currentTarget.getElementsByTagName('img')[0].src;
+  document.getElementById(
+    'image_Preview'
+  ).src = event.currentTarget.getElementsByTagName('img')[0].src;
+
+  document.getElementsByClassName(
+    'preview-header'
+  )[0].innerHTML = event.currentTarget.getElementsByTagName('div')[0].innerHTML;
+  document.getElementsByClassName('preview-header')[0].style.right = '142px';
+  MainFileName = event.currentTarget.getElementsByTagName('input')[0].value;
+  //alert(MainFileName);
+  // document.getElementById('FileID').value = MainFileName;
+  // alert(document.getElementById('FileID').value);
+}
+
+function ShowLoading() {
+  try {
+    document.getElementById('uploadingDiv').style.display = 'flex';
+  } catch {}
+}
+
+function HideLoading() {
+  try {
+    document.getElementById('uploadingDiv').style.display = 'none';
+  } catch {}
+}
+
+var MainFileName = '';
+
+function LoadKeyImages() {
+  ShowLoading();
+  var formData = new FormData();
+  formData.append('TokenId', getKey());
+
+  let request = new XMLHttpRequest();
+  request.open('POST', 'https://localhost:44355/api/files/getkeyimages');
+
+  // upload progress event
+  request.upload.addEventListener('progress', function(evt) {
+    // upload progress as percentage
+  });
+
+  // request finished event
+  request.addEventListener('load', function(e) {
+    //alert(JSON.stringify(request.response));
+    setTimeout(function() {
+      document.getElementsByClassName('current')[0].click();
+      var elements = document.getElementsByClassName('loaded');
+      while (elements.length > 0) {
+        elements[0].parentNode.removeChild(elements[0]);
+      }
+
+      var JsonData = JSON.parse(request.response);
+      for (let index = 0; index < JsonData.length; index++) {
+        var divElement = document.createElement('div');
+        divElement.className = 'view-key-preview loaded';
+        divElement.addEventListener('click', function() {
+          loadUploadedImage();
+        });
+
+        var imgElement = document.createElement('img');
+        imgElement.className = 'view-key-image';
+        imgElement.alt = 'Image Preview';
+        imgElement.src = JsonData[index].imageUrl;
+
+        var divChildElement = document.createElement('div');
+        divChildElement.className = 'image-header';
+        divChildElement.innerHTML = JsonData[index].displayName;
+
+        var inputElement = document.createElement('input');
+        inputElement.type = 'hidden';
+        inputElement.value = JsonData[index].fileName;
+
+        divElement.appendChild(imgElement);
+        divElement.appendChild(divChildElement);
+        divElement.appendChild(inputElement);
+        document.getElementById('KeyImagesDiv').appendChild(divElement);
+      }
+
+      HideLoading();
+    }, 1500);
+
+    // HTTP status message (200, 404 etc)
+    //alert(request.status);
+    // request.response holds response from the server
+    //alert(request.response);
+    //location.reload();
+  });
+
+  // send POST request to server
+  request.send(formData);
+}
 
 const ViewportDownloadForm = ({
   activeViewport,
@@ -93,6 +196,96 @@ const ViewportDownloadForm = ({
       viewportElement,
       downloadCanvas.ref.current
     );
+  };
+
+  const callCurrentImage = event => {
+    document.getElementsByClassName('current')[0].click();
+  };
+
+  const loadCurrentImage = event => {
+    document.getElementById('uploadBtnDiv').style.display = 'block';
+    document.getElementById('deleteBtnDiv').style.display = 'none';
+    event.currentTarget.getElementsByTagName('img')[0].src;
+    document.getElementById(
+      'image_Preview'
+    ).src = event.currentTarget.getElementsByTagName('img')[0].src;
+
+    document.getElementsByClassName(
+      'preview-header'
+    )[0].innerHTML = event.currentTarget.getElementsByTagName(
+      'div'
+    )[0].innerHTML;
+    document.getElementsByClassName('preview-header')[0].style.right = '250px';
+  };
+
+  const deleteImage = () => {
+    var r = confirm('Are you sure want to delete this key image!');
+    if (r == true) {
+      ShowLoading();
+      var formData = new FormData();
+      //alert(MainFileName);
+      formData.append('TokenId', getKey());
+      formData.append('FilePath', MainFileName);
+
+      let request = new XMLHttpRequest();
+      request.open('POST', 'https://localhost:44355/api/mage');
+
+      // upload progress event
+      request.upload.addEventListener('progress', function(evt) {
+        // upload progress as percentage
+      });
+
+      // request finished event
+      request.addEventListener('load', function(e) {
+        LoadKeyImages();
+      });
+
+      // send POST request to server
+      request.send(formData);
+    }
+  };
+
+  const uploadImage = () => {
+    ShowLoading();
+    var Img1 = document.getElementById('image_Preview');
+    var formData = new FormData();
+    formData.append('TokenId', getKey());
+    formData.append('base64str', Img1.src);
+
+    let request = new XMLHttpRequest();
+    request.open('POST', 'https://localhost:44355/api/mage');
+
+    // upload progress event
+    request.upload.addEventListener('progress', function(evt) {
+      // upload progress as percentage
+      // document.getElementById('loadupload').display = 'block';
+      // if (evt.lengthComputable) {
+      //   var percentComplete = evt.loaded / evt.total;
+      //   percentComplete = parseInt(percentComplete * 100);
+      //   //console.log(percentComplete);
+      //   document.getElementById('progress_bar').style.width =
+      //     percentComplete + '%';
+      //   document.getElementById('sr_only').innerHTML = percentComplete + '%';
+      //   // document.getElementById('ufiles').innerHTML = percentComplete + '%';
+      //   if (percentComplete === 100) {
+      //     document.getElementById('ufiles').innerHTML =
+      //       'Upload complete! Please wait Loading Files..';
+      //   }
+      // }
+    });
+
+    // request finished event
+    request.addEventListener('load', function(e) {
+      // HTTP status message (200, 404 etc)
+      //alert(request.status);
+      // request.response holds response from the server
+      //alert(request.response);
+      //location.reload();
+      LoadKeyImages();
+    });
+
+    // send POST request to server
+    request.send(formData);
   };
 
   /**
@@ -200,17 +393,17 @@ const ViewportDownloadForm = ({
       height: validSize(viewportElementHeight),
     }));
   }, [
+    loadImage,
     activeViewport,
     viewportElement,
-    showAnnotations,
-    loadImage,
+    dimensions.width,
+    dimensions.height,
     toggleAnnotations,
+    showAnnotations,
+    validSize,
     updateViewportPreview,
-    fileType,
     downloadCanvas.ref,
-    minimumSize,
-    maximumSize,
-    viewportElementDimensions,
+    fileType,
   ]);
 
   useEffect(() => {
@@ -242,9 +435,11 @@ const ViewportDownloadForm = ({
     downloadCanvas.ref,
     minimumSize,
     maximumSize,
+    loadAndUpdateViewports,
   ]);
 
   useEffect(() => {
+    LoadKeyImages();
     const { width, height } = dimensions;
     const hasError = {
       width: width < minimumSize,
@@ -255,8 +450,56 @@ const ViewportDownloadForm = ({
     setError({ ...hasError });
   }, [dimensions, filename, minimumSize]);
 
+  //LoadKeyImages();
   return (
-    <div className="ViewportDownloadForm">
+    <div className="ViewportDownloadForm" style={{ position: 'relative' }}>
+      {/* <div
+        id="uploadingDiv"
+        style={{ zIndex: 1, backgroundColor: '#ffffff' }}
+        className="loading-image"
+      >
+        <Icon name="circle-notch" className="icon-spin" />
+        {t('uploadingKeyImage')}
+      </div> */}
+      {viewportPreview.src ? (
+        <div className="preview" data-cy="image-preview">
+          <div className="preview-header">Current</div>
+          <input id="FileID" type="hidden" value=""></input>
+          <div
+            id="KeyImagesDiv"
+            className="key-images"
+            style={{ overflow: 'hidden', height: 'auto' }}
+          >
+            <div
+              onClick={loadCurrentImage}
+              className="view-key-preview current"
+            >
+              <img
+                className="view-key-image"
+                src={viewportPreview.src}
+                alt={t('imagePreview')}
+                data-cy="image-preview"
+                data-cy="viewport-preview-img"
+              />
+              <div className="image-header">Current</div>
+              <input type="hidden" value="current"></input>
+            </div>
+          </div>
+          <img
+            id="image_Preview"
+            className="viewport-preview"
+            src={viewportPreview.src}
+            alt={t('imagePreview')}
+            data-cy="image-preview"
+            data-cy="viewport-preview-img"
+          />
+        </div>
+      ) : (
+        <div className="loading-image">
+          <Icon name="circle-notch" className="icon-spin" />
+          {t('loadingPreview')}
+        </div>
+      )}
       <div className="title">{t('formTitle')}</div>
 
       <div className="file-info-container" data-cy="file-info-container">
@@ -339,6 +582,7 @@ const ViewportDownloadForm = ({
                 className="form-check-input"
                 checked={showAnnotations}
                 onChange={event => setShowAnnotations(event.target.checked)}
+                onClick={callCurrentImage}
               />
               {t('showAnnotations')}
             </label>
@@ -368,24 +612,6 @@ const ViewportDownloadForm = ({
         ></canvas>
       </div>
 
-      {viewportPreview.src ? (
-        <div className="preview" data-cy="image-preview">
-          <div className="preview-header"> {t('imagePreview')}</div>
-          <img
-            className="viewport-preview"
-            src={viewportPreview.src}
-            alt={t('imagePreview')}
-            data-cy="image-preview"
-            data-cy="viewport-preview-img"
-          />
-        </div>
-      ) : (
-        <div className="loading-image">
-          <Icon name="circle-notch" className="icon-spin" />
-          {t('loadingPreview')}
-        </div>
-      )}
-
       <div className="actions">
         <div className="action-cancel">
           <button
@@ -405,6 +631,30 @@ const ViewportDownloadForm = ({
             data-cy="download-btn"
           >
             {t('Buttons:Download')}
+          </button>
+        </div>
+        <div id="uploadBtnDiv" className="action-save">
+          <button
+            disabled={hasError}
+            onClick={uploadImage}
+            className="btn btn-primary"
+            data-cy="upload-btn"
+          >
+            {t('Buttons:Save')}
+          </button>
+        </div>
+        <div
+          id="deleteBtnDiv"
+          style={{ display: 'none' }}
+          className="action-save"
+        >
+          <button
+            disabled={hasError}
+            onClick={deleteImage}
+            className="btn btn-danger"
+            data-cy="delete-btn"
+          >
+            {t('Buttons:Delete')}
           </button>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { utils, user } from '@ohif/core';
+import { utils, user } from '@dcmcloud/core';
 //
 import ConnectedViewerRetrieveStudyData from '../connectedComponents/ConnectedViewerRetrieveStudyData';
 import useServer from '../customHooks/useServer';

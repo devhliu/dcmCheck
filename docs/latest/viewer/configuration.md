@@ -6,13 +6,13 @@ passed to the viewer depend on how it's deployed, but the two most common paths
 are:
 
 - `index.html` looks for `https://your-website.com/app-config.js` OR
-- `index.html` passes the values to `OHIF.installViewer()`
+- `index.html` passes the values to `DCMCloud.installViewer()`
 
 ```js
 window.config = {
   routerBasename: '/',
   /**
-   * "White Labeling" is used to change the branding, look, and feel of the OHIF
+   * "White Labeling" is used to change the branding, look, and feel of the DCMCloud
    * Viewer. These settings, and the color variables that are used by our components,
    * are the easiest way to rebrand the application.
    *
@@ -39,7 +39,7 @@ window.config = {
     },
   },
   /**
-   * Internally, the OHIF Viewer fetches data primarily with the
+   * Internally, the DCMCloud Viewer fetches data primarily with the
    * `cornerstoneWADOImageLoader` and the `DICOMWebClient`. If either of these
    * receive a non-200 response, this method allows you to handle that error.
    *
@@ -67,55 +67,21 @@ window.config = {
   extensions: [],
   showStudyList: true,
   filterQueryParam: false,
-  /**
-   * Disable caching of servers configuration.
-   *
-   * There will be no effect if you update the servers property of this config
-   * while your application is running because this property is cached in local storage.
-   */
-  disableServersCache: false,
-  /**
-   * OHIF's study prefetcher configuration.
-   *
-   * @param {boolean} enabled Whether to enable/disable OHIF's study prefetcher
-   * @param {('all'|'closest'|'downward'|'upward'|'topdown')} order Fetching order: all display sets, the closest ones, downward or top down fashion based on the currently selected display set
-   * @param {number} displaySetCount How much display sets should be prefetched at once (note: this attribute is ignored if order was set to 'all')
-   * @param {boolean} preventCache Prevent images to be cached in Cornerstone Tools's request pool manager
-   * @param {number} prefetchDisplaySetsTimeout Prefetch timeout
-   * @param {boolean} displayProgress Whether to display or not the progress bar in the display set
-   * @param {boolean} includeActiveDisplaySet Include or not the active display set while prefetching
-   */
-  studyPrefetcher: {
-    enabled: true,
-    order: 'all',
-    displaySetCount: 1,
-    preventCache: false,
-    prefetchDisplaySetsTimeout: 300,
-    displayProgress: false,
-    includeActiveDisplaySet: true,
-  },
   servers: {
     dicomWeb: [
       {
         name: 'DCM4CHEE',
-        wadoUriRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/wado',
-        qidoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
-        wadoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
+        wadoUriRoot: 'https://192.168.100.20:5006/coreapi/react/WadoURI',
+        qidoRoot: 'https://192.168.100.20:5006/coreapi/react/QidoRS',
+        wadoRoot: 'https://192.168.100.20:5006/coreapi/react/WadoRS',
         qidoSupportsIncludeField: true,
-        imageRendering: 'wadors',
-        thumbnailRendering: 'wadors',
-        enableStudyLazyLoad: true,
+        imageRendering: 'wadouri',
+        thumbnailRendering: 'wadouri',
+        enableStudyLazyLoad: false,
       },
     ],
   },
-  /**
-   * Hotkey definitions.
-   * Supported Keys: https://craig.is/killing/mice
-   *
-   * @param {string} commandName
-   * @param {string} label
-   * @param {array} keys
-   */
+  // Supported Keys: https://craig.is/killing/mice
   hotkeys: [
     { commandName: 'rotateViewportCW', label: 'Rotate Right', keys: ['r'] },
     { commandName: 'rotateViewportCCW', label: 'Rotate Left', keys: ['l'] },
@@ -131,16 +97,14 @@ window.config = {
       keys: ['v'],
     },
   ],
-  /**
-   * Configuration passed to the bundled cornerstone extension
+  /* Configuration passed to the bundled cornerstone extension
    *
    * The cornerstone extension is currently tightly coupled to the platform.
    * Until we're able to decouple it, this key will serve as a workaround to
    * pass it configuration.
-   *
-   * @param {boolean} hideHandles Whether to show/hide annotation "handles"
    */
   cornerstoneExtensionConfig: {
+    /* Whether to show/hide annotation "handles" */
     hideHandles: true,
   },
 };
@@ -151,5 +115,5 @@ window.config = {
 -->
 
 <!-- prettier-ignore-start -->
-[config-dir]: https://github.com/OHIF/Viewers/tree/master/platform/viewer/public/config
+[config-dir]: https://github.com/DCMCloud/Viewers/tree/master/platform/viewer/public/config
 <!-- prettier-ignore-end -->

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import OHIF from '@ohif/core';
+import DCMCloud from '@dcmcloud/core';
 import PropTypes from 'prop-types';
 import qs from 'querystring';
 
@@ -8,9 +8,9 @@ import ConnectedViewer from '../connectedComponents/ConnectedViewer';
 import ConnectedViewerRetrieveStudyData from '../connectedComponents/ConnectedViewerRetrieveStudyData';
 import NotFound from '../routes/NotFound';
 
-const { log, metadata, utils } = OHIF;
+const { log, metadata, utils } = DCMCloud;
 const { studyMetadataManager } = utils;
-const { OHIFStudyMetadata } = metadata;
+const { DCMCloudStudyMetadata } = metadata;
 
 class StandaloneRouting extends Component {
   state = {
@@ -47,7 +47,7 @@ class StandaloneRouting extends Component {
       });
 
       // When the JSON has been returned, parse it into a JavaScript Object
-      // and render the OHIF Viewer with this data
+      // and render the DCMCloud Viewer with this data
       oReq.addEventListener('load', event => {
         if (event.target.status === 404) {
           reject(new Error('No JSON data found'));
@@ -83,7 +83,7 @@ class StandaloneRouting extends Component {
           resolve({ server, studyInstanceUIDs, seriesInstanceUIDs });
         } else {
           // Parse data here and add to metadata provider.
-          const metadataProvider = OHIF.cornerstone.metadataProvider;
+          const metadataProvider = DCMCloud.cornerstone.metadataProvider;
 
           let StudyInstanceUID;
           let SeriesInstanceUID;
@@ -187,7 +187,10 @@ const _mapStudiesToNewFormat = studies => {
   /* Map studies to new format, update metadata manager? */
   const uniqueStudyUIDs = new Set();
   const updatedStudies = studies.map(study => {
-    const studyMetadata = new OHIFStudyMetadata(study, study.StudyInstanceUID);
+    const studyMetadata = new DCMCloudStudyMetadata(
+      study,
+      study.StudyInstanceUID
+    );
 
     const sopClassHandlerModules =
       extensionManager.modules['sopClassHandlerModule'];

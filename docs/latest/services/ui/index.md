@@ -18,7 +18,7 @@ these components from an extension.
   <div><i>Diagram showing relationship between React Context and UI Service</i></div>
 </div>
 
-In `@ohif/core`, we have a collection of service factories. We select one we
+In `@dcmcloud/core`, we have a collection of service factories. We select one we
 would like our application to support, create an instance of it, and pass that
 instance to our `ServicesManager` AND to a React component (in this example,
 `ModalContext`'s provider).
@@ -43,7 +43,7 @@ translate to in practice?
 
 ```js
 // In the application
-import UINotificationService from '@ohif/core';
+import UINotificationService from '@dcmcloud/core';
 const servicesManager = new ServicesManager();
 
 servicesManager.registerService(UINotificationService);
@@ -88,16 +88,16 @@ takeaways worth mentioning:
   service in an extension and expose it to the core application
 
 > Note: These are recommended patterns, not hard and fast rules. Following them
-> will help reduce confusion and interoperability with the larger OHIF
+> will help reduce confusion and interoperability with the larger DCMCloud
 > community, but they're not silver bullets. Please speak up, create an issue,
 > if you would like to discuss new services or improvements to this pattern.
 
 ## Maintained Services
 
-Our `@ohif/viewer` project is an example of how to glue together the different
-parts and pieces of the OHIF Platform to create a polished and powerful product.
-To accomplish that, we maintain several UI Services that you can use in your own
-project, or provide alternative implementations for:
+Our `@dcmcloud/viewer` project is an example of how to glue together the
+different parts and pieces of the DCMCloud Platform to create a polished and
+powerful product. To accomplish that, we maintain several UI Services that you
+can use in your own project, or provide alternative implementations for:
 
 | Name                  | Docs                                 |
 | --------------------- | ------------------------------------ |

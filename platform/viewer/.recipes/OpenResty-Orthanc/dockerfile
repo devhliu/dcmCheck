@@ -23,9 +23,7 @@
 
 
 # Stage 1: Build the application
-
-# Needs to be pinned at 16.x for now because of https://github.com/webpack/webpack/issues/14532
-FROM node:lts-slim as builder
+FROM node:11.2.0-slim as builder
 
 RUN mkdir /usr/src/app
 WORKDIR /usr/src/app
@@ -38,12 +36,12 @@ COPY yarn.lock /usr/src/app/yarn.lock
 
 ADD . /usr/src/app/
 RUN yarn install
-RUN yarn run build
+RUN yarn run build:web
 
 # Stage 2: Bundle the built application into a Docker container
 # which runs openresty (nginx) using Alpine Linux
 # LINK: https://hub.docker.com/r/openresty/openresty
-FROM openresty/openresty:1.19.9.1-4-alpine-fat
+FROM openresty/openresty:1.15.8.1rc1-0-alpine-fat
 
 RUN mkdir /var/log/nginx
 RUN apk add --no-cache openssl
@@ -62,6 +60,6 @@ RUN luarocks install lua-resty-openidc
 RUN luarocks install luacrypto
 
 # Copy build output to image
-COPY --from=builder /usr/src/app/platform/viewer/dist /var/www/html
+COPY --from=builder /usr/src/app/build /var/www/html
 
 ENTRYPOINT ["/usr/local/openresty/nginx/sbin/nginx", "-g", "daemon off;"]

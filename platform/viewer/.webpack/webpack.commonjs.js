@@ -26,7 +26,7 @@ module.exports = (env, argv) => {
     },
     output: {
       path: DIST_DIR,
-      library: 'OHIFViewer',
+      library: 'DCMCloudViewer',
       libraryTarget: 'umd',
       filename: 'index.umd.js',
     },

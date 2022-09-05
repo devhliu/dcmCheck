@@ -6,11 +6,13 @@
 }
 
 .dd-title {
-  font-size: 13px;
+  font-size: 16px;
 }
 
 .dd-menu-toggle {
   display: inline-block;
+
+  color: #222222;
 }
 
 .dd-caret-down {
@@ -19,9 +21,11 @@
   height: 0;
   margin-top: 0.5rem;
   margin-left: 0.5rem;
-  border-top: 5px solid;
+  border-top: 8px solid;
   border-right: 5px solid transparent;
   border-left: 5px solid transparent;
+
+  display: none;
 }
 
 .dd-menu-list {
@@ -69,11 +73,14 @@
   color: var(--text-color-active);
   padding: 10px 15px;
   border-bottom: 1px solid #ccc;
+  border: none;
+  cursor: pointer;
+  background-color: #fff;
 }
 
 .dd-item:hover {
   text-decoration: none;
-  background: #eee;
+  background-color: #30b5e7
 }
 
 .dd-item:last-child {
@@ -83,4 +90,14 @@
 .dd-item-icon {
   margin-right: 10px;
   margin-top: 2px;
+}
+
+.dd-item-icon path {
+  color: #222222;
+  fill: #222222;
+}
+
+.dd-item-icon {
+  width: 18px;
+  height: 16px;
 }

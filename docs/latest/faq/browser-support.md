@@ -7,7 +7,7 @@ in the browsers that we support.
 
 ## In Practice
 
-The OHIF Viewer is capable of _running_ on:
+The DCMCloud Viewer is capable of _running_ on:
 
 - IE 11
 - FireFox

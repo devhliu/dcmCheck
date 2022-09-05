@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useLogger } from '@ohif/ui';
+import { useLogger } from '@dcmcloud/ui';
 
-import OHIF, { MODULE_TYPES, DICOMSR } from '@ohif/core';
-import { withDialog } from '@ohif/ui';
+import DCMCloud, { MODULE_TYPES, DICOMSR } from '@dcmcloud/core';
+import { withDialog } from '@dcmcloud/ui';
 import moment from 'moment';
 import ConnectedHeader from './ConnectedHeader.js';
 import ToolbarRow from './ToolbarRow.js';
@@ -70,7 +70,7 @@ class Viewer extends Component {
     const { activeServer } = this.props;
     const server = Object.assign({}, activeServer);
 
-    OHIF.measurements.MeasurementApi.setConfiguration({
+    DCMCloud.measurements.MeasurementApi.setConfiguration({
       dataExchange: {
         retrieve: DICOMSR.retrieveMeasurements,
         store: DICOMSR.storeMeasurements,
@@ -78,7 +78,7 @@ class Viewer extends Component {
       server,
     });
 
-    OHIF.measurements.TimepointApi.setConfiguration({
+    DCMCloud.measurements.TimepointApi.setConfiguration({
       dataExchange: {
         retrieve: this.retrieveTimepoints,
         store: this.storeTimepoints,
@@ -108,7 +108,7 @@ class Viewer extends Component {
   }
 
   retrieveTimepoints = filter => {
-    OHIF.log.info('retrieveTimepoints');
+    DCMCloud.log.info('retrieveTimepoints');
 
     // Get the earliest and latest study date
     let earliestDate = new Date().toISOString();
@@ -141,22 +141,22 @@ class Viewer extends Component {
   };
 
   storeTimepoints = timepointData => {
-    OHIF.log.info('storeTimepoints');
+    DCMCloud.log.info('storeTimepoints');
     return Promise.resolve();
   };
 
   updateTimepoint = (timepointData, query) => {
-    OHIF.log.info('updateTimepoint');
+    DCMCloud.log.info('updateTimepoint');
     return Promise.resolve();
   };
 
   removeTimepoint = timepointId => {
-    OHIF.log.info('removeTimepoint');
+    DCMCloud.log.info('removeTimepoint');
     return Promise.resolve();
   };
 
   disassociateStudy = (timepointIds, StudyInstanceUID) => {
-    OHIF.log.info('disassociateStudy');
+    DCMCloud.log.info('disassociateStudy');
     return Promise.resolve();
   };
 
@@ -174,7 +174,7 @@ class Viewer extends Component {
 
   componentDidMount() {
     const { studies, isStudyLoaded } = this.props;
-    const { TimepointApi, MeasurementApi } = OHIF.measurements;
+    const { TimepointApi, MeasurementApi } = DCMCloud.measurements;
     const currentTimepointId = 'TimepointId';
 
     const timepointApi = new TimepointApi(currentTimepointId, {

@@ -1,10 +1,10 @@
 {
-  "name": "@ohif/extension-lesion-tracker",
-  "version": "0.2.2",
-  "description": "OHIF extension for Lesion Tracker",
-  "author": "OHIF",
+  "name": "@dcmcloud/extension-lesion-tracker",
+  "version": "0.2.1",
+  "description": "DCMCloud extension for Lesion Tracker",
+  "author": "DCMCloud",
   "license": "MIT",
-  "repository": "OHIF/Viewers",
+  "repository": "DCMCloud/Viewers",
   "main": "dist/index.umd.js",
   "module": "src/index.js",
   "publishConfig": {
@@ -28,7 +28,7 @@
     "start": "yarn run dev"
   },
   "peerDependencies": {
-    "@ohif/core": "^0.50.0",
+    "@dcmcloud/core": "^0.50.0",
     "prop-types": "^15.6.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"

@@ -1,6 +1,6 @@
-# @ohif/extension-cornerstone
+# @dcmcloud/extension-cornerstone
 
-![npm (scoped)](https://img.shields.io/npm/v/@ohif/extension-cornerstone.svg?style=flat-square)
+![npm (scoped)](https://img.shields.io/npm/v/@dcmcloud/extension-cornerstone.svg?style=flat-square)
 
 This extension adds support for viewing and manipulating 2D medical images via a
 viewport. The underlying implementation wraps the
@@ -20,13 +20,13 @@ Extension Id: `cornerstone`
 ## Commands Module
 
 This extensions includes the following `Commands` and `Command Definitions`.
-These can be registered with `@ohif/core`'s `CommandManager`. After registering
-the commands, they can be bound to `hotkeys` using the `HotkeysManager` and
-listed in the `UserPreferences` modal.
+These can be registered with `@dcmcloud/core`'s `CommandManager`. After
+registering the commands, they can be bound to `hotkeys` using the
+`HotkeysManager` and listed in the `UserPreferences` modal.
 
 You can read more about [`Commands`][docs-commands], [`Hotkeys`][docs-hotkeys],
 and the [`UserPreferences` Modal][docs-userprefs] in their respective locations
-in the OHIF Viewer's documentation.
+in the DCMCloud Viewer's documentation.
 
 | Command Name                 | Description                             | Store Contexts |
 | ---------------------------- | --------------------------------------- | -------------- |
@@ -80,24 +80,6 @@ Tools can be configured through extension configuration using the tools key:
           getTextCallback: (callback, eventDetails) => callback(prompt('Enter your custom annotation')),
         },
       },
-    },
-  },
-  ...
-```
-
-## Stack prefetch configuration
-
-Stack prefetch can be configured through extension configuration using the
-stackPrefetch key:
-
-```js
-  ...
-  cornerstoneExtensionConfig: {
-    stackPrefetch: {
-      enabled: true,
-      maxImagesToPrefetch: Infinity,
-      preserveExistingPool: false,
-      maxSimultaneousRequests: 20,
     },
   },
   ...

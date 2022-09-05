@@ -72,6 +72,7 @@ async function _getOverlayData(tag, server) {
     errorInterceptor: errorHandler.getHTTPErrorHandler(),
     requestHooks: [getXHRRetryRequestHook()],
   };
+  debugger;
   const dicomWeb = new api.DICOMwebClient(config);
   const options = {
     BulkDataURI: uri,

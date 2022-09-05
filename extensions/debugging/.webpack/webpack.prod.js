@@ -29,7 +29,7 @@ module.exports = (env, argv) => {
     },
     output: {
       path: ROOT_DIR,
-      library: 'OHIFExtDicomP10Downloader',
+      library: 'DCMCloudExtDicomP10Downloader',
       libraryTarget: 'umd',
       libraryExport: 'default',
       filename: pkg.main,
